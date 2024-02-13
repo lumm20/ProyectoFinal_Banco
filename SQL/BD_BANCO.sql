@@ -27,7 +27,7 @@ CREATE TABLE Cuentas (
     fecha_inicio DATE not null,
     saldo VARCHAR(50),
     id_cliente int not null,
-    foreign key (id_cliente) references Clientes,
+    foreign key (id_cliente) references Clientes(id_cliente),
     PRIMARY KEY (numero_de_cuenta)
 );
 
@@ -43,7 +43,7 @@ CREATE TABLE Transacciones (
     num_cuenta varchar(10) not null,
     fecha_hora datetime not null,
     monto float not null,
-    tipo_transaccion varchar(30) check("transferencia" or "retiro sin cuenta"),
+    tipo_transaccion varchar(30) check(tipo_transaccion in("transferencia","retiro sin cuenta")),
     FOREIGN KEY (num_cuenta) REFERENCES Cuentas(numero_de_cuenta)
 );
 
@@ -53,18 +53,17 @@ CREATE TABLE Transaccion_Transferencia (
     FOREIGN KEY (num_cuenta_origen) REFERENCES Transacciones(num_cuenta)
 );
 
-CREATE TABLE Usuario_SinCuenta (
-    id_clienteSinCuenta INT not null auto_increment,
+CREATE TABLE Usuario_Sin_Cuenta (
     folio VARCHAR(32) not null,
     contraseña VARCHAR(8) not null,
-    PRIMARY KEY (id_clienteSinCuenta)
+    PRIMARY KEY (folio)
 );
 
 CREATE TABLE Transaccion_SinCuenta (
     num_cuenta_cliente varchar(10) not null,
-    Id_clienteSinCuenta INT not null,
-    estado varchar(20) check("no cobrado" or "cobrado" or "en proceso"),
-    FOREIGN KEY (Id_clienteSinCuenta) REFERENCES Clientes_SinCuenta(id_clienteSinCuenta),
+    folio varchar(32) not null,
+    estado varchar(20) check(estado in("no cobrado" or "cobrado" or "en proceso")),
+    FOREIGN KEY (folio) REFERENCES Usuario_Sin_Cuenta(folio),
     FOREIGN KEY (num_cuenta_cliente) REFERENCES Transacciones(num_cuenta)
 );
-
+show tables;
