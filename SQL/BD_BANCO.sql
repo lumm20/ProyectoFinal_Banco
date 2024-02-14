@@ -26,20 +26,14 @@ CREATE TABLE Cuentas (
     numero_de_cuenta varchar(10) not null,
     fecha_inicio DATE not null,
     saldo VARCHAR(50),
+    estado varchar(10) not null check(estado in("activa","cancelada")),
     id_cliente int not null,
     foreign key (id_cliente) references Clientes(id_cliente),
     PRIMARY KEY (numero_de_cuenta)
 );
 
--- CREATE TABLE Cliente_Cuentas (
---     id_cliente INT not null,
---     id_cuenta INT not null,
---     PRIMARY KEY (id_cliente, id_cuenta),
---     FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
---     FOREIGN KEY (id_cuenta) REFERENCES Cuentas(numero_de_cuenta)
--- );
-
 CREATE TABLE Transacciones (
+	id_transaccion int primary key not null auto_increment,
     num_cuenta varchar(10) not null,
     fecha_hora datetime not null,
     monto float not null,
@@ -48,22 +42,18 @@ CREATE TABLE Transacciones (
 );
 
 CREATE TABLE Transaccion_Transferencia (
-    num_cuenta_origen varchar(10) not null,
+	id_transaccion int not null,
     num_cuenta_destino varchar(10) not null,
-    FOREIGN KEY (num_cuenta_origen) REFERENCES Transacciones(num_cuenta)
+    FOREIGN KEY (id_transaccion) REFERENCES Transacciones(id_transaccion)
 );
 
-CREATE TABLE Usuario_Sin_Cuenta (
-    folio VARCHAR(32) not null,
-    contraseña VARCHAR(8) not null,
-    PRIMARY KEY (folio)
-);
-
-CREATE TABLE Transaccion_SinCuenta (
-    num_cuenta_cliente varchar(10) not null,
+CREATE TABLE Transaccion_sin_cuenta (
+    id_transaccion int not null,
     folio varchar(32) not null,
     estado varchar(20) check(estado in("no cobrado" or "cobrado" or "en proceso")),
-    FOREIGN KEY (folio) REFERENCES Usuario_Sin_Cuenta(folio),
-    FOREIGN KEY (num_cuenta_cliente) REFERENCES Transacciones(num_cuenta)
+    contra varchar(8) not null,
+    FOREIGN KEY (id_transaccion) REFERENCES Transacciones(id_transaccion)
 );
+
+
 show tables;
