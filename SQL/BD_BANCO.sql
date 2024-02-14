@@ -43,7 +43,7 @@ CREATE TABLE Transacciones (
 
 CREATE TABLE Transaccion_Transferencia (
 	id_transaccion int not null,
-    num_cuenta_destino varchar(10) not null,
+    num_cuenta_destino varchar(10),
     FOREIGN KEY (id_transaccion) REFERENCES Transacciones(id_transaccion)
 );
 
