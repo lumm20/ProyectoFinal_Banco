@@ -17,5 +17,4 @@ public interface ICuentaDAO {
     List<CuentaDTO> listarCuentas() throws PersistenciaException;
     void insertarCuenta(CuentaDTO cuenta) throws PersistenciaException;
     void actualizarCuenta(CuentaDTO cuenta) throws PersistenciaException;
-    void eliminarCuenta(String numCuenta) throws PersistenciaException;
 }
