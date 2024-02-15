@@ -27,7 +27,7 @@ public class ClienteDAO implements IClienteDAO{
     final IConexion conexion;
     private final static Logger LOG= Logger.getLogger(ClienteDAO.class.getName());
     
-        public ClienteDAO(IConexion conexion){
+    public ClienteDAO(IConexion conexion){
         this.conexion=conexion;
     }
 
@@ -109,9 +109,9 @@ public class ClienteDAO implements IClienteDAO{
     }
 
     @Override
-    public void actualizarCliente(ClienteDTO cliente) throws PersistenciaException {
+    public void actualizarCliente(Cliente cliente) throws PersistenciaException {
         String sentencia = "UPDATE Clientes SET nombre = ?, apellidoP = ?, apellidoM = ?, fecha_nacimiento = ?,"
-                + "edad = ?";
+                + "edad = ? WHERE id_cliente= ?";
 
         try (//todos los recursos que se van a utilizar y se deben cerrar
                 Connection conexion = this.conexion.crearConexion(); PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
@@ -120,6 +120,7 @@ public class ClienteDAO implements IClienteDAO{
             comando.setString(3, cliente.getApellidoM());
             comando.setDate(4, cliente.getFecha_nacimiento());
             comando.setInt(5, cliente.getEdad());
+            comando.setInt(6, cliente.getId_cliente());
 
             int res = comando.executeUpdate();
             if (res > 0) {
@@ -127,7 +128,7 @@ public class ClienteDAO implements IClienteDAO{
             }
         } catch (SQLException e) {
             LOG.log(Level.SEVERE, "algo salio mal: " + e.getMessage(), e.getCause());
-            throw new PersistenciaException("hubo un error al agregar el cliente");
+            throw new PersistenciaException("hubo un error al actualizar el cliente");
         }
     }
 }
