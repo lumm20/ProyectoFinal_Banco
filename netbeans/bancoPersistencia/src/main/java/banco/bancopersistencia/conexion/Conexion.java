@@ -16,10 +16,9 @@ import java.util.logging.Logger;
  */
 public class Conexion implements IConexion{
 
-    final String cadenaConexion;
-    final String usuario;
-    final String contra;
-    Connection con = null;
+    final private String cadenaConexion;
+    final private String usuario;
+    final private String contra;
     private static final Logger LOG = Logger.getLogger(Conexion.class.getName());
 
     public Conexion(String cadenaConexion, String usuario, String contra) {

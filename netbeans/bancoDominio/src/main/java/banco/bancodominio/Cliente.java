@@ -19,7 +19,7 @@ public class Cliente {
     private int edad;
     private int id_domicilio;
 
-    public Cliente() {
+    public Cliente(String nombre1, String apellidoPaterno, String apellidoMaterno, String fechaNacimiento, String direccion) {
     }
 
     public Cliente(int id_cliente, String nombre, String apellidoP, String apellidoM, Date fecha_nacimiento, int edad, int id_domicilio) {
