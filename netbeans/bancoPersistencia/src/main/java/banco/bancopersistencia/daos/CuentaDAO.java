@@ -33,10 +33,5 @@ public class CuentaDAO implements ICuentaDAO{
     public void actualizarCuenta(CuentaDTO cuenta) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-<<<<<<< HEAD
-=======
 
-    
-    
->>>>>>> 130fc9eb2e6c0bbf5c2f1a6cf516af24359011e7
 }
