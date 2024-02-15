@@ -17,5 +17,4 @@ public interface IClienteDAO {
     List<ClienteDTO> listarClientes() throws PersistenciaException;
     void insertarCliente(ClienteDTO cliente) throws PersistenciaException;
     void actualizarCliente(ClienteDTO cliente) throws PersistenciaException;
-    
 }

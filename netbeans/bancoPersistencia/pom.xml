@@ -18,6 +18,11 @@
     <artifactId>mysql-connector-java</artifactId>
     <version>8.0.33</version>
 </dependency>
-
-        </dependencies>
+        <dependency>
+            <groupId>banco</groupId>
+            <artifactId>bancoPersistencia</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>
