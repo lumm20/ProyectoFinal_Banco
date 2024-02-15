@@ -47,19 +47,19 @@ public interface IControlNegocio {
      * @throws NegocioException en caso de que ocurra un error de base de datos al agregar al cliente
      */
     public void insertarCliente(String nombre, String apellidoPaterno, String apellidoM,
-            Date fecha_nacimiento, int id_direccion) throws NegocioException;
+            String fecha_nacimiento, int id_direccion) throws NegocioException;
 
-    /**
-     * Actualiza la informacion personal de un cliente, a excepcion de su id de cliente
-     * @param nombre del cliente
-     * @param apellidoPaterno del cliente
-     * @param apellidoM del cliente
-     * @param fecha_nacimiento del cliente
-     * @throws NegocioException en caso de que ocurra un error de base de datos al actualizar al cliente
-     */
-    public void actualizarCliente(String nombre, String apellidoPaterno, String apellidoM,
-            Date fecha_nacimiento) throws NegocioException;
-    
+//    /**
+//     * Actualiza la informacion personal de un cliente, a excepcion de su id de cliente
+//     * @param nombre del cliente
+//     * @param apellidoPaterno del cliente
+//     * @param apellidoM del cliente
+//     * @param fecha_nacimiento del cliente
+//     * @throws NegocioException en caso de que ocurra un error de base de datos al actualizar al cliente
+//     */
+//    public void actualizarCliente(String nombre, String apellidoPaterno, String apellidoM,
+//            String fecha_nacimiento) throws NegocioException;
+//    
     /**
      * Realiza una consulta de una cuenta con el num_cuenta especificado en el parametro
      *
@@ -80,17 +80,18 @@ public interface IControlNegocio {
     public List<Cuenta> consultarTodasCuentas() throws NegocioException;
     
     /**
-     * Agrega un registro de una cuenta a la base de datos
-     * @param cuenta a registrar
+     * Agrega un registro de una cuenta a la base de datos con saldo inicial 0.0 y estado activo
+     * @param numCuenta de la cuenta a registrar
+     * @param fecha_creacion de la cuenta
      * @throws NegocioException en caso de que ocurra un error de base de datos al agregar la cuenta
      */
-    public void insertarCuenta(CuentaDTO cuenta) throws NegocioException;
+    public void insertarCuenta(String numCuenta, String fecha_creacion) throws NegocioException;
     
-    /**
-     * Actualiza el saldo de una cuenta
-     * @param num_cuenta a actualizar
-     * @param saldo a establecer en el registro de la cuenta
-     * @throws NegocioException en caso de que ocurra un error de base de datos al actualizar el saldo
-     */
-    public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws NegocioException;
+//    /**
+//     * Actualiza el saldo de una cuenta
+//     * @param num_cuenta a actualizar
+//     * @param saldo a establecer en el registro de la cuenta
+//     * @throws NegocioException en caso de que ocurra un error de base de datos al actualizar el saldo
+//     */
+//    public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws NegocioException;
 }

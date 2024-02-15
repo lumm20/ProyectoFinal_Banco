@@ -49,44 +49,69 @@ public class ControlNegocio implements IControlNegocio{
 
     @Override
     public void insertarCliente(String nombre, String apellidoP, String apellidoM,
-            Date fecha_nacimiento, int id_direccion) throws NegocioException {
-        //ClienteDTO cliente=new ClienteDTO(nombre,apellidoP,apellidoM,fecha_nacimiento,id_direccion);
+            String fecha_nacimiento, int id_direccion) throws NegocioException {
+        Date fechaNac=Date.valueOf(fecha_nacimiento);
+        int edad=this.calcularEdad(fechaNac);
+        ClienteDTO cliente=new ClienteDTO(nombre,apellidoP,apellidoM,fechaNac,edad,id_direccion);
         try {
-            
-        } catch (Exception e) {
+            this.controlPers.insertarCliente(cliente);
+        } catch (PersistenciaException e) {
+            throw new NegocioException(e.getMessage());
         }
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    private void calcularEdad(Date fecha_nacimiento){
-       // Date date=new Date
-//        Calendar hoy=Calendar
+    private int calcularEdad(Date fecha_nacimiento){
+        Calendar hoy=Calendar.getInstance();
+        Calendar fechaNac=Calendar.getInstance();
+        fechaNac.setTime(fecha_nacimiento);
+        int edad =hoy.get(Calendar.YEAR)-fechaNac.get(Calendar.YEAR);
+        if(hoy.get(Calendar.DAY_OF_YEAR)<fechaNac.get(Calendar.DAY_OF_YEAR))
+            edad--;
+        return edad;
     }
     
-    @Override
-    public void actualizarCliente(String nombre, String apellidoPaterno, String apellidoM,
-            Date fecha_nacimiento) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+//    @Override
+//    public void actualizarCliente(String nombre, String apellidoPaterno, String apellidoM,
+//            String fecha_nacimiento) throws NegocioException {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
 
     @Override
     public Cuenta consultarCuentaEspecifica(String numCuenta) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Cuenta cuentaCons;
+        try {
+            cuentaCons=this.controlPers.consultarCuentaEspecifica(numCuenta);
+            return cuentaCons;
+        } catch (PersistenciaException e) {
+            throw new NegocioException(e.getMessage());
+        }
     }
 
     @Override
     public List<Cuenta> consultarTodasCuentas() throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Cuenta> lista;
+        try {
+            lista=this.controlPers.consultarTodasCuentas();
+            return lista;
+        } catch (PersistenciaException e) {
+            throw new NegocioException(e.getMessage());
+        }
     }
 
     @Override
-    public void insertarCuenta(CuentaDTO cuenta) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void insertarCuenta(String numCuenta,String fecha_creacion) throws NegocioException {
+        Date fechaCreacion=Date.valueOf(fecha_creacion);
+        CuentaDTO cuenta =new CuentaDTO(numCuenta, "activa", 0, fechaCreacion);
+        try {
+            this.controlPers.insertarCuenta(cuenta);
+        } catch (PersistenciaException e) {
+            throw new NegocioException(e.getMessage());
+        }
     }
 
-    @Override
-    public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+//    @Override
+//    public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws NegocioException {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
     
 }
