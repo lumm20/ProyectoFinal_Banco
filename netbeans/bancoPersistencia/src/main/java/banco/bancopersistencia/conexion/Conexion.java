@@ -35,4 +35,14 @@ public class Conexion implements IConexion{
 
         return conexion;
     }
+
+    @Override
+    public void cerrarConexion() throws SQLException {
+         Connection conexion = DriverManager.getConnection(cadenaConexion, usuario, contra);
+        try {
+            conexion.close();
+        } catch (Exception e) {
+             LOG.log(Level.INFO, "Conexión cerrada ", cadenaConexion);
+        }
+    }
 }

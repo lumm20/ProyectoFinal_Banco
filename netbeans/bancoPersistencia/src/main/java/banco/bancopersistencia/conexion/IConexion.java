@@ -18,4 +18,5 @@ public interface IConexion {
      * @throws SQLException si hubo un error al intentar conectarse a la base de datos
      */
     public Connection crearConexion() throws SQLException;
+    public void cerrarConexion() throws SQLException;
 }
