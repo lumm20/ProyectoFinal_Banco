@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class Registro extends javax.swing.JFrame {
 
     // Crear una instancia de Conexion
-String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/BD_BANCO";
+String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/BANCO";
 String usuario = "root";
 String contra = "esme2304";
 IConexion conexion = new Conexion(cadenaConexion, usuario, contra);

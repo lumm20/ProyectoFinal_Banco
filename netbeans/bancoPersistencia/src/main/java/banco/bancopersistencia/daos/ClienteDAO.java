@@ -4,9 +4,6 @@
  */
 package banco.bancopersistencia.daos;
 
-
-import banco.bancopersistencia.conexion.Conexion;
-
 import banco.bancopersistencia.conexion.IConexion;
 import banco.bancopersistencia.dtos.ClienteDTO;
 import banco.bancopersistencia.excepciones.PersistenciaException;
@@ -14,14 +11,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
-
-import java.sql.Statement;
 import java.util.List;
-
 import java.util.logging.Logger;
 
 /**
@@ -29,9 +21,6 @@ import java.util.logging.Logger;
  * @author luiis
  */
 public class ClienteDAO implements IClienteDAO {
-
-
-    
 
     private final IConexion conexionBD;
 
@@ -42,8 +31,6 @@ public class ClienteDAO implements IClienteDAO {
         this.conexionBD = conexionBD;
     }
 
-   
-    
     @Override
     public ClienteDTO buscarClientePorId(int id) throws PersistenciaException {
         // Aquí implementa la lógica para buscar un cliente por su ID en la base de datos
@@ -57,7 +44,7 @@ public class ClienteDAO implements IClienteDAO {
             if (resultado.next()) {
                 // Crear un objeto ClienteDTO con los datos obtenidos de la consulta
                 ClienteDTO clienteConsultado = new ClienteDTO(
-                                                resultado.getString("nombre"),
+                        resultado.getString("nombre"),
                         resultado.getString("apellidoP"),
                         resultado.getString("apellidoM"),
                         resultado.getDate("fecha_Nacimiento"),
@@ -74,27 +61,6 @@ public class ClienteDAO implements IClienteDAO {
             LOG.log(Level.SEVERE, "Error al buscar cliente por ID", ex);
             throw new PersistenciaException("Error al buscar cliente por ID", ex);
         }
-    
-
-    @Override
-    public ClienteDTO buscarClientePorId(int id) throws PersistenciaException {
-        String sentencia="SELECT * FROM Clientes WHERE id_cliente= ? ";
-        ClienteDTO clienteBuscado=null;
-         try(//todos los recursos que se van a utilizar y se deben cerrar
-                Connection conexion = this.conexion.crearConexion(); 
-                 PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
-             comando.setInt(1, id);
-             
-             ResultSet rs=comando.executeQuery();
-             if(rs.next()){
-                 clienteBuscado=new ClienteDTO(rs.getString("nombre"),rs.getString("apellidoP"),
-                 rs.getString("apellidM"),rs.getDate("fecha_Nacimiento"),rs.getInt("edad"),rs.getInt("codigo_direccion"));
-             }
-         }catch(SQLException e){
-             
-         }
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-
     }
 
     @Override
