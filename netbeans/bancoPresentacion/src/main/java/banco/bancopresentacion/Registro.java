@@ -10,7 +10,11 @@ import banco.bancopersistencia.conexion.Conexion;
 import banco.bancopersistencia.conexion.IConexion;
 import banco.bancopersistencia.daos.ClienteDAO;
 import banco.bancopersistencia.excepciones.PersistenciaException;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import java.sql.Statement;
 
 /**
  *
@@ -18,15 +22,13 @@ import javax.swing.JOptionPane;
  */
 public class Registro extends javax.swing.JFrame {
 
-    // Crear una instancia de Conexion
-String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/BANCO";
-String usuario = "root";
-String contra = "esme2304";
-IConexion conexion = new Conexion(cadenaConexion, usuario, contra);
+    
+String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
+    String usuario = "root";
+    String contra = "esme2304";
+    IConexion conexion = new Conexion(cadenaConexion, usuario, contra);
 
-// Crear una instancia de ClienteDAO y pasar la conexión al constructor
-ClienteDAO clienteDAO = new ClienteDAO(conexion);
-
+    
 
 
     /**
@@ -124,19 +126,33 @@ ClienteDAO clienteDAO = new ClienteDAO(conexion);
         // Crear un objeto Cliente con los datos ingresados por el usuario
         Cliente cliente = new Cliente(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, direccion);
 
-        // Crear una instancia de ClienteDAO y clienteRegistro
-       // ClienteDAO clienteDAO = new ClienteDAO(conexion); // Pasar la conexión al constructor
-        clienteRegistro registroCliente = new clienteRegistro(clienteDAO);
+        // Obtener una instancia de la conexión
+        Connection connection = conexion.crearConexion();
 
-        // Llamar al método registrarCliente para insertar el cliente en la base de datos
-        registroCliente.registrarCliente(cliente);
+        // Crear un Statement
+        Statement statement = connection.createStatement();
+
+        // Construir la consulta SQL para insertar el cliente en la base de datos
+        String query = "INSERT INTO Clientes (nombre, apellidoP, apellidoM, fecha_nacimiento, codigo_direccion) VALUES ('" +
+            nombre + "', '" + apellidoPaterno + "', '" + apellidoMaterno + "', '" + fechaNacimiento + "', '" + direccion + "')";
+
+
+        // Ejecutar la consulta SQL
+        statement.executeUpdate(query);
+
+        // Cerrar el Statement y la conexión
+        statement.close();
+        connection.close();
 
         // Mostrar un mensaje de éxito
         JOptionPane.showMessageDialog(this, "Cliente registrado exitosamente");
-    } catch (PersistenciaException ex) {
+    } catch (SQLException ex) {
         // En caso de error, mostrar un mensaje de error
         JOptionPane.showMessageDialog(this, "Error al registrar el cliente: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+    } finally {
+        // Manejar la liberación de recursos aquí, si es necesario
+    } 
+    
     }//GEN-LAST:event_ButtonAceptarActionPerformed
 
     /**

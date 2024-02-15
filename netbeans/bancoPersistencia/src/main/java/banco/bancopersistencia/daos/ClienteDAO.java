@@ -26,17 +26,23 @@ public class ClienteDAO implements IClienteDAO {
 
     private static final Logger LOG = Logger.getLogger(ClienteDAO.class.getName());
 
+    
+
+    
     // Constructor que acepta un objeto IConexion
+    
     public ClienteDAO(IConexion conexionBD) {
-        this.conexionBD = conexionBD;
-    }
+    this.conexionBD = conexionBD;
+}
+    
 
     @Override
     public ClienteDTO buscarClientePorId(int id) throws PersistenciaException {
         // Aquí implementa la lógica para buscar un cliente por su ID en la base de datos
         String consulta = "SELECT * FROM Clientes WHERE id_cliente = ?";
 
-        try (Connection conexion = this.conexionBD.crearConexion(); PreparedStatement comandoSQL = conexion.prepareStatement(consulta);) {
+        try (
+                Connection conexion = this.conexionBD.crearConexion(); PreparedStatement comandoSQL = conexion.prepareStatement(consulta);) {
 
             comandoSQL.setInt(1, id);
             ResultSet resultado = comandoSQL.executeQuery();
