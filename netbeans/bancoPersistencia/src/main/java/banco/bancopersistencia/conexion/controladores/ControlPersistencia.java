@@ -24,7 +24,7 @@ import java.util.List;
 public class ControlPersistencia implements IControlPersistencia{
 
     String url="jdbc:mysql://localhost:3306";
-    String nombreBD="eco_activistas";
+    String nombreBD="BANCO";
     String usuario = "root";
     String contra = "moeLISa:22_03";
     IConexion conexionBD = new Conexion(url+"/"+nombreBD, usuario, contra);
