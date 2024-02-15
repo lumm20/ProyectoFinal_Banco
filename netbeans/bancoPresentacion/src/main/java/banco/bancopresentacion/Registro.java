@@ -4,12 +4,12 @@
  */
 package banco.bancopresentacion;
 
-import banco.bancodominio.Cliente;
-import banco.banconegocio.clienteRegistro;
-import banco.bancopersistencia.conexion.Conexion;
-import banco.bancopersistencia.conexion.IConexion;
-import banco.bancopersistencia.daos.ClienteDAO;
-import banco.bancopersistencia.excepciones.PersistenciaException;
+//import banco.bancodominio.Cliente;
+//import banco.banconegocio.clienteRegistro;
+//import banco.bancopersistencia.conexion.Conexion;
+//import banco.bancopersistencia.conexion.IConexion;
+//import banco.bancopersistencia.daos.ClienteDAO;
+//import banco.bancopersistencia.excepciones.PersistenciaException;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,16 +17,16 @@ import javax.swing.JOptionPane;
  * @author molin
  */
 public class Registro extends javax.swing.JFrame {
-
-    // Crear una instancia de Conexion
-String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/BD_BANCO";
-String usuario = "root";
-String contra = "esme2304";
-IConexion conexion = new Conexion(cadenaConexion, usuario, contra);
-
-// Crear una instancia de ClienteDAO y pasar la conexión al constructor
-ClienteDAO clienteDAO = new ClienteDAO(conexion);
-
+//
+//    // Crear una instancia de Conexion
+//String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/BD_BANCO";
+//String usuario = "root";
+//String contra = "esme2304";
+//IConexion conexion = new Conexion(cadenaConexion, usuario, contra);
+//
+//// Crear una instancia de ClienteDAO y pasar la conexión al constructor
+//ClienteDAO clienteDAO = new ClienteDAO(conexion);
+//
 
 
     /**
@@ -120,23 +120,23 @@ ClienteDAO clienteDAO = new ClienteDAO(conexion);
     String fechaNacimiento = txtFechaNacimiento.getText();
     String direccion = txtDireccion.getText();
 
-    try {
-        // Crear un objeto Cliente con los datos ingresados por el usuario
-        Cliente cliente = new Cliente(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, direccion);
-
-        // Crear una instancia de ClienteDAO y clienteRegistro
-       // ClienteDAO clienteDAO = new ClienteDAO(conexion); // Pasar la conexión al constructor
-        clienteRegistro registroCliente = new clienteRegistro(clienteDAO);
-
-        // Llamar al método registrarCliente para insertar el cliente en la base de datos
-        registroCliente.registrarCliente(cliente);
-
-        // Mostrar un mensaje de éxito
-        JOptionPane.showMessageDialog(this, "Cliente registrado exitosamente");
-    } catch (PersistenciaException ex) {
-        // En caso de error, mostrar un mensaje de error
-        JOptionPane.showMessageDialog(this, "Error al registrar el cliente: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+//    try {
+//        // Crear un objeto Cliente con los datos ingresados por el usuario
+//        Cliente cliente = new Cliente(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, direccion);
+//
+//        // Crear una instancia de ClienteDAO y clienteRegistro
+//       // ClienteDAO clienteDAO = new ClienteDAO(conexion); // Pasar la conexión al constructor
+//        clienteRegistro registroCliente = new clienteRegistro(clienteDAO);
+//
+//        // Llamar al método registrarCliente para insertar el cliente en la base de datos
+//        registroCliente.registrarCliente(cliente);
+//
+//        // Mostrar un mensaje de éxito
+//        JOptionPane.showMessageDialog(this, "Cliente registrado exitosamente");
+//    } catch (PersistenciaException ex) {
+//        // En caso de error, mostrar un mensaje de error
+//        JOptionPane.showMessageDialog(this, "Error al registrar el cliente: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//    }
     }//GEN-LAST:event_ButtonAceptarActionPerformed
 
     /**

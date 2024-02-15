@@ -104,20 +104,18 @@ public class CuentaDAO implements ICuentaDAO{
     }
 
     @Override
-    public void actualizarCuenta(Cuenta cuenta) throws PersistenciaException {
-        String sentencia = "UPDATE Cuentas SET estado = ?, saldo = ?, fecha_creacion = ? "
+    public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws PersistenciaException {
+        String sentencia = "UPDATE Cuentas SET saldo = ?"
                 + "WHERE numero_de_cuenta=?";
 
         try (//todos los recursos que se van a utilizar y se deben cerrar
                 Connection conexion = this.conexion.crearConexion(); PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
-            comando.setString(1, cuenta.getEstado());
-            comando.setFloat(2, cuenta.getSaldo());
-            comando.setDate(3, cuenta.getFecha_creacion());
-            comando.setString(4, cuenta.getNum_cuenta());
+            comando.setFloat(1, saldo);
+            comando.setString(2, num_cuenta);
 
             int res = comando.executeUpdate();
             if (res > 0) {
-                LOG.log(Level.INFO, "se actualizo la cuenta correctamente.\n Cuenta actualizada: ", cuenta.toString());
+                LOG.log(Level.INFO, "se actualizo el saldo de la cuenta " + num_cuenta +" correctamente.\n Saldo actual: ", saldo);
             }
         } catch (SQLException e) {
             LOG.log(Level.SEVERE, "algo salio mal: " + e.getMessage(), e.getCause());

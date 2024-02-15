@@ -17,6 +17,6 @@ public interface ICuentaDAO {
     public Cuenta buscarCuentaPorNumero(String numCuenta) throws PersistenciaException;
     public List<Cuenta> listarCuentas() throws PersistenciaException;
     public void insertarCuenta(CuentaDTO cuenta) throws PersistenciaException;
-    public void actualizarCuenta(Cuenta cuenta) throws PersistenciaException;
+    public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws PersistenciaException;
 
 }
