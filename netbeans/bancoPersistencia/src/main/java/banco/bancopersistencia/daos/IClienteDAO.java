@@ -4,6 +4,7 @@
  */
 package banco.bancopersistencia.daos;
 
+import banco.bancodominio.Cliente;
 import banco.bancopersistencia.dtos.ClienteDTO;
 import banco.bancopersistencia.excepciones.PersistenciaException;
 import java.util.List;
@@ -13,9 +14,9 @@ import java.util.List;
  * @author luiis
  */
 public interface IClienteDAO {
-    ClienteDTO buscarClientePorId(int id) throws PersistenciaException;
-    List<Cliente> listarClientes() throws PersistenciaException;
-    void insertarCliente(ClienteDTO cliente) throws PersistenciaException;
-    void actualizarCliente(ClienteDTO cliente) throws PersistenciaException;
+    public Cliente buscarClientePorId(int id) throws PersistenciaException;
+    public List<Cliente> listarClientes() throws PersistenciaException;
+    public void insertarCliente(ClienteDTO cliente) throws PersistenciaException;
+    public void actualizarCliente(ClienteDTO cliente) throws PersistenciaException;
 
 }

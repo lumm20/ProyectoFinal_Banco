@@ -4,6 +4,7 @@
  */
 package banco.bancopersistencia.daos;
 
+import banco.bancodominio.Cliente;
 import banco.bancopersistencia.conexion.IConexion;
 import banco.bancopersistencia.dtos.ClienteDTO;
 import banco.bancopersistencia.excepciones.PersistenciaException;
@@ -12,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,46 +32,102 @@ public class ClienteDAO implements IClienteDAO{
     }
 
     @Override
-    public ClienteDTO buscarClientePorId(int id) throws PersistenciaException {
-        String sentencia="SELECT * FROM Clientes WHERE id_cliente= ? ";
-        ClienteDTO clienteBuscado=null;
-         try(//todos los recursos que se van a utilizar y se deben cerrar
-                Connection conexion = this.conexion.crearConexion(); 
-                 PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
-             comando.setInt(1, id);
-             
-             ResultSet rs=comando.executeQuery();
-             if(rs.next()){
-                 clienteBuscado=new ClienteDTO(rs.getString("nombre"),rs.getString("apellidoP"),
-                 rs.getString("apellidM"),rs.getDate("fecha_Nacimiento"),rs.getInt("edad"),rs.getInt("codigo_direccion"));
-             }
-             return clienteBuscado;
-         }catch(SQLException e){
-             LOG.log(Level.SEVERE,"algo salio mal: "+e.getMessage(), e.getCause());
-             throw new PersistenciaException("hubo un error al consultar el cliente");
-         }
+    public Cliente buscarClientePorId(int id) throws PersistenciaException {
+        String sentencia = "SELECT * FROM Clientes WHERE id_cliente= ? ";
+        Cliente clienteBuscado;
+        try (//todos los recursos que se van a utilizar y se deben cerrar
+                Connection conexion = this.conexion.crearConexion(); PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
+            comando.setInt(1, id);
+
+            ResultSet rs = comando.executeQuery();
+            if (rs.next()) {
+                clienteBuscado = new Cliente(rs.getInt("id_cliente"), rs.getString("nombre"), rs.getString("apellidoP"),
+                        rs.getString("apellidM"), rs.getDate("fecha_Nacimiento"), rs.getInt("edad"), rs.getInt("codigo_direccion"));
+                return clienteBuscado;
+            } else {
+                throw new PersistenciaException("no se encontro el cliente con el id especificado");
+            }
+        } catch (SQLException e) {
+            LOG.log(Level.SEVERE, "algo salio mal: " + e.getMessage(), e.getCause());
+            throw new PersistenciaException("hubo un error al consultar el cliente");
+        }
     }
 
     @Override
-    public List<ClienteDTO> listarClientes() throws PersistenciaException {
-        String sentencia="SELECT * FROM Clientes";
-        List<ClienteDTO>
-        try {
-            
+    public List<Cliente> listarClientes() throws PersistenciaException {
+        String sentencia = "SELECT * FROM Clientes";
+        List<Cliente> lista = new ArrayList<>();
+
+        try (//todos los recursos que se van a utilizar y se deben cerrar
+                Connection conexion = this.conexion.crearConexion(); PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
+            ResultSet rs = comando.executeQuery();
+            while (rs.next()) {
+                Cliente clienteCons = new Cliente(rs.getInt("id_cliente"), rs.getString("nombre"),
+                        rs.getString("apellidoP"), rs.getString("apellidoM"), rs.getDate("fecha_nacimiento"),
+                        rs.getInt("edad"), rs.getInt("codigo_direccion"));
+                lista.add(clienteCons);
+            }
+            if (!lista.isEmpty()) {
+                LOG.log(Level.INFO, "se encontraron {0} clientes", lista.size());
+                return lista;
+            } else {
+                throw new PersistenciaException("no hay ningun cliente registrado");
+            }
+
         } catch (SQLException e) {
+            LOG.log(Level.SEVERE, "algo salio mal: " + e.getMessage(), e.getCause());
             throw new PersistenciaException("hubo un error al obtener la lista de clientes");
         }
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void insertarCliente(ClienteDTO cliente) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sentencia = "INSERT INTO Clientes(nombre, apellidoP,apellidoM,fecha_nacimiento,"
+                + "edad,codigo_direccion) VALUES (?,?,?,?,?,?)";
+
+        try (//todos los recursos que se van a utilizar y se deben cerrar
+                Connection conexion = this.conexion.crearConexion(); PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
+            comando.setString(1, cliente.getNombre());
+            comando.setString(2, cliente.getApellidoP());
+            comando.setString(3, cliente.getApellidoM());
+            comando.setDate(4, cliente.getFecha_nacimiento());
+            comando.setInt(5, cliente.getEdad());
+            comando.setInt(6, cliente.getId_direccion());
+
+            ResultSet rs = comando.getGeneratedKeys();
+            Cliente clienteAgregado;
+            if (rs.next()) {
+                clienteAgregado = new Cliente(rs.getInt("id_cliente"), rs.getString("nombre"),
+                        rs.getString("apellidoP"), rs.getString("apellidoM"), rs.getDate("fecha_nacimiento"),
+                        rs.getInt("edad"), rs.getInt("codigo_direccion"));
+                LOG.log(Level.INFO, "se agrego un cliente correctamente.\n Cliente agregado: ", clienteAgregado.toString());
+            }
+        } catch (SQLException e) {
+            LOG.log(Level.SEVERE, "algo salio mal: " + e.getMessage(), e.getCause());
+            throw new PersistenciaException("hubo un error al agregar el cliente");
+        }
     }
 
     @Override
     public void actualizarCliente(ClienteDTO cliente) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        String sentencia = "UPDATE Clientes SET nombre = ?, apellidoP = ?, apellidoM = ?, fecha_nacimiento = ?,"
+                + "edad = ?";
 
+        try (//todos los recursos que se van a utilizar y se deben cerrar
+                Connection conexion = this.conexion.crearConexion(); PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
+            comando.setString(1, cliente.getNombre());
+            comando.setString(2, cliente.getApellidoP());
+            comando.setString(3, cliente.getApellidoM());
+            comando.setDate(4, cliente.getFecha_nacimiento());
+            comando.setInt(5, cliente.getEdad());
+
+            int res = comando.executeUpdate();
+            if (res > 0) {
+                LOG.log(Level.INFO, "se actualizo un cliente correctamente.\n Cliente actualizado: ", cliente.toString());
+            }
+        } catch (SQLException e) {
+            LOG.log(Level.SEVERE, "algo salio mal: " + e.getMessage(), e.getCause());
+            throw new PersistenciaException("hubo un error al agregar el cliente");
+        }
+    }
 }
