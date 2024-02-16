@@ -10,6 +10,9 @@ package banco.bancopresentacion;
 //import banco.bancopersistencia.conexion.IConexion;
 //import banco.bancopersistencia.daos.ClienteDAO;
 //import banco.bancopersistencia.excepciones.PersistenciaException;
+import banco.banconegocio.controlador.ControlNegocio;
+import banco.banconegocio.controlador.IControlNegocio;
+import banco.banconegocio.excepciones.NegocioException;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,18 +20,8 @@ import javax.swing.JOptionPane;
  * @author molin
  */
 public class Registro extends javax.swing.JFrame {
-//
-//    // Crear una instancia de Conexion
-//String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/BD_BANCO";
-//String usuario = "root";
-//String contra = "esme2304";
-//IConexion conexion = new Conexion(cadenaConexion, usuario, contra);
-//
-//// Crear una instancia de ClienteDAO y pasar la conexión al constructor
-//ClienteDAO clienteDAO = new ClienteDAO(conexion);
-//
 
-
+    private IControlNegocio control=new ControlNegocio();
     /**
      * Creates new form Registro
      */
@@ -55,9 +48,16 @@ public class Registro extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtFechaNacimiento = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtDireccion = new javax.swing.JTextField();
+        txt_calle = new javax.swing.JTextField();
         ButtonAceptar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txt_colonia = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txt_cp = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txt_numeroDir = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,9 +79,15 @@ public class Registro extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
         jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 250, -1));
 
-        jLabel6.setText("Dirección:");
+        jLabel6.setText("Dirección");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, -1));
-        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 250, -1));
+
+        txt_calle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_calleActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 120, -1));
 
         ButtonAceptar.setBackground(new java.awt.Color(14, 33, 110));
         ButtonAceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -92,10 +98,27 @@ public class Registro extends javax.swing.JFrame {
                 ButtonAceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 130, 40));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo1.png")); // NOI18N
+        jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, 130, 40));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 600));
+
+        jLabel7.setText("Calle:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, -1, -1));
+
+        jLabel8.setText("Colonia:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, -1, -1));
+        jPanel1.add(txt_colonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 450, 110, -1));
+
+        jLabel9.setText("Codigo postal:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, -1, -1));
+
+        txt_cp.setPreferredSize(new java.awt.Dimension(80, 22));
+        jPanel1.add(txt_cp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, 110, -1));
+
+        jLabel10.setText("Numero:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 480, -1, -1));
+
+        txt_numeroDir.setPreferredSize(new java.awt.Dimension(80, 22));
+        jPanel1.add(txt_numeroDir, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 510, 110, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,31 +137,33 @@ public class Registro extends javax.swing.JFrame {
     private void ButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAceptarActionPerformed
         // TODO add your handling code here:
         // Obtener los datos ingresados por el usuario
-    String nombre = txtNombre.getText();
-    String apellidoPaterno = txtApellidoP.getText();
-    String apellidoMaterno = txtApellidoM.getText();
-    String fechaNacimiento = txtFechaNacimiento.getText();
-    String direccion = txtDireccion.getText();
-
-//    try {
-//        // Crear un objeto Cliente con los datos ingresados por el usuario
-//        Cliente cliente = new Cliente(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, direccion);
-//
-//        // Crear una instancia de ClienteDAO y clienteRegistro
-//       // ClienteDAO clienteDAO = new ClienteDAO(conexion); // Pasar la conexión al constructor
-//        clienteRegistro registroCliente = new clienteRegistro(clienteDAO);
-//
-//        // Llamar al método registrarCliente para insertar el cliente en la base de datos
-//        registroCliente.registrarCliente(cliente);
-//
-//        // Mostrar un mensaje de éxito
-//        JOptionPane.showMessageDialog(this, "Cliente registrado exitosamente");
-//    } catch (PersistenciaException ex) {
-//        // En caso de error, mostrar un mensaje de error
-//        JOptionPane.showMessageDialog(this, "Error al registrar el cliente: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//    }
+        String[] datosCliente={txtNombre.getText(),
+        txtApellidoP.getText(),
+        txtApellidoM.getText(),
+        txtFechaNacimiento.getText()};
+        
+        String[] datosDireccion={txt_calle.getText(),
+        txt_colonia.getText(),
+        txt_cp.getText(),
+        txt_numeroDir.getText()
+        };
+        try {
+            this.agregarCliente(datosCliente,datosDireccion);
+            JOptionPane.showMessageDialog(this, "se agrego correctamente al cliente");
+        } catch (NegocioException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_ButtonAceptarActionPerformed
 
+    private void txt_calleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_calleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_calleActionPerformed
+
+    private void agregarCliente(String[]datos_cliente, String[] datos_direccion) 
+    throws NegocioException{
+        int codigo_direccion=this.control.agregarDireccionCliente(datos_direccion[0], datos_direccion[1], datos_direccion[2], datos_direccion[3]);
+        this.control.insertarCliente(datos_cliente[0], datos_cliente[1], datos_cliente[2], datos_cliente[3], codigo_direccion);
+    }
     /**
      * @param args the command line arguments
      */
@@ -177,16 +202,23 @@ public class Registro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAceptar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtApellidoM;
     private javax.swing.JTextField txtApellidoP;
-    private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtFechaNacimiento;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txt_calle;
+    private javax.swing.JTextField txt_colonia;
+    private javax.swing.JTextField txt_cp;
+    private javax.swing.JTextField txt_numeroDir;
     // End of variables declaration//GEN-END:variables
 }
