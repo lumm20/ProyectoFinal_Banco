@@ -16,6 +16,7 @@
             <artifactId>bancoNegocio</artifactId>
             <version>${project.version}</version>
         </dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>bancoDominio</artifactId>
@@ -26,6 +27,8 @@
             <artifactId>bancoPersistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
+=======
+>>>>>>> rama-luisa
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

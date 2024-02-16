@@ -4,6 +4,7 @@
  */
 package banco.bancopersistencia.daos;
 
+import banco.bancodominio.Cuenta;
 import banco.bancopersistencia.dtos.CuentaDTO;
 import banco.bancopersistencia.excepciones.PersistenciaException;
 import java.util.List;
@@ -13,9 +14,16 @@ import java.util.List;
  * @author luiis
  */
 public interface ICuentaDAO {
+<<<<<<< HEAD
     CuentaDTO buscarCuentaPorNumero(String numCuenta) throws PersistenciaException;
     List<CuentaDTO> listarCuentas() throws PersistenciaException;
     void insertarCuenta(CuentaDTO cuenta) throws PersistenciaException;
     void actualizarCuenta(CuentaDTO cuenta) throws PersistenciaException;
+=======
+    public Cuenta buscarCuentaPorNumero(String numCuenta) throws PersistenciaException;
+    public List<Cuenta> listarCuentas() throws PersistenciaException;
+    public void insertarCuenta(CuentaDTO cuenta) throws PersistenciaException;
+    public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws PersistenciaException;
+>>>>>>> rama-luisa
 
 }
