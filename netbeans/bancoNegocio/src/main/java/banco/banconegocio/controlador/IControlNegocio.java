@@ -9,6 +9,7 @@ import banco.bancodominio.Cuenta;
 import banco.banconegocio.excepciones.NegocioException;
 import banco.bancopersistencia.dtos.ClienteDTO;
 import banco.bancopersistencia.dtos.CuentaDTO;
+import banco.bancopersistencia.excepciones.PersistenciaException;
 import java.sql.Date;
 import java.util.List;
 
@@ -43,12 +44,24 @@ public interface IControlNegocio {
      * @param apellidoPaterno del cliente
      * @param apellidoM del cliente
      * @param fecha_nacimiento del cliente
-     * @param id_direccion del cliente
+     * @param id_direccion del registro de la direccion en la base de datos
      * @throws NegocioException en caso de que ocurra un error de base de datos al agregar al cliente
      */
     public void insertarCliente(String nombre, String apellidoPaterno, String apellidoM,
             String fecha_nacimiento, int id_direccion) throws NegocioException;
 
+    /**
+     * Agrega la direccion de un cliente en la base de datos
+     * @param calle del domicilio
+     * @param colonia del domicilio
+     * @param codigo_postal del domicilio
+     * @param numero de la casa/departamento/edificio
+     * @return el id auto-generado de la direccion
+     * @throws NegocioException en caso de que ocurra un error de base de datos al agregar la direccion 
+     */
+    public int agregarDireccionCliente(String calle, String colonia, String codigo_postal, String numero)
+            throws NegocioException;
+    
 //    /**
 //     * Actualiza la informacion personal de un cliente, a excepcion de su id de cliente
 //     * @param nombre del cliente

@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class ControlNegocio implements IControlNegocio{
 
     ControlPersistencia controlPers= new ControlPersistencia();
-    private static final Logger LOG =Logger.getLogger(ControlNegocio.class.getName());
+    //private static final Logger LOG =Logger.getLogger(ControlNegocio.class.getName());
     
     @Override
     public Cliente buscarClientePorId(int id) throws NegocioException {
@@ -32,7 +32,7 @@ public class ControlNegocio implements IControlNegocio{
             clienteBuscado=this.controlPers.buscarClientePorId(id);
             return clienteBuscado;
         }catch(PersistenciaException e){
-            throw new NegocioException(e.getMessage());
+            throw new NegocioException(e.getMessage(),e.getCause());
         }
     }
 
@@ -43,7 +43,7 @@ public class ControlNegocio implements IControlNegocio{
             lista=this.controlPers.consultarClientes();
             return lista;
         }catch(PersistenciaException e){
-            throw new NegocioException(e.getMessage());
+            throw new NegocioException(e.getMessage(),e.getCause());
         }
     }
 
@@ -52,11 +52,11 @@ public class ControlNegocio implements IControlNegocio{
             String fecha_nacimiento, int id_direccion) throws NegocioException {
         Date fechaNac=Date.valueOf(fecha_nacimiento);
         int edad=this.calcularEdad(fechaNac);
-        ClienteDTO cliente=new ClienteDTO(nombre,apellidoP,apellidoM,fechaNac,edad,id_direccion);
+        ClienteDTO cliente=new ClienteDTO(nombre,apellidoP,apellidoM,fechaNac,edad, id_direccion);
         try {
             this.controlPers.insertarCliente(cliente);
         } catch (PersistenciaException e) {
-            throw new NegocioException(e.getMessage());
+            throw new NegocioException(e.getMessage(),e.getCause());
         }
     }
 
@@ -68,6 +68,18 @@ public class ControlNegocio implements IControlNegocio{
         if(hoy.get(Calendar.DAY_OF_YEAR)<fechaNac.get(Calendar.DAY_OF_YEAR))
             edad--;
         return edad;
+    }
+    
+    @Override
+    public int agregarDireccionCliente(String calle, String colonia, String codigo_postal, String numero)
+            throws NegocioException{
+        int codigo_direccion;
+        try {
+            codigo_direccion=this.controlPers.agregarDireccionCliente(calle, colonia, codigo_postal, numero);
+            return codigo_direccion;
+        } catch (PersistenciaException e) {
+            throw new NegocioException(e.getMessage(),e.getCause());
+        }
     }
     
 //    @Override
@@ -83,7 +95,7 @@ public class ControlNegocio implements IControlNegocio{
             cuentaCons=this.controlPers.consultarCuentaEspecifica(numCuenta);
             return cuentaCons;
         } catch (PersistenciaException e) {
-            throw new NegocioException(e.getMessage());
+            throw new NegocioException(e.getMessage(),e.getCause());
         }
     }
 
@@ -94,7 +106,7 @@ public class ControlNegocio implements IControlNegocio{
             lista=this.controlPers.consultarTodasCuentas();
             return lista;
         } catch (PersistenciaException e) {
-            throw new NegocioException(e.getMessage());
+            throw new NegocioException(e.getMessage(),e.getCause());
         }
     }
 
@@ -105,7 +117,7 @@ public class ControlNegocio implements IControlNegocio{
         try {
             this.controlPers.insertarCuenta(cuenta);
         } catch (PersistenciaException e) {
-            throw new NegocioException(e.getMessage());
+            throw new NegocioException(e.getMessage(),e.getCause());
         }
     }
 
