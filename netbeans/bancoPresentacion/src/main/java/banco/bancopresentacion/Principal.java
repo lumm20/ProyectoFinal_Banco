@@ -54,7 +54,7 @@ public class Principal extends javax.swing.JFrame {
                 ButtonRetiroActionPerformed(evt);
             }
         });
-        jPanel2.add(ButtonRetiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 490, 160, 40));
+        jPanel2.add(ButtonRetiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 160, 40));
 
         ButtonIniciarSesion1.setBackground(new java.awt.Color(14, 33, 110));
         ButtonIniciarSesion1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -65,7 +65,7 @@ public class Principal extends javax.swing.JFrame {
                 ButtonIniciarSesion1ActionPerformed(evt);
             }
         });
-        jPanel2.add(ButtonIniciarSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, 160, 40));
+        jPanel2.add(ButtonIniciarSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 160, 40));
 
         ButtonRegistrarse1.setBackground(new java.awt.Color(14, 33, 110));
         ButtonRegistrarse1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -76,17 +76,17 @@ public class Principal extends javax.swing.JFrame {
                 ButtonRegistrarse1ActionPerformed(evt);
             }
         });
-        jPanel2.add(ButtonRegistrarse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, 130, 40));
+        jPanel2.add(ButtonRegistrarse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 130, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo1.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo2.png")); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(360, 460));
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 580));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 400, 630));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +108,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         Registro registro = new Registro();
         registro.setVisible(true);
-        
+        this.dispose();
     }//GEN-LAST:event_ButtonRegistrarse1ActionPerformed
 
     /**
