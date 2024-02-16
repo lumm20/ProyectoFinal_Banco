@@ -31,6 +31,15 @@ public class ClienteDTO {
         this.id_direccion = id_direccion;
     }
 
+    public ClienteDTO(String nombre, String apellidoP, String apellidoM, Date fecha_nacimiento, int edad) {
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.edad = edad;
+    }
+
+    
     public String getNombre() {
         return nombre;
     }
