@@ -24,7 +24,7 @@ import java.util.List;
 public class ControlPersistencia implements IControlPersistencia{
 
     String url="jdbc:mysql://localhost:3306";
-    String nombreBD="BANCO";
+    String nombreBD="banco";
     String usuario = "root";
     String contra = "moeLISa:22_03";
     IConexion conexionBD = new Conexion(url+"/"+nombreBD, usuario, contra);
@@ -47,7 +47,14 @@ public class ControlPersistencia implements IControlPersistencia{
     public void insertarCliente(ClienteDTO cliente) throws PersistenciaException {
         this.clienteDAO.insertarCliente(cliente);
     }
-
+    
+    @Override
+    public int agregarDireccionCliente(String calle, String colonia, String codigo_postal, String numero)
+            throws PersistenciaException{
+        int codigo_direccion=this.clienteDAO.agregarDireccionCliente(calle, colonia, codigo_postal, numero);
+        return codigo_direccion;
+    }
+    
     @Override
     public void actualizarCliente(Cliente cliente) throws PersistenciaException {
         this.clienteDAO.actualizarCliente(cliente);

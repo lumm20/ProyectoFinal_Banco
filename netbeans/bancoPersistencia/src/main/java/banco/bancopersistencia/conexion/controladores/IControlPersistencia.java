@@ -43,6 +43,17 @@ public interface IControlPersistencia {
     public void insertarCliente(ClienteDTO cliente) throws PersistenciaException;
 
     /**
+     * Agrega la direccion de un cliente a la base de datos
+     * @param calle de la direccion
+     * @param colonia de la direccion
+     * @param codigo_postal del cliente
+     * @param numero de la casa/departamento/edificio
+     * @return el id auto-generado de la direccion
+     * @throws PersistenciaException 
+     */
+    public int agregarDireccionCliente(String calle, String colonia, String codigo_postal, String numero)
+            throws PersistenciaException;
+    /**
      * Actualiza la informacion personal de un cliente, a excepcion de su id de cliente
      * @param cliente con la informacion a actualizar
      * @throws PersistenciaException en caso de que ocurra un error de base de datos al actualizar al cliente
