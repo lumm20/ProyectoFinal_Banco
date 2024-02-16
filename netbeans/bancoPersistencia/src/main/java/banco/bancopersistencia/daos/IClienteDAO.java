@@ -18,5 +18,5 @@ public interface IClienteDAO {
     public List<Cliente> listarClientes() throws PersistenciaException;
     public void insertarCliente(ClienteDTO cliente) throws PersistenciaException;
     public void actualizarCliente(Cliente cliente) throws PersistenciaException;
-
+    public int agregarDireccionCliente(String calle, String colonia, String codigo_postal, String numero) throws PersistenciaException;
 }
