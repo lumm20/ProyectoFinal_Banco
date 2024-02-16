@@ -13,7 +13,10 @@ package banco.bancopresentacion;
 import banco.banconegocio.controlador.ControlNegocio;
 import banco.banconegocio.controlador.IControlNegocio;
 import banco.banconegocio.excepciones.NegocioException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -77,6 +80,8 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel5.setText("Fecha de nacimiento:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
+
+        txtFechaNacimiento.setForeground(new java.awt.Color(204, 0, 0));
         jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 250, -1));
 
         jLabel6.setText("Dirección");
@@ -155,6 +160,29 @@ public class Registro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ButtonAceptarActionPerformed
 
+    private boolean validarCamposVacios()throws NegocioException{
+        JTextField[] componentes={txtNombre,txtApellidoP,txt_calle,txt_colonia,txt_cp,txt_numeroDir};
+        for(JTextField jtxt:componentes){
+            if(jtxt.getText().isBlank())
+                return false;
+        }
+        return true;
+    }
+    
+    private boolean validarNombres()throws NegocioException{
+        JTextField[] componentes={txtNombre,txtApellidoP,txtApellidoM,txt_calle,txt_colonia};
+        Pattern patron=Pattern.compile("([a-zA-Z])(\\s*)");
+        Matcher matcher;
+        boolean flag=true;
+        for(JTextField txt:componentes){
+            matcher=patron.matcher(txt.getText());
+            flag=matcher.matches();
+            if(!flag)
+                throw new NegocioException(""); 
+        }
+        return flag;
+    }
+    
     private void txt_calleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_calleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_calleActionPerformed
