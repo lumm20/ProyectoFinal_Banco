@@ -123,6 +123,8 @@ public class Registro extends javax.swing.JFrame {
         lbl_num.setText("Número exterior:");
         jPanel1.add(lbl_num, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, 10));
         jPanel1.add(txt_numeroDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, 250, 20));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\registrate-removebg-preview (1) (1).png")); // NOI18N
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 140, 110));
 
         ButtonAceptar.setBackground(new java.awt.Color(14, 33, 110));
@@ -135,7 +137,11 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 590, 130, 40));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo4.png")); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 360, 470));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo1.png")); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 640));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

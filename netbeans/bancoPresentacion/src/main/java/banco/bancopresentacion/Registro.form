@@ -243,6 +243,11 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\luiis\Dropbox\PC\Documents\proyectoFinal-Banco-BDA\netbeans\bancoPresentacion\src\main\java\banco\bancopresentacion\registrate-removebg-preview (1) (1).png"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="110" y="0" width="140" height="110"/>
@@ -272,6 +277,11 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\luiis\Dropbox\PC\Documents\proyectoFinal-Banco-BDA\netbeans\bancoPresentacion\src\main\java\banco\bancopresentacion\fondo4.png"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="0" y="110" width="360" height="470"/>
@@ -279,6 +289,11 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\luiis\Dropbox\PC\Documents\proyectoFinal-Banco-BDA\netbeans\bancoPresentacion\src\main\java\banco\bancopresentacion\fondo1.png"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="0" y="0" width="360" height="640"/>
