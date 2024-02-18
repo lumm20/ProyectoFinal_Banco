@@ -135,39 +135,60 @@ public class ClienteDAO implements IClienteDAO{
 
     @Override
     public int agregarDireccionCliente(String calle, String colonia, String codigo_postal, String numero) throws PersistenciaException {
-        String sentencia="INSERT INTO Direccion_Cliente(calle,codigo_postal,colonia,numero)"
-                + "VALUES (?,?,?,?)";
+        String sentencia="call sp_agregar_direccion(?,?,?,?,?)";
         try (//todos los recursos que se van a utilizar y se deben cerrar
                 Connection conexion = this.conexion.crearConexion(); 
                 PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
+            
+            int codigo_direccion=0;
             comando.setString(1, calle);
             comando.setString(2, codigo_postal);
             comando.setString(3, colonia);
             comando.setString(4, numero);
+            comando.setInt(5, codigo_direccion);
             
             comando.executeUpdate();
-            int codigo_direccion=this.consultarUltimaDireccionAgregada();
             return codigo_direccion;
         }catch(SQLException e){
             LOG.log(Level.SEVERE, "algo salio mal", e.getMessage());
             throw new PersistenciaException("hubo un error al guardar la direccion del cliente", e.getCause());
         }
     }
-    
-    private int consultarUltimaDireccionAgregada()throws SQLException{
-        String sentencia="SELECT max(id_direccion) as id FROM Direccion_Cliente";
+
+    @Override
+    public void actualizarDireccionCliente(int idDireccion, String calle, String colonia, String codigo_postal, String numero) throws PersistenciaException {
+        String sentencia="call sp_actualizar_direccion(?,?,?,?,?)";
         try (//todos los recursos que se van a utilizar y se deben cerrar
                 Connection conexion = this.conexion.crearConexion(); 
                 PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
             
-            ResultSet rs=comando.executeQuery();
-            int codigo_direccion=1;
-            if(rs.next()){
-                codigo_direccion=rs.getInt("id");
-            }
-            return codigo_direccion;
+            if(calle.isBlank())
+                comando.setNull(1, java.sql.Types.NULL);
+            else
+                comando.setString(1, calle);
+            if(codigo_postal.isBlank())
+                comando.setNull(2, java.sql.Types.NULL);
+            else
+                comando.setString(2, codigo_postal);
+            if(colonia.isBlank())
+                comando.setNull(3, java.sql.Types.NULL);
+            else 
+                comando.setString(3, colonia);
+            if(numero.isBlank())
+                comando.setNull(4, java.sql.Types.NULL);
+            else
+                comando.setString(4, numero);
+            if(idDireccion==0)
+                comando.setNull(5, java.sql.Types.NULL);
+            else
+                comando.setInt(5, idDireccion);
+            
+            comando.executeUpdate();
         }catch(SQLException e){
-            throw new SQLException(e);
+            LOG.log(Level.SEVERE, "algo salio mal", e.getMessage());
+            throw new PersistenciaException("hubo un error al actualizar la direccion del cliente", e.getCause());
         }
     }
+    
+    
 }
