@@ -11,22 +11,4 @@
         <maven.compiler.target>19</maven.compiler.target>
         <exec.mainClass>banco.bancodominio.BancoDominio</exec.mainClass>
     </properties>
-    <dependencies>
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>8.0.33</version>
-</dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>bancoNegocio</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>bancoPersistencia</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
 </project>

@@ -14,13 +14,13 @@ import java.sql.Date;
 public class CuentaDTO {
     private String num_cuenta;
     private String estado;
-    private float saldo;
+    private BigDecimal saldo;
     private Date fecha_creacion;
 
     public CuentaDTO() {
     }
 
-    public CuentaDTO(String num_cuenta, String estado, float saldo, Date fecha_creacion) {
+    public CuentaDTO(String num_cuenta, String estado, BigDecimal saldo, Date fecha_creacion) {
         this.num_cuenta = num_cuenta;
         this.estado = estado;
         this.saldo = saldo;
@@ -43,11 +43,11 @@ public class CuentaDTO {
         this.estado = estado;
     }
 
-    public float getSaldo() {
+    public BigDecimal getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(float saldo) {
+    public void setSaldo(BigDecimal saldo) {
         this.saldo = saldo;
     }
 

@@ -191,10 +191,5 @@ public class ClienteDAO implements IClienteDAO{
             throw new PersistenciaException("hubo un error al actualizar la direccion del cliente", e.getCause());
         }
     }
-<<<<<<< HEAD
-    
-    
+
 }
-=======
-}
->>>>>>> 1e4f1039c63a494719443b1b7c3dc85f955b88dd
