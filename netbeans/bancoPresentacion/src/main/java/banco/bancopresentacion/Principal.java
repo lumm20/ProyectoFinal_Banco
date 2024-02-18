@@ -1,9 +1,12 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package banco.bancopresentacion;
 
 /**
  *
- * @author molin
+ * @author luiis
  */
 public class Principal extends javax.swing.JFrame {
 
@@ -23,99 +26,21 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        ButtonRetiro = new javax.swing.JButton();
-        ButtonIniciarSesion1 = new javax.swing.JButton();
-        ButtonRegistrarse1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        ButtonRetiro.setBackground(new java.awt.Color(14, 33, 110));
-        ButtonRetiro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        ButtonRetiro.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonRetiro.setText("Retiro Sin Cuenta");
-        ButtonRetiro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonRetiroActionPerformed(evt);
-            }
-        });
-        jPanel2.add(ButtonRetiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 160, 40));
-
-        ButtonIniciarSesion1.setBackground(new java.awt.Color(14, 33, 110));
-        ButtonIniciarSesion1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        ButtonIniciarSesion1.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonIniciarSesion1.setText("Iniciar Sesión");
-        ButtonIniciarSesion1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonIniciarSesion1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(ButtonIniciarSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 160, 40));
-
-        ButtonRegistrarse1.setBackground(new java.awt.Color(14, 33, 110));
-        ButtonRegistrarse1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        ButtonRegistrarse1.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonRegistrarse1.setText("Registrarse");
-        ButtonRegistrarse1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonRegistrarse1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(ButtonRegistrarse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 130, 40));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo2.png")); // NOI18N
-        jLabel1.setPreferredSize(new java.awt.Dimension(360, 460));
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 400, 630));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ButtonRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRetiroActionPerformed
-        // TODO add your handling code here:
-        Retiro_Sin_Cuenta retiro = new Retiro_Sin_Cuenta();
-        retiro.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_ButtonRetiroActionPerformed
-
-    private void ButtonIniciarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIniciarSesion1ActionPerformed
-        // TODO add your handling code here:
-        Login login = new Login();
-        login.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_ButtonIniciarSesion1ActionPerformed
-
-    private void ButtonRegistrarse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegistrarse1ActionPerformed
-        // TODO add your handling code here:
-        Registro registro = new Registro();
-        registro.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_ButtonRegistrarse1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,11 +78,5 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonIniciarSesion1;
-    private javax.swing.JButton ButtonRegistrarse1;
-    private javax.swing.JButton ButtonRetiro;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

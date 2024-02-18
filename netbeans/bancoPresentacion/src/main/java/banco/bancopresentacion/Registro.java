@@ -218,7 +218,7 @@ public class Registro extends javax.swing.JFrame {
 
     private void ButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresarActionPerformed
         // TODO add your handling code here:
-        Principal principal = new Principal();
+        Inicial principal = new Inicial();
         principal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_ButtonRegresarActionPerformed
