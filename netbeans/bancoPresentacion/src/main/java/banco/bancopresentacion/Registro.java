@@ -11,6 +11,7 @@ import banco.bancopersistencia.conexion.Conexion;
 import banco.bancopersistencia.conexion.IConexion;
 import banco.bancopersistencia.daos.ClienteDAO;
 import banco.bancopersistencia.excepciones.PersistenciaException;
+<<<<<<< HEAD
 =======
 //import banco.bancodominio.Cliente;
 //import banco.banconegocio.clienteRegistro;
@@ -22,7 +23,13 @@ import banco.banconegocio.controlador.ControlNegocio;
 import banco.banconegocio.controlador.IControlNegocio;
 import banco.banconegocio.excepciones.NegocioException;
 >>>>>>> rama-luisa
+=======
+
+import java.sql.Connection;
+import java.sql.SQLException;
+>>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
 import javax.swing.JOptionPane;
+import java.sql.Statement;
 
 /**
  *
@@ -30,6 +37,7 @@ import javax.swing.JOptionPane;
  */
 public class Registro extends javax.swing.JFrame {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     // Crear una instancia de Conexion
 String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/BD_BANCO";
@@ -39,7 +47,15 @@ IConexion conexion = new Conexion(cadenaConexion, usuario, contra);
 
 // Crear una instancia de ClienteDAO y pasar la conexión al constructor
 ClienteDAO clienteDAO = new ClienteDAO(conexion);
+=======
+    
+String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
+    String usuario = "root";
+    String contra = "esme2304";
+    IConexion conexion = new Conexion(cadenaConexion, usuario, contra);
+>>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
 
+    
 
 
 =======
@@ -72,8 +88,20 @@ ClienteDAO clienteDAO = new ClienteDAO(conexion);
         txtFechaNacimiento = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        jLabel10 = new javax.swing.JLabel();
+>>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
         txtDireccion = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtDireccion1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtDireccion2 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtDireccion3 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
         ButtonAceptar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 =======
         txt_calle = new javax.swing.JTextField();
@@ -92,22 +120,31 @@ ClienteDAO clienteDAO = new ClienteDAO(conexion);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 250, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 250, -1));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Apellido Paterno:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
-        jPanel1.add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 250, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+        jPanel1.add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 250, -1));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Apellido Materno:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
-        jPanel1.add(txtApellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 250, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
+        jPanel1.add(txtApellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 250, -1));
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Fecha de nacimiento:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
-        jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 250, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, -1));
+        jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 250, -1));
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         jLabel6.setText("Dirección:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, -1));
@@ -123,6 +160,39 @@ ClienteDAO clienteDAO = new ClienteDAO(conexion);
         });
         jPanel1.add(txt_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 120, -1));
 >>>>>>> rama-luisa
+=======
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Dirección:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Codigo Postal:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
+        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 250, 20));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Calle:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, 10));
+        jPanel1.add(txtDireccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 250, 20));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Colonia:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, -1, 10));
+        jPanel1.add(txtDireccion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 250, 20));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Número exterior:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, 10));
+        jPanel1.add(txtDireccion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, 250, 20));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\registrate-removebg-preview (1) (1).png")); // NOI18N
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 140, 110));
+>>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
 
         ButtonAceptar.setBackground(new java.awt.Color(14, 33, 110));
         ButtonAceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -134,10 +204,17 @@ ClienteDAO clienteDAO = new ClienteDAO(conexion);
             }
         });
 <<<<<<< HEAD
+<<<<<<< HEAD
         jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 130, 40));
+=======
+        jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 590, 130, 40));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo4.png")); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 360, 470));
+>>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo1.png")); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 600));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 640));
 
 =======
         jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, 130, 40));
@@ -191,19 +268,33 @@ ClienteDAO clienteDAO = new ClienteDAO(conexion);
         // Crear un objeto Cliente con los datos ingresados por el usuario
         Cliente cliente = new Cliente(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, direccion);
 
-        // Crear una instancia de ClienteDAO y clienteRegistro
-       // ClienteDAO clienteDAO = new ClienteDAO(conexion); // Pasar la conexión al constructor
-        clienteRegistro registroCliente = new clienteRegistro(clienteDAO);
+        // Obtener una instancia de la conexión
+        Connection connection = conexion.crearConexion();
 
-        // Llamar al método registrarCliente para insertar el cliente en la base de datos
-        registroCliente.registrarCliente(cliente);
+        // Crear un Statement
+        Statement statement = connection.createStatement();
+
+        // Construir la consulta SQL para insertar el cliente en la base de datos
+        String query = "INSERT INTO Clientes (nombre, apellidoP, apellidoM, fecha_nacimiento, codigo_direccion) VALUES ('" +
+            nombre + "', '" + apellidoPaterno + "', '" + apellidoMaterno + "', '" + fechaNacimiento + "', '" + direccion + "')";
+
+
+        // Ejecutar la consulta SQL
+        statement.executeUpdate(query);
+
+        // Cerrar el Statement y la conexión
+        statement.close();
+        connection.close();
 
         // Mostrar un mensaje de éxito
         JOptionPane.showMessageDialog(this, "Cliente registrado exitosamente");
-    } catch (PersistenciaException ex) {
+    } catch (SQLException ex) {
         // En caso de error, mostrar un mensaje de error
         JOptionPane.showMessageDialog(this, "Error al registrar el cliente: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+    } finally {
+        // Manejar la liberación de recursos aquí, si es necesario
+    } 
+    
     }//GEN-LAST:event_ButtonAceptarActionPerformed
 
 =======
@@ -274,19 +365,34 @@ ClienteDAO clienteDAO = new ClienteDAO(conexion);
     private javax.swing.JButton ButtonAceptar;
     private javax.swing.JLabel jLabel1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     private javax.swing.JLabel jLabel10;
 >>>>>>> rama-luisa
+=======
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+>>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
+>>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtApellidoM;
     private javax.swing.JTextField txtApellidoP;
     private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtDireccion1;
+    private javax.swing.JTextField txtDireccion2;
+    private javax.swing.JTextField txtDireccion3;
     private javax.swing.JTextField txtFechaNacimiento;
     private javax.swing.JTextField txtNombre;
 =======

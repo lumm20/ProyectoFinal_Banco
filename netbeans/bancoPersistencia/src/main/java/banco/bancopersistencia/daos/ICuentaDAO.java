@@ -19,11 +19,15 @@ public interface ICuentaDAO {
     List<CuentaDTO> listarCuentas() throws PersistenciaException;
     void insertarCuenta(CuentaDTO cuenta) throws PersistenciaException;
     void actualizarCuenta(CuentaDTO cuenta) throws PersistenciaException;
+<<<<<<< HEAD
 =======
     public Cuenta buscarCuentaPorNumero(String numCuenta) throws PersistenciaException;
     public List<Cuenta> listarCuentas() throws PersistenciaException;
     public void insertarCuenta(CuentaDTO cuenta) throws PersistenciaException;
     public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws PersistenciaException;
 >>>>>>> rama-luisa
+=======
+    void actualizarSaldoCuenta(String num_cuenta, float saldo);
+>>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
 
 }

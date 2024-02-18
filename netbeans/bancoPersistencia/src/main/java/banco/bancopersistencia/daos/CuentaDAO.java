@@ -4,17 +4,24 @@
  */
 package banco.bancopersistencia.daos;
 
+<<<<<<< HEAD
 import banco.bancodominio.Cliente;
 import banco.bancodominio.Cuenta;
+=======
+>>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
 import banco.bancopersistencia.conexion.IConexion;
 import banco.bancopersistencia.dtos.CuentaDTO;
 import banco.bancopersistencia.excepciones.PersistenciaException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+<<<<<<< HEAD
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+=======
+import java.sql.SQLException;
+>>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +30,15 @@ import java.util.logging.Logger;
  *
  * @author luiis
  */
-public class CuentaDAO implements ICuentaDAO{
+public class CuentaDAO implements ICuentaDAO {
+
+    private final IConexion conexionBD;
+
+    private static final Logger LOG = Logger.getLogger(CuentaDAO.class.getName());
+
+    public CuentaDAO(IConexion conexionBD) {
+        this.conexionBD = conexionBD;
+    }
 
     final IConexion conexion;
     private final static Logger LOG= Logger.getLogger(CuentaDAO.class.getName());
@@ -33,6 +48,7 @@ public class CuentaDAO implements ICuentaDAO{
     }
     
     @Override
+<<<<<<< HEAD
     public Cuenta buscarCuentaPorNumero(String numCuenta) throws PersistenciaException {
         String sentencia = "SELECT * FROM Cuentas WHERE numero_de_cuenta= ? ";
         Cuenta cuentaBuscada;
@@ -52,6 +68,12 @@ public class CuentaDAO implements ICuentaDAO{
             LOG.log(Level.SEVERE, "algo salio mal: " + e.getMessage(), e.getCause());
             throw new PersistenciaException("hubo un error al consultar la cuenta");
         }
+=======
+    public CuentaDTO buscarCuentaPorNumero(String numCuenta) throws PersistenciaException {
+
+        return null;
+
+>>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
     }
 
     @Override
@@ -82,6 +104,7 @@ public class CuentaDAO implements ICuentaDAO{
 
     @Override
     public void insertarCuenta(CuentaDTO cuenta) throws PersistenciaException {
+<<<<<<< HEAD
         String sentencia = "INSERT INTO Cuentas(estado, saldo, fecha_creacion) VALUES (?,?,?)";
 
         try (//todos los recursos que se van a utilizar y se deben cerrar
@@ -100,6 +123,20 @@ public class CuentaDAO implements ICuentaDAO{
         } catch (SQLException e) {
             LOG.log(Level.SEVERE, "algo salio mal: " + e.getMessage(), e.getCause());
             throw new PersistenciaException("hubo un error al agregar la cuenta");
+=======
+        String consulta = "INSERT INTO Cuentas (numero_de_cuenta, fecha_inicio, saldo) VALUES (?, ?, ?)";
+
+        try (Connection conexion = this.conexionBD.crearConexion(); PreparedStatement comandoSQL = conexion.prepareStatement(consulta)) {
+
+            comandoSQL.setString(1, cuenta.getNum_cuenta());
+            comandoSQL.setDate(2, cuenta.getFecha_creacion());
+            comandoSQL.setFloat(3, cuenta.getSaldo());
+
+            comandoSQL.executeUpdate();
+        } catch (SQLException ex) {
+            LOG.log(Level.SEVERE, "Error al insertar cuenta", ex);
+            throw new PersistenciaException("Error al insertar cuenta", ex);
+>>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
         }
     }
 
@@ -108,6 +145,7 @@ public class CuentaDAO implements ICuentaDAO{
     public void actualizarCuenta(CuentaDTO cuenta) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+<<<<<<< HEAD
 =======
     public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws PersistenciaException {
         String sentencia = "UPDATE Cuentas SET saldo = ?"
@@ -129,4 +167,11 @@ public class CuentaDAO implements ICuentaDAO{
     }
 
 >>>>>>> rama-luisa
+=======
+
+    @Override
+    public void actualizarSaldoCuenta(String num_cuenta, float saldo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+>>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
 }
