@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controladores;
+package banco.bancopersistencia.conexion.controladores;
 
 import banco.bancodominio.Cliente;
 import banco.bancodominio.Cuenta;
@@ -23,10 +23,10 @@ import java.util.List;
  */
 public class ControlPersistencia implements IControlPersistencia{
 
-    String url="jdbc:mysql://localhost:3306";
-    String nombreBD="eco_activistas";
+    String url="jdbc:mysql://127.0.0.1:3306";
+    String nombreBD="banco";
     String usuario = "root";
-    String contra = "moeLISa:22_03";
+    String contra = "esme2304";
     IConexion conexionBD = new Conexion(url+"/"+nombreBD, usuario, contra);
     IClienteDAO clienteDAO=new ClienteDAO(conexionBD);
     ICuentaDAO cuentaDAO= new CuentaDAO(conexionBD);
@@ -47,7 +47,14 @@ public class ControlPersistencia implements IControlPersistencia{
     public void insertarCliente(ClienteDTO cliente) throws PersistenciaException {
         this.clienteDAO.insertarCliente(cliente);
     }
-
+    
+    @Override
+    public int agregarDireccionCliente(String calle, String colonia, String codigo_postal, String numero)
+            throws PersistenciaException{
+        int codigo_direccion=this.clienteDAO.agregarDireccionCliente(calle, colonia, codigo_postal, numero);
+        return codigo_direccion;
+    }
+    
     @Override
     public void actualizarCliente(Cliente cliente) throws PersistenciaException {
         this.clienteDAO.actualizarCliente(cliente);

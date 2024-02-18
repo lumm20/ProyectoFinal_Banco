@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package controladores;
+package banco.bancopersistencia.conexion.controladores;
 
 import banco.bancodominio.Cliente;
 import banco.bancodominio.Cuenta;
@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author 
+ * @author luiis
  */
 public interface IControlPersistencia {
     /**
@@ -42,6 +42,17 @@ public interface IControlPersistencia {
      */
     public void insertarCliente(ClienteDTO cliente) throws PersistenciaException;
 
+    /**
+     * Agrega la direccion de un cliente a la base de datos
+     * @param calle de la direccion
+     * @param colonia de la direccion
+     * @param codigo_postal del cliente
+     * @param numero de la casa/departamento/edificio
+     * @return el id auto-generado de la direccion
+     * @throws PersistenciaException 
+     */
+    public int agregarDireccionCliente(String calle, String colonia, String codigo_postal, String numero)
+            throws PersistenciaException;
     /**
      * Actualiza la informacion personal de un cliente, a excepcion de su id de cliente
      * @param cliente con la informacion a actualizar

@@ -19,16 +19,9 @@ public class Cliente {
     private int edad;
     private int id_domicilio;
 
-    public Cliente(String nombre1, String apellidoPaterno, String apellidoMaterno, String fechaNacimiento, String direccion) {
+    public Cliente() {
     }
 
-    public Cliente(String nombre, String apellidoP, String apellidoM, Date fechaNacimiento, int direccion) {
-    this.nombre = nombre;
-    this.apellidoP = apellidoP;
-    this.apellidoM = apellidoM;
-    this.fecha_nacimiento = fecha_nacimiento;
-    this.id_domicilio = id_domicilio;
-}
     public Cliente(int id_cliente, String nombre, String apellidoP, String apellidoM, Date fecha_nacimiento, int edad, int id_domicilio) {
         this.id_cliente = id_cliente;
         this.nombre = nombre;

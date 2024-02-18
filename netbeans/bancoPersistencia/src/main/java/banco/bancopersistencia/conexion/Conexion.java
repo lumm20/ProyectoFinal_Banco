@@ -16,12 +16,12 @@ import java.util.logging.Logger;
  */
 public class Conexion implements IConexion{
 
-    private final String cadenaConexion;
-    private final String usuario;
-    private final String contra;
-
+    final String cadenaConexion;
+    final String usuario;
+    final String contra;
+    Connection con = null;
     private static final Logger LOG = Logger.getLogger(Conexion.class.getName());
-    
+
     public Conexion(String cadenaConexion, String usuario, String contra) {
         this.cadenaConexion = cadenaConexion;
         this.usuario = usuario;
@@ -30,23 +30,19 @@ public class Conexion implements IConexion{
 
     @Override
     public Connection crearConexion() throws SQLException {
-        Connection conexion = null;
-        try {
-            conexion = DriverManager.getConnection(cadenaConexion, usuario, contra);
-        } catch (SQLException ex) {
-            throw new SQLException("Error al conectar con la base de datos", ex);
-        }
+        Connection conexion = DriverManager.getConnection(cadenaConexion, usuario, contra);
+        LOG.log(Level.INFO, "Conexion exitosa{0}", cadenaConexion);
+
         return conexion;
     }
 
     @Override
     public void cerrarConexion() throws SQLException {
-        Connection conexion = DriverManager.getConnection(cadenaConexion, usuario, contra);
+         Connection conexion = DriverManager.getConnection(cadenaConexion, usuario, contra);
         try {
             conexion.close();
         } catch (Exception e) {
              LOG.log(Level.INFO, "Conexión cerrada ", cadenaConexion);
         }
-    
     }
 }

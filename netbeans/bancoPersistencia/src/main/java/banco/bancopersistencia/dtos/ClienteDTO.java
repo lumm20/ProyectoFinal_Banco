@@ -11,31 +11,35 @@ import java.sql.Date;
  * @author luiis
  */
 public class ClienteDTO {
-    private int id_cliente;
     private String nombre;
     private String apellidoP;
     private String apellidoM;
     private Date fecha_nacimiento;
+    private int edad;
     private int id_direccion;
 
+    public ClienteDTO() {
+    }
     
-    public ClienteDTO(String nombre, String apellidoP, String apellidoM, Date fecha_nacimiento, int id_cliente, int id_direccion) {
-        this.id_cliente = id_cliente;
+    public ClienteDTO(String nombre, String apellidoP, String apellidoM, Date fecha_nacimiento,
+            int edad, int id_direccion) {
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
-        this.fecha_nacimiento = fecha_nacimiento;       
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.edad = edad;
         this.id_direccion = id_direccion;
     }
-   
-    public int getId_cliente() {
-        return id_cliente;
+
+    public ClienteDTO(String nombre, String apellidoP, String apellidoM, Date fecha_nacimiento, int edad) {
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.edad = edad;
     }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
-    }
-
+    
     public String getNombre() {
         return nombre;
     }
@@ -68,6 +72,14 @@ public class ClienteDTO {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
     public int getId_direccion() {
         return id_direccion;
     }
@@ -77,3 +89,5 @@ public class ClienteDTO {
     }
     
 }
+
+    
