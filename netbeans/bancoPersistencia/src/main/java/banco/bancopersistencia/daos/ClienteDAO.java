@@ -4,6 +4,8 @@
  */
 package banco.bancopersistencia.daos;
 
+
+
 import banco.bancodominio.Cliente;
 import banco.bancopersistencia.conexion.IConexion;
 import banco.bancopersistencia.dtos.ClienteDTO;
@@ -22,7 +24,6 @@ import java.util.logging.Logger;
  *
  * @author luiis
  */
-<<<<<<< HEAD
 public class ClienteDAO implements IClienteDAO{
 
     final IConexion conexion;
@@ -30,17 +31,6 @@ public class ClienteDAO implements IClienteDAO{
     
     public ClienteDAO(IConexion conexion){
         this.conexion=conexion;
-=======
-public class ClienteDAO implements IClienteDAO {
-
-    private final IConexion conexion;
-
-    private static final Logger LOG = Logger.getLogger(ClienteDAO.class.getName());
-
-    // Constructor que acepta un objeto IConexion
-    public ClienteDAO(IConexion conexionBD) {
-        this.conexion = conexionBD;
->>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
     }
 
     @Override
@@ -143,47 +133,6 @@ public class ClienteDAO implements IClienteDAO {
             LOG.log(Level.SEVERE, "algo salio mal", e.getMessage());
             throw new PersistenciaException("hubo un error al actualizar el cliente",e.getCause());
         }
-<<<<<<< HEAD
-=======
-    }
-
-    @Override
-    public int agregarDireccionCliente(String calle, String colonia, String codigo_postal, String numero) throws PersistenciaException {
-        String sentencia="INSERT INTO Direccion_Cliente(calle,codigo_postal,colonia,numero)"
-                + "VALUES (?,?,?,?)";
-        try (//todos los recursos que se van a utilizar y se deben cerrar
-                Connection conexion = this.conexion.crearConexion(); 
-                PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
-            comando.setString(1, calle);
-            comando.setString(2, codigo_postal);
-            comando.setString(3, colonia);
-            comando.setString(4, numero);
-            
-            comando.executeUpdate();
-            int codigo_direccion=this.consultarUltimaDireccionAgregada();
-            return codigo_direccion;
-        }catch(SQLException e){
-            LOG.log(Level.SEVERE, "algo salio mal", e.getMessage());
-            throw new PersistenciaException("hubo un error al guardar la direccion del cliente", e.getCause());
-        }
-    }
-    
-    private int consultarUltimaDireccionAgregada()throws SQLException{
-        String sentencia="SELECT max(id_direccion) as id FROM Direccion_Cliente";
-        try (//todos los recursos que se van a utilizar y se deben cerrar
-                Connection conexion = this.conexion.crearConexion(); 
-                PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
-            
-            ResultSet rs=comando.executeQuery();
-            int codigo_direccion=1;
-            if(rs.next()){
-                codigo_direccion=rs.getInt("id");
-            }
-            return codigo_direccion;
-        }catch(SQLException e){
-            throw new SQLException(e);
-        }
->>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
     }
 
     @Override

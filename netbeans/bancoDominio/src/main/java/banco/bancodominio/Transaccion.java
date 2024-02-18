@@ -4,27 +4,17 @@
  */
 package banco.bancodominio;
 
-<<<<<<< HEAD
-=======
+
 import java.math.BigDecimal;
->>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 import java.sql.Date;
 
 /**
- *
-<<<<<<< HEAD
- * @author molin
- */
-public class Transaccion {
-    protected int idTransaccion;
-    protected float monto;
-=======
  * @author luiis
  */
+
 public class Transaccion {
     protected int idTransaccion;
     protected BigDecimal monto;
->>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
     protected Date fechaHoraCreacion;
     protected String numCuentaOrigen;
     protected String tipoTransaccion;
@@ -32,23 +22,17 @@ public class Transaccion {
     public Transaccion() {
     }
 
-<<<<<<< HEAD
-    public Transaccion(int idTransaccion, float monto, Date fechaHoraCreacion, String numCuentaOrigen, String tipoTransaccion) {
-=======
+
     public Transaccion(int idTransaccion, BigDecimal monto, Date fechaHoraCreacion, String numCuentaOrigen, String tipoTransaccion) {
->>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
+
         this.idTransaccion = idTransaccion;
         this.monto = monto;
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.numCuentaOrigen = numCuentaOrigen;
         this.tipoTransaccion = tipoTransaccion;
     }
-
-<<<<<<< HEAD
-    public Transaccion(float monto, Date fechaHoraCreacion, String numCuentaOrigen, String tipoTransaccion) {
-=======
     public Transaccion(BigDecimal monto, Date fechaHoraCreacion, String numCuentaOrigen, String tipoTransaccion) {
->>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
+
         this.monto = monto;
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.numCuentaOrigen = numCuentaOrigen;
@@ -63,19 +47,12 @@ public class Transaccion {
         this.idTransaccion = idTransaccion;
     }
 
-<<<<<<< HEAD
-    public float getMonto() {
-        return monto;
-    }
-
-    public void setMonto(float monto) {
-=======
     public BigDecimal getMonto() {
         return monto;
     }
 
     public void setMonto(BigDecimal monto) {
->>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
+
         this.monto = monto;
     }
 
@@ -131,7 +108,4 @@ public class Transaccion {
     }
     
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae

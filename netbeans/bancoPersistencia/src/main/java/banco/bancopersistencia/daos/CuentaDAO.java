@@ -4,10 +4,8 @@
  */
 package banco.bancopersistencia.daos;
 
-<<<<<<< HEAD
+
 import banco.bancodominio.Cliente;
-=======
->>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 import banco.bancodominio.Cuenta;
 import banco.bancopersistencia.conexion.IConexion;
 import banco.bancopersistencia.dtos.CuentaDTO;
@@ -16,12 +14,6 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-<<<<<<< HEAD
-=======
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
->>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -43,7 +35,6 @@ public class CuentaDAO implements ICuentaDAO{
     }
     
     @Override
-<<<<<<< HEAD
     public Cuenta buscarCuentaPorNumero(String numCuenta) throws PersistenciaException {
         String sentencia = "SELECT * FROM Cuentas WHERE numero_de_cuenta= ? ";
         Cuenta cuentaBuscada;
@@ -51,16 +42,6 @@ public class CuentaDAO implements ICuentaDAO{
                 Connection conexion = this.conexion.crearConexion(); PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
             comando.setString(1, numCuenta);
 
-=======
-
-    public Cuenta buscarCuentaPorNumero(String numCuenta) throws PersistenciaException {
-        String sentencia = "SELECT * FROM Cuentas WHERE numero_de_cuenta= ? ";
-        Cuenta cuentaBuscada;
-        try (//todos los recursos que se van a utilizar y se deben cerrar
-                Connection conexion = this.conexion.crearConexion(); PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
-            comando.setString(1, numCuenta);
-
->>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
             ResultSet rs = comando.executeQuery();
             if (rs.next()) {
                 cuentaBuscada = new Cuenta(rs.getString("numero_de_cuenta"), rs.getString("estado"), rs.getFloat("saldo"),
@@ -122,29 +103,6 @@ public class CuentaDAO implements ICuentaDAO{
             LOG.log(Level.SEVERE, "algo salio mal: " + e.getMessage(), e.getCause());
             throw new PersistenciaException("hubo un error al agregar la cuenta");
         }
-<<<<<<< HEAD
-=======
-    }
-
-    @Override
-    public void actualizarSaldoCuenta(String num_cuenta, BigDecimal saldo) throws PersistenciaException {
-        String sentencia = "UPDATE Cuentas SET saldo = ?"
-                + "WHERE numero_de_cuenta=?";
-
-        try (//todos los recursos que se van a utilizar y se deben cerrar
-                Connection conexion = this.conexion.crearConexion(); PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
-            comando.setBigDecimal(1, saldo);
-            comando.setString(2, num_cuenta);
-
-            int res = comando.executeUpdate();
-            if (res > 0) {
-                LOG.log(Level.INFO, "se actualizo el saldo de la cuenta " + num_cuenta +" correctamente.\n Saldo actual: ", saldo);
-            }
-        } catch (SQLException e) {
-            LOG.log(Level.SEVERE, "algo salio mal: " + e.getMessage(), e.getCause());
-            throw new PersistenciaException("hubo un error al actualizar la cuenta");
-        }
->>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
     }
 
     @Override

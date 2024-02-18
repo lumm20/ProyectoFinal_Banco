@@ -8,10 +8,46 @@ package banco.bancodominio;
  *
  * @author luiis
  */
-public class Retiro_sin_cuenta{
-<<<<<<< HEAD
-    
-=======
- 
->>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
+public class Retiro_sin_cuenta {
+    private String folio;
+    private String estado;
+    private String contra;
+
+    public Retiro_sin_cuenta() {
+    }
+
+    public Retiro_sin_cuenta(String folio, String estado, String contra) {
+        this.folio = folio;
+        this.estado = estado;
+        this.contra = contra;
+    }
+
+    public String getFolio() {
+        return folio;
+    }
+
+    public void setFolio(String folio) {
+        this.folio = folio;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getContra() {
+        return contra;
+    }
+
+    public void setContra(String contra) {
+        this.contra = contra;
+    }
+
+    @Override
+    public String toString() {
+        return "Retiro_Sin_cuenta{" + "folio=" + folio + ", estado=" + estado + ", contra=" + contra + '}';
+    }
 }
