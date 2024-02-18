@@ -4,6 +4,7 @@
  */
 package banco.bancodominio;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 /**
@@ -16,12 +17,12 @@ public class Transferencia extends Transaccion{
     public Transferencia() {
     }
 
-    public Transferencia(int idTransaccion, float monto, Date fechaHoraCreacion, String numCuentaOrigen, String numCuentaDestino) {
+    public Transferencia(int idTransaccion, BigDecimal monto, Date fechaHoraCreacion, String numCuentaOrigen, String numCuentaDestino) {
         super(idTransaccion,monto,fechaHoraCreacion,numCuentaOrigen,"transferencia");
         this.numCuentaDestino=numCuentaDestino;
     }
 
-    public Transferencia(float monto, Date fechaHoraCreacion, String numCuentaOrigen, String numCuentaDestino) {
+    public Transferencia(BigDecimal monto, Date fechaHoraCreacion, String numCuentaOrigen, String numCuentaDestino) {
         super(monto,fechaHoraCreacion,numCuentaDestino,"transferencia");
         this.numCuentaDestino=numCuentaDestino;
     }

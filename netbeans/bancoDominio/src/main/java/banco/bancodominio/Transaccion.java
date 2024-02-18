@@ -4,6 +4,7 @@
  */
 package banco.bancodominio;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.sql.Date;
  */
 public class Transaccion {
     protected int idTransaccion;
-    protected float monto;
+    protected BigDecimal monto;
     protected Date fechaHoraCreacion;
     protected String numCuentaOrigen;
     protected String tipoTransaccion;
@@ -20,7 +21,7 @@ public class Transaccion {
     public Transaccion() {
     }
 
-    public Transaccion(int idTransaccion, float monto, Date fechaHoraCreacion, String numCuentaOrigen, String tipoTransaccion) {
+    public Transaccion(int idTransaccion, BigDecimal monto, Date fechaHoraCreacion, String numCuentaOrigen, String tipoTransaccion) {
         this.idTransaccion = idTransaccion;
         this.monto = monto;
         this.fechaHoraCreacion = fechaHoraCreacion;
@@ -28,7 +29,7 @@ public class Transaccion {
         this.tipoTransaccion = tipoTransaccion;
     }
 
-    public Transaccion(float monto, Date fechaHoraCreacion, String numCuentaOrigen, String tipoTransaccion) {
+    public Transaccion(BigDecimal monto, Date fechaHoraCreacion, String numCuentaOrigen, String tipoTransaccion) {
         this.monto = monto;
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.numCuentaOrigen = numCuentaOrigen;
@@ -43,11 +44,11 @@ public class Transaccion {
         this.idTransaccion = idTransaccion;
     }
 
-    public float getMonto() {
+    public BigDecimal getMonto() {
         return monto;
     }
 
-    public void setMonto(float monto) {
+    public void setMonto(BigDecimal monto) {
         this.monto = monto;
     }
 
