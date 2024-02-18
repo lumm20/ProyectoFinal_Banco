@@ -7,10 +7,7 @@ package banco.banconegocio.controlador;
 import banco.bancodominio.Cliente;
 import banco.bancodominio.Cuenta;
 import banco.banconegocio.excepciones.NegocioException;
-import banco.bancopersistencia.dtos.ClienteDTO;
-import banco.bancopersistencia.dtos.CuentaDTO;
-import banco.bancopersistencia.excepciones.PersistenciaException;
-import java.sql.Date;
+
 import java.util.List;
 
 /**
