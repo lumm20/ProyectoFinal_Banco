@@ -4,10 +4,19 @@
  */
 package banco.bancopersistencia.daos;
 
+import banco.bancodominio.Transaccion;
+import banco.bancopersistencia.excepciones.PersistenciaException;
+import java.util.List;
+
 /**
  *
  * @author luiis
  */
-public interface ITransaccion {
+public interface ITransaccionDAO {
+    int procesarTransaccion(Transaccion transaccion)throws PersistenciaException;
+    List<Transaccion> consultarTransacciones()throws PersistenciaException;
+    Transaccion consultarTransaccionPorId(int id_transaccion)throws PersistenciaException;
+    List<Transaccion> consultarTransaccionesPorRangoFechas()throws PersistenciaException;
+    List<Transaccion> consultarTransaccionesPorTipo(String tipoTransaccion)throws PersistenciaException;
     
 }
