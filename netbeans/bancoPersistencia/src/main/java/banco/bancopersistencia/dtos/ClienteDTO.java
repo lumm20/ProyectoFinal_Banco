@@ -38,7 +38,7 @@ public class ClienteDTO {
         this.fecha_nacimiento = fecha_nacimiento;
         this.edad = edad;
     }
-
+ 
     
     public String getNombre() {
         return nombre;
@@ -86,6 +86,7 @@ public class ClienteDTO {
 
     public void setId_direccion(int id_direccion) {
         this.id_direccion = id_direccion;
-    }
-    
+    }  
 }
+
+    

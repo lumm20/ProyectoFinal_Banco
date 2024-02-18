@@ -4,6 +4,7 @@
  */
 package banco.bancopersistencia.dtos;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 /**

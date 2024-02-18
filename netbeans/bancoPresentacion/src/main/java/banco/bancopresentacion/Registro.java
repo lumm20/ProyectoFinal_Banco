@@ -54,6 +54,7 @@ public class Registro extends javax.swing.JFrame {
         txt_calle = new javax.swing.JTextField();
         lbl_colonia = new javax.swing.JLabel();
         txt_colonia = new javax.swing.JTextField();
+        ButtonRegresar = new javax.swing.JButton();
         lbl_num = new javax.swing.JLabel();
         txt_numeroDireccion = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -99,6 +100,11 @@ public class Registro extends javax.swing.JFrame {
         lbl_cp.setText("Codigo Postal:");
         jPanel1.add(lbl_cp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
 
+        txt_cp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_cpActionPerformed(evt);
+            }
+        });
         txt_cp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_cpKeyTyped(evt);
@@ -118,13 +124,24 @@ public class Registro extends javax.swing.JFrame {
         jPanel1.add(lbl_colonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, -1, 10));
         jPanel1.add(txt_colonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 250, 20));
 
+        ButtonRegresar.setBackground(new java.awt.Color(14, 33, 110));
+        ButtonRegresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ButtonRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonRegresar.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\icono5.png")); // NOI18N
+        ButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonRegresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 50));
+
         lbl_num.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_num.setForeground(new java.awt.Color(255, 255, 255));
         lbl_num.setText("Número exterior:");
         jPanel1.add(lbl_num, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, 10));
         jPanel1.add(txt_numeroDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, 250, 20));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\registrate-removebg-preview (1) (1).png")); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\registrate-removebg-preview (1) (1).png")); // NOI18N
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 140, 110));
 
         ButtonAceptar.setBackground(new java.awt.Color(14, 33, 110));
@@ -136,12 +153,12 @@ public class Registro extends javax.swing.JFrame {
                 ButtonAceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 590, 130, 40));
+        jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 590, 140, 40));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo4.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo4.png")); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 360, 470));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo1.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo1.png")); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 640));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -194,6 +211,17 @@ public class Registro extends javax.swing.JFrame {
         if(txt_cp.getText().length()==5)
             evt.consume();
     }//GEN-LAST:event_txt_cpKeyTyped
+
+    private void txt_cpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_cpActionPerformed
+
+    private void ButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresarActionPerformed
+        // TODO add your handling code here:
+        Principal principal = new Principal();
+        principal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_ButtonRegresarActionPerformed
 
     private void agregarCliente(String[] datos_cliente, String[] datos_direccion)
             throws NegocioException {
@@ -269,6 +297,7 @@ public class Registro extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -280,6 +309,7 @@ public class Registro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAceptar;
+    private javax.swing.JButton ButtonRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel6;

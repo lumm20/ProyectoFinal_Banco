@@ -24,10 +24,11 @@ import java.util.List;
  */
 public class ControlPersistencia implements IControlPersistencia{
 
-    String url="jdbc:mysql://localhost:3306";
+
+    String url="jdbc:mysql://127.0.0.1:3306";
     String nombreBD="banco";
     String usuario = "root";
-    String contra = "moeLISa:22_03";
+    String contra = "esme2304";
     IConexion conexionBD = new Conexion(url+"/"+nombreBD, usuario, contra);
     IClienteDAO clienteDAO=new ClienteDAO(conexionBD);
     ICuentaDAO cuentaDAO= new CuentaDAO(conexionBD);
@@ -82,5 +83,5 @@ public class ControlPersistencia implements IControlPersistencia{
     public void actualizarSaldoCuenta(String num_cuenta, BigDecimal saldo) throws PersistenciaException {
         this.cuentaDAO.actualizarSaldoCuenta(num_cuenta, saldo);
     }
-    
+
 }

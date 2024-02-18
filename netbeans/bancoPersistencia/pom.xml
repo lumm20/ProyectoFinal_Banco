@@ -16,6 +16,17 @@
             <artifactId>bancoDominio</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>bancoNegocio</artifactId>
+            <version>${project.version}</version>
+        </dependency>  
+        <dependency>
+            <groupId>org.itson.bdavanzadas</groupId>
+            <artifactId>BancoPersistencia</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,4 +34,6 @@
         <maven.compiler.target>19</maven.compiler.target>
         <exec.mainClass>banco.bancopersistencia.BancoPersistencia</exec.mainClass>
     </properties>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        
 </project>

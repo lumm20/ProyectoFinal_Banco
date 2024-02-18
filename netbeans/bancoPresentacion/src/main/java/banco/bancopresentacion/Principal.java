@@ -78,7 +78,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel2.add(ButtonRegistrarse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 130, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo2.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo2.png")); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(360, 460));
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 400, 630));
 
@@ -98,10 +98,16 @@ public class Principal extends javax.swing.JFrame {
 
     private void ButtonRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRetiroActionPerformed
         // TODO add your handling code here:
+        Retiro_Sin_Cuenta retiro = new Retiro_Sin_Cuenta();
+        retiro.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_ButtonRetiroActionPerformed
 
     private void ButtonIniciarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIniciarSesion1ActionPerformed
         // TODO add your handling code here:
+        Login login = new Login();
+        login.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_ButtonIniciarSesion1ActionPerformed
 
     private void ButtonRegistrarse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegistrarse1ActionPerformed

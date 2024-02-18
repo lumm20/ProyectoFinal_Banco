@@ -4,6 +4,7 @@
  */
 package banco.bancopersistencia.dtos;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 /**
@@ -11,7 +12,7 @@ import java.sql.Date;
  * @author luiis
  */
 public class TransferenciaDTO {
-    private float monto;
+    private BigDecimal monto;
     private Date fechaHoraCreacion;
     private String numCuentaOrigen;
     private String numCuentaDestino;
@@ -19,18 +20,18 @@ public class TransferenciaDTO {
     public TransferenciaDTO() {
     }
 
-    public TransferenciaDTO(float monto, Date fechaHoraCreacion, String numCuentaOrigen, String numCuentaDestino) {
+    public TransferenciaDTO(BigDecimal monto, Date fechaHoraCreacion, String numCuentaOrigen, String numCuentaDestino) {
         this.monto = monto;
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.numCuentaOrigen = numCuentaOrigen;
         this.numCuentaDestino = numCuentaDestino;
     }
 
-    public float getMonto() {
+    public BigDecimal getMonto() {
         return monto;
     }
 
-    public void setMonto(float monto) {
+    public void setMonto(BigDecimal monto) {
         this.monto = monto;
     }
 
