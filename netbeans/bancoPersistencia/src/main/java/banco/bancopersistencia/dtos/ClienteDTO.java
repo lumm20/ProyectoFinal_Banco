@@ -16,6 +16,7 @@ public class ClienteDTO {
     private String apellidoP;
     private String apellidoM;
     private Date fecha_nacimiento;
+    private int edad;
     private int id_direccion;
 
     
@@ -84,5 +85,14 @@ public class ClienteDTO {
     public void setId_direccion(int id_direccion) {
         this.id_direccion = id_direccion;
     }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+    
     
 }

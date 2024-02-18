@@ -133,33 +133,17 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-<<<<<<< HEAD
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
             <Property name="text" type="java.lang.String" value="Direcci&#xf3;n:"/>
-=======
-            <Property name="text" type="java.lang.String" value="Direcci&#xf3;n"/>
->>>>>>> rama-luisa
-=======
-            <Property name="text" type="java.lang.String" value="Direcci&#xf3;n:"/>
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="10" y="350" width="-1" height="-1"/>
-<<<<<<< HEAD
-=======
             </Constraint>
           </Constraints>
         </Component>
@@ -202,74 +186,17 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="50" y="420" width="-1" height="10"/>
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel10">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Codigo Postal:"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="50" y="370" width="-1" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-<<<<<<< HEAD
-        <Component class="javax.swing.JTextField" name="txtDireccion">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-<<<<<<< HEAD
-              <AbsoluteConstraints x="50" y="430" width="250" height="-1"/>
-=======
         <Component class="javax.swing.JTextField" name="txt_calle">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-<<<<<<< HEAD
-              <AbsoluteConstraints x="50" y="450" width="120" height="-1"/>
->>>>>>> rama-luisa
-=======
-              <AbsoluteConstraints x="50" y="390" width="250" height="20"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel9">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Calle:"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="50" y="420" width="-1" height="10"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtDireccion1">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-=======
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
               <AbsoluteConstraints x="50" y="440" width="250" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
-<<<<<<< HEAD
-        <Component class="javax.swing.JLabel" name="jLabel11">
-=======
         <Component class="javax.swing.JLabel" name="lbl_colonia">
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -285,22 +212,14 @@
             </Constraint>
           </Constraints>
         </Component>
-<<<<<<< HEAD
-        <Component class="javax.swing.JTextField" name="txtDireccion2">
-=======
         <Component class="javax.swing.JTextField" name="txt_colonia">
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="50" y="490" width="250" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
-<<<<<<< HEAD
-        <Component class="javax.swing.JLabel" name="jLabel12">
-=======
         <Component class="javax.swing.JLabel" name="lbl_num">
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -316,11 +235,7 @@
             </Constraint>
           </Constraints>
         </Component>
-<<<<<<< HEAD
-        <Component class="javax.swing.JTextField" name="txtDireccion3">
-=======
         <Component class="javax.swing.JTextField" name="txt_numeroDireccion">
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="50" y="540" width="250" height="20"/>
@@ -330,20 +245,12 @@
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-<<<<<<< HEAD
-              <Image iconType="2" name="C:\Users\molin\Downloads\ProyectoFinal_Banco\netbeans\bancoPresentacion\src\main\java\banco\bancopresentacion\registrate-removebg-preview (1) (1).png"/>
-=======
               <Image iconType="2" name="C:\Users\luiis\Dropbox\PC\Documents\proyectoFinal-Banco-BDA\netbeans\bancoPresentacion\src\main\java\banco\bancopresentacion\registrate-removebg-preview (1) (1).png"/>
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
             </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="110" y="0" width="140" height="110"/>
-<<<<<<< HEAD
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
-=======
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
             </Constraint>
           </Constraints>
         </Component>
@@ -365,51 +272,10 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-              <AbsoluteConstraints x="110" y="480" width="130" height="40"/>
-=======
-              <AbsoluteConstraints x="110" y="540" width="130" height="40"/>
->>>>>>> rama-luisa
-=======
               <AbsoluteConstraints x="110" y="590" width="130" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel7">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\molin\Downloads\ProyectoFinal_Banco\netbeans\bancoPresentacion\src\main\java\banco\bancopresentacion\fondo4.png"/>
-            </Property>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="110" width="360" height="470"/>
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
-<<<<<<< HEAD
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\molin\Downloads\ProyectoFinal_Banco\netbeans\bancoPresentacion\src\main\java\banco\bancopresentacion\fondo1.png"/>
-            </Property>
-          </Properties>
-=======
->>>>>>> rama-luisa
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="360" height="640"/>
-=======
-              <AbsoluteConstraints x="110" y="590" width="130" height="40"/>
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
-            </Constraint>
-          </Constraints>
-        </Component>
-<<<<<<< HEAD
-=======
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -434,7 +300,6 @@
             </Constraint>
           </Constraints>
         </Component>
->>>>>>> rama-luisa
       </SubComponents>
     </Container>
   </SubComponents>

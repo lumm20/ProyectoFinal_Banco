@@ -8,16 +8,6 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-<<<<<<< HEAD
-            <artifactId>bancoPersistencia</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>bancoDominio</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-=======
             <artifactId>bancoDominio</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -26,7 +16,6 @@
             <artifactId>bancoPersistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
->>>>>>> rama-luisa
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

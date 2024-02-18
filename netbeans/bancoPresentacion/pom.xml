@@ -13,33 +13,9 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-<<<<<<< HEAD
             <artifactId>bancoNegocio</artifactId>
             <version>${project.version}</version>
         </dependency>
-<<<<<<< HEAD
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-=======
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
-            <artifactId>bancoDominio</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>bancoPersistencia</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-<<<<<<< HEAD
-=======
->>>>>>> rama-luisa
-=======
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>bancoNegocio</artifactId>
-            <version>${project.version}</version>
-        </dependency>
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

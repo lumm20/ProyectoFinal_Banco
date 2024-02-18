@@ -35,9 +35,10 @@ public class TransaccionDAO implements ITransaccionDAO{
         try (//todos los recursos que se van a utilizar y se deben cerrar
                 Connection conexion = this.conexion.crearConexion(); 
                 PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
-            comando.setBigDecimal(0, 0.0);
+            comando.setBigDecimal(0, transaccion.getMonto());
+            return 0;
         }catch(SQLException e){
-            
+            throw new PersistenciaException("");
         }
     }
 

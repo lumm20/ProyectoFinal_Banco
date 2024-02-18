@@ -4,34 +4,6 @@
  */
 package banco.bancopresentacion;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-import banco.bancodominio.Cliente;
-import banco.banconegocio.clienteRegistro;
-import banco.bancopersistencia.conexion.Conexion;
-import banco.bancopersistencia.conexion.IConexion;
-import banco.bancopersistencia.daos.ClienteDAO;
-import banco.bancopersistencia.excepciones.PersistenciaException;
-<<<<<<< HEAD
-=======
-//import banco.bancodominio.Cliente;
-//import banco.banconegocio.clienteRegistro;
-//import banco.bancopersistencia.conexion.Conexion;
-//import banco.bancopersistencia.conexion.IConexion;
-//import banco.bancopersistencia.daos.ClienteDAO;
-//import banco.bancopersistencia.excepciones.PersistenciaException;
-import banco.banconegocio.controlador.ControlNegocio;
-import banco.banconegocio.controlador.IControlNegocio;
-import banco.banconegocio.excepciones.NegocioException;
->>>>>>> rama-luisa
-=======
-
-import java.sql.Connection;
-import java.sql.SQLException;
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
-import javax.swing.JOptionPane;
-import java.sql.Statement;
-=======
 
 import banco.banconegocio.controlador.ControlNegocio;
 import banco.banconegocio.controlador.IControlNegocio;
@@ -42,43 +14,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
 
 /**
  *
  * @author molin
  */
 public class Registro extends javax.swing.JFrame {
-<<<<<<< HEAD
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-    // Crear una instancia de Conexion
-String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/BD_BANCO";
-String usuario = "root";
-String contra = "esme2304";
-IConexion conexion = new Conexion(cadenaConexion, usuario, contra);
-
-// Crear una instancia de ClienteDAO y pasar la conexión al constructor
-ClienteDAO clienteDAO = new ClienteDAO(conexion);
-=======
-    
-String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
-    String usuario = "root";
-    String contra = "esme2304";
-    IConexion conexion = new Conexion(cadenaConexion, usuario, contra);
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
-
-    
-
-
-=======
-    private IControlNegocio control=new ControlNegocio();
->>>>>>> rama-luisa
-=======
     
     IControlNegocio control=new ControlNegocio();
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
     /**
      * Creates new form Registro
      */
@@ -105,36 +48,6 @@ String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
         lbl_fecha = new javax.swing.JLabel();
         txtFechaNacimiento = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        jLabel10 = new javax.swing.JLabel();
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
-        txtDireccion = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        txtDireccion1 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        txtDireccion2 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        txtDireccion3 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        ButtonAceptar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-=======
-        txt_calle = new javax.swing.JTextField();
-        ButtonAceptar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txt_colonia = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        txt_cp = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        txt_numeroDir = new javax.swing.JTextField();
->>>>>>> rama-luisa
-=======
         lbl_cp = new javax.swing.JLabel();
         txt_cp = new javax.swing.JTextField();
         lbl_calle = new javax.swing.JLabel();
@@ -147,46 +60,11 @@ String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
         ButtonAceptar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-<<<<<<< HEAD
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Nombre:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 250, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Apellido Paterno:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
-        jPanel1.add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 250, -1));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Apellido Materno:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
-        jPanel1.add(txtApellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 250, -1));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Fecha de nacimiento:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, -1));
-        jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 250, -1));
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-        jLabel6.setText("Dirección:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, -1));
-        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 250, -1));
-=======
-        jLabel6.setText("Dirección");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, -1));
-=======
         lbl_nombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_nombre.setForeground(new java.awt.Color(255, 255, 255));
         lbl_nombre.setText("Nombre:");
@@ -215,7 +93,6 @@ String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Dirección:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
 
         lbl_cp.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_cp.setForeground(new java.awt.Color(255, 255, 255));
@@ -227,43 +104,6 @@ String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
                 txt_cpKeyTyped(evt);
             }
         });
-<<<<<<< HEAD
-        jPanel1.add(txt_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 120, -1));
->>>>>>> rama-luisa
-=======
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Dirección:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Codigo Postal:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
-        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 250, 20));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Calle:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, 10));
-        jPanel1.add(txtDireccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 250, 20));
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Colonia:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, -1, 10));
-        jPanel1.add(txtDireccion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 250, 20));
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Número exterior:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, 10));
-        jPanel1.add(txtDireccion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, 250, 20));
-
-        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\registrate-removebg-preview (1) (1).png")); // NOI18N
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 140, 110));
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
-=======
         jPanel1.add(txt_cp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 250, 20));
 
         lbl_calle.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -286,7 +126,6 @@ String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
 
         jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\registrate-removebg-preview (1) (1).png")); // NOI18N
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 140, 110));
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
 
         ButtonAceptar.setBackground(new java.awt.Color(14, 33, 110));
         ButtonAceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -297,26 +136,7 @@ String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
                 ButtonAceptarActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 130, 40));
-=======
         jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 590, 130, 40));
-
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo4.png")); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 360, 470));
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo1.png")); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 640));
-
-=======
-        jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, 130, 40));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 600));
-=======
-        jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 590, 130, 40));
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
 
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo4.png")); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 360, 470));
@@ -324,7 +144,6 @@ String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo1.png")); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 640));
 
->>>>>>> rama-luisa
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -341,65 +160,6 @@ String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
 
     private void ButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAceptarActionPerformed
         // TODO add your handling code here:
-<<<<<<< HEAD
-        // Obtener los datos ingresados por el usuario
-<<<<<<< HEAD
-    String nombre = txtNombre.getText();
-    String apellidoPaterno = txtApellidoP.getText();
-    String apellidoMaterno = txtApellidoM.getText();
-    String fechaNacimiento = txtFechaNacimiento.getText();
-    String direccion = txtDireccion.getText();
-
-    try {
-        // Crear un objeto Cliente con los datos ingresados por el usuario
-        Cliente cliente = new Cliente(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, direccion);
-
-        // Obtener una instancia de la conexión
-        Connection connection = conexion.crearConexion();
-
-        // Crear un Statement
-        Statement statement = connection.createStatement();
-
-        // Construir la consulta SQL para insertar el cliente en la base de datos
-        String query = "INSERT INTO Clientes (nombre, apellidoP, apellidoM, fecha_nacimiento, codigo_direccion) VALUES ('" +
-            nombre + "', '" + apellidoPaterno + "', '" + apellidoMaterno + "', '" + fechaNacimiento + "', '" + direccion + "')";
-
-
-        // Ejecutar la consulta SQL
-        statement.executeUpdate(query);
-
-        // Cerrar el Statement y la conexión
-        statement.close();
-        connection.close();
-
-        // Mostrar un mensaje de éxito
-        JOptionPane.showMessageDialog(this, "Cliente registrado exitosamente");
-    } catch (SQLException ex) {
-        // En caso de error, mostrar un mensaje de error
-        JOptionPane.showMessageDialog(this, "Error al registrar el cliente: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    } finally {
-        // Manejar la liberación de recursos aquí, si es necesario
-    } 
-    
-    }//GEN-LAST:event_ButtonAceptarActionPerformed
-
-=======
-        String[] datosCliente={txtNombre.getText(),
-        txtApellidoP.getText(),
-        txtApellidoM.getText(),
-        txtFechaNacimiento.getText()};
-        
-        String[] datosDireccion={txt_calle.getText(),
-        txt_colonia.getText(),
-        txt_cp.getText(),
-        txt_numeroDir.getText()
-        };
-        try {
-            this.agregarCliente(datosCliente,datosDireccion);
-            JOptionPane.showMessageDialog(this, "se agrego correctamente al cliente");
-        } catch (NegocioException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-=======
          // Obtener los datos ingresados por el usuario
         int cant=validarCamposVacios();
         if(cant>0){
@@ -426,7 +186,6 @@ String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
             } catch (NegocioException e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
         }
     }//GEN-LAST:event_ButtonAceptarActionPerformed
 
@@ -441,9 +200,6 @@ String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
         int codigo_direccion = this.control.agregarDireccionCliente(datos_direccion[0], datos_direccion[1], datos_direccion[2], datos_direccion[3]);
         this.control.insertarCliente(datos_cliente[0], datos_cliente[1], datos_cliente[2], datos_cliente[3], codigo_direccion);
     }
-<<<<<<< HEAD
->>>>>>> rama-luisa
-=======
 
     private int validarCamposVacios(){
         JTextField[] componentes = {txtNombre, txtApellidoP, txtFechaNacimiento,txt_calle, txt_cp};
@@ -487,7 +243,6 @@ String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
         return 0;
     }
 
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
     /**
      * @param args the command line arguments
      */
@@ -526,42 +281,8 @@ String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAceptar;
     private javax.swing.JLabel jLabel1;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    private javax.swing.JLabel jLabel10;
->>>>>>> rama-luisa
-=======
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-=======
-    private javax.swing.JLabel jLabel13;
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
     private javax.swing.JLabel jLabel6;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtApellidoM;
-    private javax.swing.JTextField txtApellidoP;
-    private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtDireccion1;
-    private javax.swing.JTextField txtDireccion2;
-    private javax.swing.JTextField txtDireccion3;
-    private javax.swing.JTextField txtFechaNacimiento;
-    private javax.swing.JTextField txtNombre;
-=======
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_apM;
@@ -579,11 +300,6 @@ String cadenaConexion = "jdbc:mysql://127.0.0.1:3306/banco";
     private javax.swing.JTextField txt_calle;
     private javax.swing.JTextField txt_colonia;
     private javax.swing.JTextField txt_cp;
-<<<<<<< HEAD
-    private javax.swing.JTextField txt_numeroDir;
->>>>>>> rama-luisa
-=======
     private javax.swing.JTextField txt_numeroDireccion;
->>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
     // End of variables declaration//GEN-END:variables
 }

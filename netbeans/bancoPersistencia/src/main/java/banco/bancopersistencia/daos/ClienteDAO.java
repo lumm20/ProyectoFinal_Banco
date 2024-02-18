@@ -4,16 +4,7 @@
  */
 package banco.bancopersistencia.daos;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-import banco.bancopersistencia.conexion.Conexion;
-
-=======
 import banco.bancodominio.Cliente;
->>>>>>> rama-luisa
-=======
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
 import banco.bancopersistencia.conexion.IConexion;
 import banco.bancopersistencia.dtos.ClienteDTO;
 import banco.bancopersistencia.excepciones.PersistenciaException;
@@ -21,21 +12,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-<<<<<<< HEAD
-
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
-<<<<<<< HEAD
-
-=======
 import java.util.logging.Level;
->>>>>>> rama-luisa
-=======
 import java.util.List;
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
 import java.util.logging.Logger;
 
 /**
@@ -44,125 +24,16 @@ import java.util.logging.Logger;
  */
 public class ClienteDAO implements IClienteDAO {
 
-<<<<<<< HEAD
-
-    
-<<<<<<< HEAD
-
-=======
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
-    private final IConexion conexionBD;
+    private final IConexion conexion;
 
     private static final Logger LOG = Logger.getLogger(ClienteDAO.class.getName());
 
-<<<<<<< HEAD
     // Constructor que acepta un objeto IConexion
     public ClienteDAO(IConexion conexionBD) {
-        this.conexionBD = conexionBD;
-=======
-    public ClienteDAO(IConexion conexion){
-        this.conexion=conexion;
->>>>>>> rama-luisa
-    }
-
-   
-=======
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
-    
-
-    
-    // Constructor que acepta un objeto IConexion
-    
-    public ClienteDAO(IConexion conexionBD) {
-    this.conexionBD = conexionBD;
-}
-    
-
-    @Override
-    public ClienteDTO buscarClientePorId(int id) throws PersistenciaException {
-        // Aquí implementa la lógica para buscar un cliente por su ID en la base de datos
-        String consulta = "SELECT * FROM Clientes WHERE id_cliente = ?";
-
-        try (
-                Connection conexion = this.conexionBD.crearConexion(); PreparedStatement comandoSQL = conexion.prepareStatement(consulta);) {
-
-            comandoSQL.setInt(1, id);
-            ResultSet resultado = comandoSQL.executeQuery();
-
-            if (resultado.next()) {
-                // Crear un objeto ClienteDTO con los datos obtenidos de la consulta
-                ClienteDTO clienteConsultado = new ClienteDTO(
-                        resultado.getString("nombre"),
-                        resultado.getString("apellidoP"),
-                        resultado.getString("apellidoM"),
-                        resultado.getDate("fecha_Nacimiento"),
-                        resultado.getInt("id_cliente"),
-                        resultado.getInt("id_direccion")
-                );
-                return clienteConsultado;
-            } else {
-                // Si no se encuentra ningún cliente con el ID dado, lanzar una excepción
-                throw new PersistenciaException("No se ha encontrado ningún cliente con el ID proporcionado");
-            }
-        } catch (SQLException ex) {
-            // En caso de error, lanzar una excepción de persistencia
-            LOG.log(Level.SEVERE, "Error al buscar cliente por ID", ex);
-            throw new PersistenciaException("Error al buscar cliente por ID", ex);
-        }
-<<<<<<< HEAD
-    
-
-    @Override
-<<<<<<< HEAD
-    public ClienteDTO buscarClientePorId(int id) throws PersistenciaException {
-        String sentencia="SELECT * FROM Clientes WHERE id_cliente= ? ";
-        ClienteDTO clienteBuscado=null;
-         try(//todos los recursos que se van a utilizar y se deben cerrar
-                Connection conexion = this.conexion.crearConexion(); 
-                 PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
-             comando.setInt(1, id);
-             
-             ResultSet rs=comando.executeQuery();
-             if(rs.next()){
-                 clienteBuscado=new ClienteDTO(rs.getString("nombre"),rs.getString("apellidoP"),
-                 rs.getString("apellidM"),rs.getDate("fecha_Nacimiento"),rs.getInt("edad"),rs.getInt("codigo_direccion"));
-             }
-         }catch(SQLException e){
-             
-         }
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-
-=======
->>>>>>> d7e93302e5094450e4cff2abbb77baca94698af7
+        this.conexion = conexionBD;
     }
 
     @Override
-    public List<ClienteDTO> listarClientes() throws PersistenciaException {
-        List<ClienteDTO> clientes = new ArrayList<>();
-
-        // Aquí implementa la lógica para listar todos los clientes de la base de datos
-        String consulta = "SELECT * FROM Clientes";
-
-        try (Connection conexion = this.conexionBD.crearConexion(); PreparedStatement comandoSQL = conexion.prepareStatement(consulta); ResultSet resultado = comandoSQL.executeQuery()) {
-
-            while (resultado.next()) {
-                ClienteDTO cliente = new ClienteDTO(
-                        resultado.getString("nombre"),
-                        resultado.getString("apellidoP"),
-                        resultado.getString("apellidoM"),
-                        resultado.getDate("fecha_Nacimiento"),
-                        resultado.getInt("id_cliente"),
-                        resultado.getInt("id_direccion")
-                );
-                clientes.add(cliente);
-            }
-        } catch (SQLException ex) {
-            LOG.log(Level.SEVERE, "Error al listar clientes", ex);
-            throw new PersistenciaException("Error al listar clientes", ex);
-        }
-
-        return clientes;
-=======
     public Cliente buscarClientePorId(int id) throws PersistenciaException {
         String sentencia = "SELECT * FROM Clientes WHERE id_cliente= ? ";
         Cliente clienteBuscado;
@@ -210,27 +81,10 @@ public class ClienteDAO implements IClienteDAO {
             LOG.log(Level.SEVERE, "algo salio mal",e.getMessage());
             throw new PersistenciaException("hubo un error al obtener la lista de clientes",e.getCause());
         }
->>>>>>> rama-luisa
     }
 
     @Override
     public void insertarCliente(ClienteDTO cliente) throws PersistenciaException {
-<<<<<<< HEAD
-        String consulta = "INSERT INTO Clientes (nombre, apellidoP, apellidoM, fecha_Nacimiento, codigo_Direccion) "
-                + "VALUES (?, ?, ?, ?, ?)";
-
-        try (Connection conexion = this.conexionBD.crearConexion(); PreparedStatement comandoSQL = conexion.prepareStatement(consulta)) {
-
-            comandoSQL.setString(1, cliente.getNombre());
-            comandoSQL.setString(2, cliente.getApellidoP());
-            comandoSQL.setString(3, cliente.getApellidoM());
-            comandoSQL.setDate(4, cliente.getFecha_nacimiento());
-            comandoSQL.setInt(5, cliente.getId_direccion());
-            comandoSQL.executeUpdate();
-        } catch (SQLException ex) {
-            LOG.log(Level.SEVERE, "Error al insertar cliente", ex);
-            throw new PersistenciaException("Error al insertar cliente", ex);
-=======
         String sentencia = "INSERT INTO Clientes(nombre, apellidoP,apellidoM,fecha_nacimiento,"
                 + "edad,codigo_direccion) VALUES (?,?,?,?,?,?)";
 
@@ -253,7 +107,6 @@ public class ClienteDAO implements IClienteDAO {
         } catch (SQLException e) {
             LOG.log(Level.SEVERE, "algo salio mal", e.getMessage());
             throw new PersistenciaException("hubo un error al agregar el cliente", e.getCause());
->>>>>>> rama-luisa
         }
     }
 
@@ -282,8 +135,6 @@ public class ClienteDAO implements IClienteDAO {
         }
     }
 
-<<<<<<< HEAD
-=======
     @Override
     public int agregarDireccionCliente(String calle, String colonia, String codigo_postal, String numero) throws PersistenciaException {
         String sentencia="INSERT INTO Direccion_Cliente(calle,codigo_postal,colonia,numero)"
@@ -321,5 +172,5 @@ public class ClienteDAO implements IClienteDAO {
             throw new SQLException(e);
         }
     }
->>>>>>> rama-luisa
+
 }
