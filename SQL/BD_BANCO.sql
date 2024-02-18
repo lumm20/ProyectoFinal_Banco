@@ -25,7 +25,7 @@ CREATE TABLE Clientes (
 CREATE TABLE Cuentas (
     numero_de_cuenta varchar(10) not null,
     fecha_inicio DATE not null,
-    saldo float not null,
+    saldo decimal(18,2) not null,
     estado varchar(10) not null check(estado in("activa","cancelada")),
     id_cliente int not null,
     foreign key (id_cliente) references Clientes(id_cliente),
@@ -36,7 +36,7 @@ CREATE TABLE Transacciones (
 	id_transaccion int primary key not null auto_increment,
     num_cuenta varchar(10) not null,
     fecha_hora datetime not null,
-    monto float not null,
+    monto decimal(18,2) not null,
     tipo_transaccion varchar(30) check(tipo_transaccion in("transferencia","retiro sin cuenta")),
     FOREIGN KEY (num_cuenta) REFERENCES Cuentas(numero_de_cuenta)
 );
