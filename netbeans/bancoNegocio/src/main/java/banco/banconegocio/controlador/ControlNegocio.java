@@ -9,7 +9,9 @@ import banco.bancodominio.Cliente;
 import banco.bancodominio.Cuenta;
 import banco.banconegocio.excepciones.NegocioException;
 import banco.bancopersistencia.conexion.controladores.ControlPersistencia;
-import banco.bancopersistencia.*;
+import banco.bancopersistencia.dtos.*;
+import banco.bancopersistencia.excepciones.PersistenciaException;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
@@ -112,7 +114,7 @@ public class ControlNegocio implements IControlNegocio{
     @Override
     public void insertarCuenta(String numCuenta,String fecha_creacion) throws NegocioException {
         Date fechaCreacion=Date.valueOf(fecha_creacion);
-        CuentaDTO cuenta =new CuentaDTO(numCuenta, "activa", 0, fechaCreacion);
+        CuentaDTO cuenta =new CuentaDTO(numCuenta, "activa", new BigDecimal(0), fechaCreacion);
         try {
             this.controlPers.insertarCuenta(cuenta);
         } catch (PersistenciaException e) {
