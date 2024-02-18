@@ -138,7 +138,7 @@ public class TransaccionDAO implements ITransaccionDAO{
                     transaccion=new Transferencia(rs.getBigDecimal("monto"), rs.getDate("fecha_hora"),
                             rs.getString("num_cuenta"),rs.getString("destino_transferencia"));
                 }else if(rs.getString("tipo_transaccion").equals("retiro sin cuenta")){
-                    //transaccion=new Retiro_sin_cuenta();//falta implementacion de esta clase
+                    transaccion=new Retiro_sin_cuenta();//falta implementacion de esta clase
                 }
                 transacciones.add(transaccion);
             }
@@ -170,7 +170,7 @@ public class TransaccionDAO implements ITransaccionDAO{
                     transaccion=new Transferencia(rs.getBigDecimal("monto"), rs.getDate("fecha_hora"),
                             rs.getString("num_cuenta"),rs.getString("destino transferencia"));
                 }else if(tipoTransaccion.equals("retiro sin cuenta")){
-                    //transaccion=new Retiro_sin_cuenta();//falta implementacion de esta clase
+                    transaccion=new Retiro_sin_cuenta();//falta implementacion de esta clase
                 }
                 transacciones.add(transaccion);
             }

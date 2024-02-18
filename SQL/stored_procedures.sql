@@ -4,13 +4,13 @@
 delimiter $$
 create procedure sp_consultarTransacciones(in numCuenta varchar(10))
 begin
-	select t.id_transaccion, t.fecha_hora, t.monto,
+	select t.id_transaccion, t.fecha_hora, t.monto, t.num_cuenta,
 			tf.num_cuenta_destino as 'destino transferencia',
             tsc.contra as 'contraseña retiro', tsc.estado as 'estado retiro', tsc.folio as 'folio retiro'
     from transacciones t inner join transaccion_transferencia tf
     on t.id_transaccion=tf.id_transaccion inner join transaccion_sin_cuenta tsc
     on tf.id_transaccion=tsc.id_transaccion
-    where num_cuenta=numCuenta
+    where t.num_cuenta=numCuenta
     order by t.fecha_hora desc;
 end $$
 delimiter ;
@@ -21,9 +21,9 @@ create procedure sp_consultarTransaccionesPorRangoFechas(in numCuenta varchar(10
 	in fecha_inicio datetime,
     in fecha_fin datetime)
 begin
-	select t.id_transaccion, t.fecha_hora, t.monto,
-			tf.num_cuenta_destino as 'destino transferencia',
-            tsc.contra as 'contraseña retiro', tsc.estado as 'estado retiro', tsc.folio as 'folio retiro'
+	select t.id_transaccion, t.fecha_hora, t.monto, t.tipo_transaccion, t.num_cuenta,
+			tf.num_cuenta_destino as 'destino_transferencia',
+            tsc.contra as 'contraseña_retiro', tsc.estado as 'estado_retiro', tsc.folio as 'folio_retiro'
     from transacciones t inner join transaccion_transferencia tf
     on t.id_transaccion=tf.id_transaccion inner join transaccion_sin_cuenta tsc
     on tf.id_transaccion=tsc.id_transaccion
@@ -175,3 +175,18 @@ begin
     commit;
 end $$
 delimiter ;
+#---------------------------------------------------
+#agregar una direccion de un cliente nuevo
+delimiter $$
+create procedure sp_agregarDireccion(
+	in calleD varchar(100),
+    in codigoPostal varchar(5),
+    in col varchar(100),
+    in num varchar(5),
+    out idDireccion int)
+begin
+	insert into direccion_cliente (calle, codigo_postal,colonia,numero)
+    values (calleD, codigoPostal, col, num);
+    
+    set idDireccion=last_insert_id();
+    

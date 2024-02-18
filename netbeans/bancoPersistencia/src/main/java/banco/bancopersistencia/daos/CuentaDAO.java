@@ -44,7 +44,7 @@ public class CuentaDAO implements ICuentaDAO{
 
             ResultSet rs = comando.executeQuery();
             if (rs.next()) {
-                cuentaBuscada = new Cuenta(rs.getString("numero_de_cuenta"), rs.getString("estado"), rs.getFloat("saldo"),
+                cuentaBuscada = new Cuenta(rs.getString("numero_de_cuenta"), rs.getString("estado"), rs.getBigDecimal("saldo"),
                         rs.getDate("fecha_Nacimiento"));
                 return cuentaBuscada;
             } else {
@@ -65,7 +65,7 @@ public class CuentaDAO implements ICuentaDAO{
                 Connection conexion = this.conexion.crearConexion(); PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
             ResultSet rs = comando.executeQuery();
             while (rs.next()) {
-                Cuenta cuenta = new Cuenta(rs.getString("numero_de_cuenta"), rs.getString("estado"), rs.getFloat("saldo"),
+                Cuenta cuenta = new Cuenta(rs.getString("numero_de_cuenta"), rs.getString("estado"), rs.getBigDecimal("saldo"),
                         rs.getDate("fecha_Nacimiento"));
                 lista.add(cuenta);
             }
@@ -95,7 +95,7 @@ public class CuentaDAO implements ICuentaDAO{
             ResultSet rs = comando.getGeneratedKeys();
             Cuenta cuentaAgregada;
             if (rs.next()) {
-                cuentaAgregada = new Cuenta(rs.getString("numero_de_cuenta"), rs.getString("estado"), rs.getFloat("saldo"),
+                cuentaAgregada = new Cuenta(rs.getString("numero_de_cuenta"), rs.getString("estado"), rs.getBigDecimal("saldo"),
                         rs.getDate("fecha_Nacimiento"));
                 LOG.log(Level.INFO, "se agrego una cuenta correctamente.\n Cuenta agregada: ", cuentaAgregada.toString());
             }
@@ -106,13 +106,13 @@ public class CuentaDAO implements ICuentaDAO{
     }
 
     @Override
-    public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws PersistenciaException {
+    public void actualizarSaldoCuenta(String num_cuenta, BigDecimal saldo) throws PersistenciaException {
         String sentencia = "UPDATE Cuentas SET saldo = ?"
                 + "WHERE numero_de_cuenta=?";
 
         try (//todos los recursos que se van a utilizar y se deben cerrar
                 Connection conexion = this.conexion.crearConexion(); PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
-            comando.setFloat(1, saldo);
+            comando.setBigDecimal(1, saldo);
             comando.setString(2, num_cuenta);
 
             int res = comando.executeUpdate();

@@ -8,25 +8,24 @@ package banco.banconegocio.excepciones;
  *
  * @author luiis
  */
-public class PersistenciaException extends Exception{
-
-    public PersistenciaException() {
+public class NegocioException extends Exception{
+    
+    public NegocioException() {
     }
 
-    public PersistenciaException(String message) {
+    public NegocioException(String message) {
         super(message);
     }
 
-    public PersistenciaException(String message, Throwable cause) {
+    public NegocioException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public PersistenciaException(Throwable cause) {
+    public NegocioException(Throwable cause) {
         super(cause);
     }
 
-    public PersistenciaException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    public NegocioException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
-    
 }

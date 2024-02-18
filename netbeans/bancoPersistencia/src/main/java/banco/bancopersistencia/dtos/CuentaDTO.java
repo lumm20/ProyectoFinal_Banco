@@ -4,13 +4,13 @@
  */
 package banco.bancopersistencia.dtos;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 /**
  *
  * @author luiis
  */
-
 public class CuentaDTO {
     private String num_cuenta;
     private String estado;

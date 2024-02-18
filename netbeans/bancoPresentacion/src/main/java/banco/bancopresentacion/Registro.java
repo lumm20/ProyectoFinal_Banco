@@ -7,7 +7,7 @@ package banco.bancopresentacion;
 
 import banco.banconegocio.controlador.ControlNegocio;
 import banco.banconegocio.controlador.IControlNegocio;
-import banco.banconegocio.excepciones.PersistenciaException;
+import banco.banconegocio.excepciones.NegocioException;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import java.util.regex.Matcher;
@@ -200,7 +200,7 @@ public class Registro extends javax.swing.JFrame {
             try {
                 this.agregarCliente(datosCliente, datosDireccion);
                 JOptionPane.showMessageDialog(this, "se agrego correctamente al cliente");
-            } catch (PersistenciaException e) {
+            } catch (NegocioException e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
         }
@@ -224,7 +224,7 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonRegresarActionPerformed
 
     private void agregarCliente(String[] datos_cliente, String[] datos_direccion)
-            throws PersistenciaException {
+            throws NegocioException {
         int codigo_direccion = this.control.agregarDireccionCliente(datos_direccion[0], datos_direccion[1], datos_direccion[2], datos_direccion[3]);
         this.control.insertarCliente(datos_cliente[0], datos_cliente[1], datos_cliente[2], datos_cliente[3], codigo_direccion);
     }

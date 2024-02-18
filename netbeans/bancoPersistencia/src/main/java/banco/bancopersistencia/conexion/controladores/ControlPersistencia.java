@@ -80,7 +80,7 @@ public class ControlPersistencia implements IControlPersistencia{
     }
 
     @Override
-    public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws PersistenciaException {
+    public void actualizarSaldoCuenta(String num_cuenta, BigDecimal saldo) throws PersistenciaException {
         this.cuentaDAO.actualizarSaldoCuenta(num_cuenta, saldo);
     }
 

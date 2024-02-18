@@ -8,7 +8,7 @@ package banco.bancodominio;
  *
  * @author luiis
  */
-public class Retiro_sin_cuenta {
+public class Retiro_sin_cuenta extends Transaccion{
     private String folio;
     private String estado;
     private String contra;
@@ -50,4 +50,5 @@ public class Retiro_sin_cuenta {
     public String toString() {
         return "Retiro_Sin_cuenta{" + "folio=" + folio + ", estado=" + estado + ", contra=" + contra + '}';
     }
+
 }
