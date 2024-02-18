@@ -8,6 +8,6 @@ package banco.bancodominio;
  *
  * @author luiis
  */
-public class Retiro_sin_cuenta implements ITransaccion{
-    
+public class Retiro_sin_cuenta{
+ 
 }

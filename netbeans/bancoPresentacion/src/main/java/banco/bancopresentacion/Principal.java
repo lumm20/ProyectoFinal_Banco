@@ -78,7 +78,11 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel2.add(ButtonRegistrarse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 130, 40));
 
+<<<<<<< HEAD
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo2.png")); // NOI18N
+=======
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo2.png")); // NOI18N
+>>>>>>> 1e7e85d41fabdeaced860e758644486bf405e0ca
         jLabel1.setPreferredSize(new java.awt.Dimension(360, 460));
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 400, 630));
 
