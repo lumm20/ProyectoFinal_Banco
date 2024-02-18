@@ -165,7 +165,10 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txt_cp">
           <Events>
+<<<<<<< HEAD
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_cpActionPerformed"/>
+=======
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_cpKeyTyped"/>
           </Events>
           <Constraints>
@@ -246,7 +249,7 @@
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\molin\Downloads\ProyectoFinal_Banco\netbeans\bancoPresentacion\src\main\java\banco\bancopresentacion\registrate-removebg-preview (1) (1).png"/>
+              <Image iconType="2" name="C:\Users\luiis\Dropbox\PC\Documents\proyectoFinal-Banco-BDA\netbeans\bancoPresentacion\src\main\java\banco\bancopresentacion\registrate-removebg-preview (1) (1).png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -280,7 +283,7 @@
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\molin\Downloads\ProyectoFinal_Banco\netbeans\bancoPresentacion\src\main\java\banco\bancopresentacion\fondo4.png"/>
+              <Image iconType="2" name="C:\Users\luiis\Dropbox\PC\Documents\proyectoFinal-Banco-BDA\netbeans\bancoPresentacion\src\main\java\banco\bancopresentacion\fondo4.png"/>
             </Property>
           </Properties>
           <Constraints>
@@ -292,7 +295,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\molin\Downloads\ProyectoFinal_Banco\netbeans\bancoPresentacion\src\main\java\banco\bancopresentacion\fondo1.png"/>
+              <Image iconType="2" name="C:\Users\luiis\Dropbox\PC\Documents\proyectoFinal-Banco-BDA\netbeans\bancoPresentacion\src\main\java\banco\bancopresentacion\fondo1.png"/>
             </Property>
           </Properties>
           <Constraints>

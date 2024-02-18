@@ -7,6 +7,10 @@ package banco.banconegocio.controlador;
 import banco.bancodominio.Cliente;
 import banco.bancodominio.Cuenta;
 import banco.banconegocio.excepciones.NegocioException;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 import java.util.List;
 
 /**

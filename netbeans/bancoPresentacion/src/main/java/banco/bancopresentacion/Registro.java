@@ -4,6 +4,7 @@
  */
 package banco.bancopresentacion;
 
+<<<<<<< HEAD
 import banco.banconegocio.controlador.ControlNegocio;
 import banco.banconegocio.excepciones.NegocioException;
 import java.awt.Color;
@@ -16,6 +17,18 @@ import javax.swing.JTextField;
 
 
 
+=======
+
+import banco.banconegocio.controlador.ControlNegocio;
+import banco.banconegocio.controlador.IControlNegocio;
+import banco.banconegocio.excepciones.NegocioException;
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 
 /**
  *
@@ -71,25 +84,44 @@ public class Registro extends javax.swing.JFrame {
         lbl_nombre.setForeground(new java.awt.Color(255, 255, 255));
         lbl_nombre.setText("Nombre:");
         jPanel1.add(lbl_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+<<<<<<< HEAD
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 250, 30));
+=======
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 250, -1));
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 
         lbl_apP.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_apP.setForeground(new java.awt.Color(255, 255, 255));
         lbl_apP.setText("Apellido Paterno:");
+<<<<<<< HEAD
         jPanel1.add(lbl_apP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
         jPanel1.add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 250, 30));
+=======
+        jPanel1.add(lbl_apP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+        jPanel1.add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 250, -1));
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 
         lbl_apM.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_apM.setForeground(new java.awt.Color(255, 255, 255));
         lbl_apM.setText("Apellido Materno:");
+<<<<<<< HEAD
         jPanel1.add(lbl_apM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
         jPanel1.add(txtApellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 250, 30));
+=======
+        jPanel1.add(lbl_apM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
+        jPanel1.add(txtApellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 250, -1));
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 
         lbl_fecha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_fecha.setForeground(new java.awt.Color(255, 255, 255));
         lbl_fecha.setText("Fecha de nacimiento:");
+<<<<<<< HEAD
         jPanel1.add(lbl_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
         jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 250, 30));
+=======
+        jPanel1.add(lbl_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, -1));
+        jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 250, -1));
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -99,6 +131,7 @@ public class Registro extends javax.swing.JFrame {
         lbl_cp.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_cp.setForeground(new java.awt.Color(255, 255, 255));
         lbl_cp.setText("Codigo Postal:");
+<<<<<<< HEAD
         jPanel1.add(lbl_cp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, 10));
 
         txt_cp.addActionListener(new java.awt.event.ActionListener() {
@@ -106,22 +139,36 @@ public class Registro extends javax.swing.JFrame {
                 txt_cpActionPerformed(evt);
             }
         });
+=======
+        jPanel1.add(lbl_cp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
+
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
         txt_cp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_cpKeyTyped(evt);
             }
         });
+<<<<<<< HEAD
         jPanel1.add(txt_cp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 250, 30));
+=======
+        jPanel1.add(txt_cp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 250, 20));
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 
         lbl_calle.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_calle.setForeground(new java.awt.Color(255, 255, 255));
         lbl_calle.setText("Calle:");
+<<<<<<< HEAD
         jPanel1.add(lbl_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, -1, 10));
         jPanel1.add(txt_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 250, 30));
+=======
+        jPanel1.add(lbl_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, 10));
+        jPanel1.add(txt_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 250, 20));
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 
         lbl_colonia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_colonia.setForeground(new java.awt.Color(255, 255, 255));
         lbl_colonia.setText("Colonia:");
+<<<<<<< HEAD
         jPanel1.add(lbl_colonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, -1, 10));
         jPanel1.add(txt_colonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, 250, 30));
 
@@ -130,8 +177,18 @@ public class Registro extends javax.swing.JFrame {
         lbl_num.setText("Número exterior:");
         jPanel1.add(lbl_num, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, 10));
         jPanel1.add(txt_numeroDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, 250, 30));
+=======
+        jPanel1.add(lbl_colonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, -1, 10));
+        jPanel1.add(txt_colonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 250, 20));
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 
-        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\registrate-removebg-preview (1) (1).png")); // NOI18N
+        lbl_num.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbl_num.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_num.setText("Número exterior:");
+        jPanel1.add(lbl_num, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, 10));
+        jPanel1.add(txt_numeroDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, 250, 20));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\registrate-removebg-preview (1) (1).png")); // NOI18N
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 140, 110));
 
         ButtonAceptar.setBackground(new java.awt.Color(14, 33, 110));
@@ -145,10 +202,15 @@ public class Registro extends javax.swing.JFrame {
         });
         jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 590, 130, 40));
 
+<<<<<<< HEAD
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo4.png")); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 360, 480));
+=======
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo4.png")); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 360, 470));
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo1.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\fondo1.png")); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 640));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -202,10 +264,13 @@ public class Registro extends javax.swing.JFrame {
             evt.consume();
     }//GEN-LAST:event_txt_cpKeyTyped
 
+<<<<<<< HEAD
     private void txt_cpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_cpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_cpActionPerformed
 
+=======
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
     private void agregarCliente(String[] datos_cliente, String[] datos_direccion)
             throws NegocioException {
         int codigo_direccion = this.control.agregarDireccionCliente(datos_direccion[0], datos_direccion[1], datos_direccion[2], datos_direccion[3]);

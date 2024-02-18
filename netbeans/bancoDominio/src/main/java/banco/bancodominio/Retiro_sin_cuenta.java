@@ -9,5 +9,9 @@ package banco.bancodominio;
  * @author luiis
  */
 public class Retiro_sin_cuenta{
+<<<<<<< HEAD
     
+=======
+ 
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 }

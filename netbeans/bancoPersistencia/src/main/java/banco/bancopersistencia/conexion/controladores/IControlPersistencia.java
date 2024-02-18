@@ -9,6 +9,7 @@ import banco.bancodominio.Cuenta;
 import banco.bancopersistencia.dtos.ClienteDTO;
 import banco.bancopersistencia.dtos.CuentaDTO;
 import banco.bancopersistencia.excepciones.PersistenciaException;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -92,5 +93,5 @@ public interface IControlPersistencia {
      * @param saldo a establecer en el registro de la cuenta
      * @throws PersistenciaException en caso de que ocurra un error de base de datos al actualizar el saldo
      */
-    public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws PersistenciaException;
+    public void actualizarSaldoCuenta(String num_cuenta, BigDecimal saldo) throws PersistenciaException;
 }

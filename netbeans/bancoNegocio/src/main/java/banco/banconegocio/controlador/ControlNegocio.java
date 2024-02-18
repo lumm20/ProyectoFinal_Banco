@@ -14,6 +14,10 @@ import banco.bancopersistencia.excepciones.PersistenciaException;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.logging.Logger;
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 
 /**
  *

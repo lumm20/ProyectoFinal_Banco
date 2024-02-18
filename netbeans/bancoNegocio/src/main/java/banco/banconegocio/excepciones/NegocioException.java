@@ -6,7 +6,11 @@ package banco.banconegocio.excepciones;
 
 /**
  *
+<<<<<<< HEAD
  * @author molin
+=======
+ * @author luiis
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
  */
 public class NegocioException extends Exception{
     
@@ -29,4 +33,7 @@ public class NegocioException extends Exception{
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae

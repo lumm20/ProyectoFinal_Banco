@@ -39,6 +39,17 @@ public class ClienteDTO {
         this.edad = edad;
     }
 
+<<<<<<< HEAD
+=======
+    public ClienteDTO(String nombre, String apellidoP, String apellidoM, Date fecha_nacimiento, int edad) {
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.edad = edad;
+    }
+
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
     
     public String getNombre() {
         return nombre;
@@ -87,6 +98,15 @@ public class ClienteDTO {
     public void setId_direccion(int id_direccion) {
         this.id_direccion = id_direccion;
     }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+    
     
 }
 

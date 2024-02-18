@@ -5,28 +5,35 @@
     <artifactId>bancoPersistencia</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+<<<<<<< HEAD
+=======
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+        <dependency>
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
+            <groupId>${project.groupId}</groupId>
+            <artifactId>bancoDominio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+<<<<<<< HEAD
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>bancoNegocio</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+=======
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
+    </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>19</maven.compiler.source>
         <maven.compiler.target>19</maven.compiler.target>
         <exec.mainClass>banco.bancopersistencia.BancoPersistencia</exec.mainClass>
     </properties>
-    <dependencies>
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>8.0.33</version>
-</dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>bancoDominio</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>bancoNegocio</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
+        
 </project>

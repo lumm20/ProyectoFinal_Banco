@@ -4,6 +4,10 @@
  */
 package banco.bancodominio;
 
+<<<<<<< HEAD
+=======
+import java.math.BigDecimal;
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
 import java.sql.Date;
 
 /**
@@ -16,12 +20,20 @@ public class Transferencia extends Transaccion{
     public Transferencia() {
     }
 
+<<<<<<< HEAD
     public Transferencia(int idTransaccion, float monto, Date fechaHoraCreacion, String numCuentaOrigen, String numCuentaDestino) {
+=======
+    public Transferencia(int idTransaccion, BigDecimal monto, Date fechaHoraCreacion, String numCuentaOrigen, String numCuentaDestino) {
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
         super(idTransaccion,monto,fechaHoraCreacion,numCuentaOrigen,"transferencia");
         this.numCuentaDestino=numCuentaDestino;
     }
 
+<<<<<<< HEAD
     public Transferencia(float monto, Date fechaHoraCreacion, String numCuentaOrigen, String numCuentaDestino) {
+=======
+    public Transferencia(BigDecimal monto, Date fechaHoraCreacion, String numCuentaOrigen, String numCuentaDestino) {
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
         super(monto,fechaHoraCreacion,numCuentaDestino,"transferencia");
         this.numCuentaDestino=numCuentaDestino;
     }

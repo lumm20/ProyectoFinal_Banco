@@ -15,6 +15,7 @@ import banco.bancopersistencia.daos.ICuentaDAO;
 import banco.bancopersistencia.dtos.ClienteDTO;
 import banco.bancopersistencia.dtos.CuentaDTO;
 import banco.bancopersistencia.excepciones.PersistenciaException;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -23,7 +24,11 @@ import java.util.List;
  */
 public class ControlPersistencia implements IControlPersistencia{
 
+<<<<<<< HEAD
     String url="jdbc:mysql://127.0.0.1:3306";
+=======
+    String url="jdbc:mysql://localhost:3306";
+>>>>>>> 208485a08e5a867a928b4baf0b034cb91e1b81ae
     String nombreBD="banco";
     String usuario = "root";
     String contra = "esme2304";
@@ -78,9 +83,8 @@ public class ControlPersistencia implements IControlPersistencia{
     }
 
     @Override
-    public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws PersistenciaException {
+    public void actualizarSaldoCuenta(String num_cuenta, BigDecimal saldo) throws PersistenciaException {
         this.cuentaDAO.actualizarSaldoCuenta(num_cuenta, saldo);
     }
     
 }
-
