@@ -100,8 +100,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRetiroActionPerformed
-   // Crear una instancia de la clase Retiro_sin_cuenta
-    Retiro_sin_cuenta retiro = new Retiro_sin_cuenta();
+   Retiro_sin_cuenta retiro = new Retiro_sin_cuenta();
     
     // Generar el folio y la contraseña
     retiro.iniciarRetiro();

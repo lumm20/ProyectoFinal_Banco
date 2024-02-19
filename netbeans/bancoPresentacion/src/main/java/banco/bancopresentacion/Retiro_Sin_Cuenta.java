@@ -5,6 +5,10 @@
 package banco.bancopresentacion;
 
 import banco.bancodominio.Retiro_sin_cuenta;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -14,13 +18,16 @@ public class Retiro_Sin_Cuenta extends javax.swing.JFrame {
 
     /**
      * Creates new form Retiro_Sin_Cuenta
+     * @param folio
+     * @param contrasena
      */
     public Retiro_Sin_Cuenta(int folio, String contrasena) {
-        initComponents();
-        txtFolio.setText(String.valueOf(folio));
-        txtContra.setText(contrasena);
-        
+        initComponents(); // Inicializar componentes gráficos
+        txtFolio.setText(String.valueOf(folio)); // Establecer el folio en el campo txtFolio
+        txtContra.setText(contrasena); // Establecer la contraseña en el campo txtContra
+
     }
+
 
     
     /**
@@ -34,12 +41,13 @@ public class Retiro_Sin_Cuenta extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         txtFolio = new javax.swing.JTextField();
-        ButtonAceptar1 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        ButtonAceptar = new javax.swing.JButton();
+        LabelCuenta = new javax.swing.JLabel();
         txtCuenta = new javax.swing.JTextField();
+        icono = new javax.swing.JButton();
         txtContra = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        LabelContra = new javax.swing.JLabel();
+        LabelFolio = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -58,21 +66,21 @@ public class Retiro_Sin_Cuenta extends javax.swing.JFrame {
         });
         jPanel1.add(txtFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 150, 30));
 
-        ButtonAceptar1.setBackground(new java.awt.Color(170, 193, 234));
-        ButtonAceptar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        ButtonAceptar1.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonAceptar1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\icono5 (1).png")); // NOI18N
-        ButtonAceptar1.addActionListener(new java.awt.event.ActionListener() {
+        ButtonAceptar.setBackground(new java.awt.Color(19, 48, 100));
+        ButtonAceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ButtonAceptar.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonAceptar.setText("Aceptar");
+        ButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonAceptar1ActionPerformed(evt);
+                ButtonAceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonAceptar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 70, 40));
+        jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 490, 130, 40));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Cuenta:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, -1, -1));
+        LabelCuenta.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        LabelCuenta.setForeground(new java.awt.Color(255, 255, 255));
+        LabelCuenta.setText("Cuenta:");
+        jPanel1.add(LabelCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, -1, -1));
 
         txtCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +88,17 @@ public class Retiro_Sin_Cuenta extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 220, 30));
+
+        icono.setBackground(new java.awt.Color(170, 193, 234));
+        icono.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        icono.setForeground(new java.awt.Color(255, 255, 255));
+        icono.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\icono5 (1).png")); // NOI18N
+        icono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                iconoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(icono, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 70, 40));
 
         txtContra.setEditable(false);
         txtContra.addActionListener(new java.awt.event.ActionListener() {
@@ -89,15 +108,15 @@ public class Retiro_Sin_Cuenta extends javax.swing.JFrame {
         });
         jPanel1.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 170, 30));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Contraseña:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
+        LabelContra.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        LabelContra.setForeground(new java.awt.Color(255, 255, 255));
+        LabelContra.setText("Contraseña:");
+        jPanel1.add(LabelContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Folio:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 60, -1));
+        LabelFolio.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        LabelFolio.setForeground(new java.awt.Color(255, 255, 255));
+        LabelFolio.setText("Folio:");
+        jPanel1.add(LabelFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 60, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo4.png")); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 360, 300));
@@ -131,18 +150,27 @@ public class Retiro_Sin_Cuenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtContraActionPerformed
 
-    private void ButtonAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAceptar1ActionPerformed
+    private void ButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAceptarActionPerformed
+        // TODO add your handling code here:
+        // Obtener los datos ingresados por el usuario
+    
+        
+    }//GEN-LAST:event_ButtonAceptarActionPerformed
+
+    private void txtCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtCuentaActionPerformed
+
+    private void iconoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iconoActionPerformed
         // TODO add your handling code here:
         Principal regresar = new Principal();
         regresar.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_ButtonAceptar1ActionPerformed
-
-    private void txtCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCuentaActionPerformed
+    }//GEN-LAST:event_iconoActionPerformed
 
     
+
     /**
      * @param args the command line arguments
      */
@@ -181,13 +209,14 @@ public class Retiro_Sin_Cuenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonAceptar1;
+    private javax.swing.JButton ButtonAceptar;
+    private javax.swing.JLabel LabelContra;
+    private javax.swing.JLabel LabelCuenta;
+    private javax.swing.JLabel LabelFolio;
+    private javax.swing.JButton icono;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtContra;
     private javax.swing.JTextField txtCuenta;
