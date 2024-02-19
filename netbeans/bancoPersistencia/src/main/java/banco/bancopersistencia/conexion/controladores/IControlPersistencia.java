@@ -39,9 +39,10 @@ public interface IControlPersistencia {
     /**
      * Agrega un registro de un cliente a la base de datos
      * @param cliente a registrar
+     * @return el id del cliente agregado, 0 si no se pudo agregar
      * @throws PersistenciaException en caso de que ocurra un error de base de datos al agregar al cliente
      */
-    public void insertarCliente(ClienteDTO cliente) throws PersistenciaException;
+    public int insertarCliente(ClienteDTO cliente) throws PersistenciaException;
 
     /**
      * Agrega la direccion de un cliente a la base de datos
@@ -94,4 +95,13 @@ public interface IControlPersistencia {
      * @throws PersistenciaException en caso de que ocurra un error de base de datos al actualizar el saldo
      */
     public void actualizarSaldoCuenta(String num_cuenta, BigDecimal saldo) throws PersistenciaException;
+  /**
+   * agrega un usuario a la tabla de usuarios
+   * @param idCliente al que le pertenece el usuario
+   * @param usuario a guardar
+   * @param contra a guardar
+   * @return el id del registro del usuario, 0 si no se registro
+   * @throws PersistenciaException en caso de que ocurra un error de base de datos al agregar el usuario
+   */
+    public int guardarUsuario(int idCliente, String usuario, String contra)throws PersistenciaException;
 }
