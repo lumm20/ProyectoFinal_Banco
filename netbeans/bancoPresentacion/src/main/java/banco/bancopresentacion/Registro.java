@@ -51,10 +51,10 @@ public class Registro extends javax.swing.JFrame {
         lbl_cp = new javax.swing.JLabel();
         txt_cp = new javax.swing.JTextField();
         lbl_calle = new javax.swing.JLabel();
+        ButtonAceptar1 = new javax.swing.JButton();
         txt_calle = new javax.swing.JTextField();
         lbl_colonia = new javax.swing.JLabel();
         txt_colonia = new javax.swing.JTextField();
-        ButtonRegresar = new javax.swing.JButton();
         lbl_num = new javax.swing.JLabel();
         txt_numeroDireccion = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -116,6 +116,17 @@ public class Registro extends javax.swing.JFrame {
         lbl_calle.setForeground(new java.awt.Color(255, 255, 255));
         lbl_calle.setText("Calle:");
         jPanel1.add(lbl_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, 10));
+
+        ButtonAceptar1.setBackground(new java.awt.Color(170, 193, 234));
+        ButtonAceptar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ButtonAceptar1.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonAceptar1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\icono5 (1).png")); // NOI18N
+        ButtonAceptar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAceptar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButtonAceptar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 70, 40));
         jPanel1.add(txt_calle, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 250, 20));
 
         lbl_colonia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -123,17 +134,6 @@ public class Registro extends javax.swing.JFrame {
         lbl_colonia.setText("Colonia:");
         jPanel1.add(lbl_colonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, -1, 10));
         jPanel1.add(txt_colonia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 250, 20));
-
-        ButtonRegresar.setBackground(new java.awt.Color(14, 33, 110));
-        ButtonRegresar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        ButtonRegresar.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonRegresar.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\icono5.png")); // NOI18N
-        ButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonRegresarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(ButtonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 50));
 
         lbl_num.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_num.setForeground(new java.awt.Color(255, 255, 255));
@@ -153,7 +153,7 @@ public class Registro extends javax.swing.JFrame {
                 ButtonAceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 590, 140, 40));
+        jPanel1.add(ButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 590, 130, 40));
 
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo4.png")); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 360, 470));
@@ -173,6 +173,7 @@ public class Registro extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAceptarActionPerformed
@@ -216,12 +217,12 @@ public class Registro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_cpActionPerformed
 
-    private void ButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresarActionPerformed
+    private void ButtonAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAceptar1ActionPerformed
         // TODO add your handling code here:
-        Principal principal = new Principal();
-        principal.setVisible(true);
+        Principal regresar = new Principal();
+        regresar.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_ButtonRegresarActionPerformed
+    }//GEN-LAST:event_ButtonAceptar1ActionPerformed
 
     private void agregarCliente(String[] datos_cliente, String[] datos_direccion)
             throws NegocioException {
@@ -297,7 +298,6 @@ public class Registro extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -309,7 +309,7 @@ public class Registro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAceptar;
-    private javax.swing.JButton ButtonRegresar;
+    private javax.swing.JButton ButtonAceptar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel6;

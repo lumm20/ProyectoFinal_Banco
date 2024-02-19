@@ -1,6 +1,8 @@
 
 package banco.bancopresentacion;
 
+import banco.bancodominio.Retiro_sin_cuenta;
+
 /**
  *
  * @author molin
@@ -94,13 +96,23 @@ public class Principal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRetiroActionPerformed
-        // TODO add your handling code here:
-        Retiro_Sin_Cuenta retiro = new Retiro_Sin_Cuenta();
-        retiro.setVisible(true);
-        this.dispose();
+   // Crear una instancia de la clase Retiro_sin_cuenta
+    Retiro_sin_cuenta retiro = new Retiro_sin_cuenta();
+    
+    // Generar el folio y la contraseña
+    retiro.iniciarRetiro();
+    int folio = retiro.getFolio();
+    String contrasena = retiro.getContra();
+    
+    // Abrir el siguiente JFrame y pasar los valores
+    Retiro_Sin_Cuenta siguienteFrame = new Retiro_Sin_Cuenta(folio, contrasena);
+    siguienteFrame.setVisible(true);
+    this.dispose();
+
     }//GEN-LAST:event_ButtonRetiroActionPerformed
 
     private void ButtonIniciarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIniciarSesion1ActionPerformed
@@ -115,6 +127,7 @@ public class Principal extends javax.swing.JFrame {
         Registro registro = new Registro();
         registro.setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_ButtonRegistrarse1ActionPerformed
 
     /**

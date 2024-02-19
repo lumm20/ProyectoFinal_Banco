@@ -4,13 +4,15 @@
  */
 package banco.banconegocio.controlador;
 
+import banco.bancodominio.Retiro_sin_cuenta;
+
 /**
  *
  * @author molin
  */
 public interface IControlRetiroSinCuenta {
     // Método para iniciar un retiro sin cuenta
-    public void iniciarRetiroSinCuenta();
+    public Retiro_sin_cuenta iniciarRetiroSinCuenta();
 
     // Método para verificar el estado de un retiro sin cuenta
     public void verificarEstadoRetiro();
