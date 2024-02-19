@@ -16,8 +16,9 @@ import java.util.List;
 public interface IClienteDAO {
     public Cliente buscarClientePorId(int id) throws PersistenciaException;
     public List<Cliente> listarClientes() throws PersistenciaException;
-    public void insertarCliente(ClienteDTO cliente) throws PersistenciaException;
+    public int insertarCliente(ClienteDTO cliente) throws PersistenciaException;
     public void actualizarCliente(Cliente cliente) throws PersistenciaException;
     public int agregarDireccionCliente(String calle, String colonia, String codigo_postal, String numero) throws PersistenciaException;
     public void actualizarDireccionCliente(int idDireccion, String calle, String colonia, String codigo_postal, String numero) throws PersistenciaException;
+    public int guardarUsuario(int idCliente , String usuario, String contra)throws PersistenciaException;
 }
