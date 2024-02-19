@@ -4,17 +4,31 @@
  */
 package banco.bancopresentacion;
 
+import banco.banconegocio.controlador.ControlNegocio;
+import banco.banconegocio.controlador.IControlNegocio;
+import banco.bancopresentacion.control.ControlPresentacion;
+import banco.bancopresentacion.utilities.FondoImagen;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+
 /**
  *
  * @author molin
  */
 public class Login extends javax.swing.JFrame {
-
+    
+    ControlPresentacion control=new ControlPresentacion();
+    IControlNegocio controlN=new ControlNegocio();
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        setLogo();
+        this.setVisible(true);
     }
 
     /**
@@ -26,57 +40,130 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        btn_atras = new javax.swing.JButton();
+        btn_login = new javax.swing.JButton();
+        lbl_user = new javax.swing.JLabel();
+        lbl_contra = new javax.swing.JLabel();
+        lbl_icono = new javax.swing.JLabel();
+        txt_user = new javax.swing.JTextField();
+        txt_contra = new javax.swing.JTextField();
+        lbl_imagen = new javax.swing.JLabel();
+        cuadro_central = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(360, 630));
+        setMinimumSize(new java.awt.Dimension(360, 630));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_atras.setBackground(new java.awt.Color(204, 204, 255));
+        btn_atras.setBorder(null);
+        btn_atras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_atrasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+
+        btn_login.setBackground(new java.awt.Color(102, 102, 255));
+        btn_login.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
+        btn_login.setForeground(new java.awt.Color(255, 255, 255));
+        btn_login.setText("Login");
+        btn_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loginActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, -1, -1));
+
+        lbl_user.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
+        lbl_user.setForeground(new java.awt.Color(0, 0, 51));
+        lbl_user.setText("Usuario");
+        getContentPane().add(lbl_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
+
+        lbl_contra.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
+        lbl_contra.setForeground(new java.awt.Color(0, 0, 51));
+        lbl_contra.setText("Contraseña");
+        getContentPane().add(lbl_contra, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
+
+        lbl_icono.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\icono-login.png")); // NOI18N
+        getContentPane().add(lbl_icono, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 100, 100));
+
+        txt_user.setBackground(new java.awt.Color(204, 204, 255));
+        txt_user.setBorder(null);
+        txt_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_userActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 210, 30));
+
+        txt_contra.setBackground(new java.awt.Color(204, 204, 255));
+        txt_contra.setBorder(null);
+        txt_contra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_contraActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_contra, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 210, 30));
+
+        lbl_imagen.setBackground(new java.awt.Color(255, 255, 255));
+        lbl_imagen.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo5.png")); // NOI18N
+        getContentPane().add(lbl_imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 250, 220));
+
+        cuadro_central.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo4.png")); // NOI18N
+        cuadro_central.setText("jLabel1");
+        getContentPane().add(cuadro_central, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 360, 280));
+
+        fondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo1.png")); // NOI18N
+        fondo.setMaximumSize(new java.awt.Dimension(360, 630));
+        fondo.setMinimumSize(new java.awt.Dimension(360, 630));
+        fondo.setPreferredSize(new java.awt.Dimension(360, 630));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void txt_contraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_contraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_contraActionPerformed
+
+    private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btn_loginActionPerformed
+
+    private void btn_atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atrasActionPerformed
+        // TODO add your handling code here:
+        control.despliegaInicio();
+        this.dispose();
+    }//GEN-LAST:event_btn_atrasActionPerformed
+
+    private void txt_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_userActionPerformed
+
+   private void setLogo(){
+        try{
+            File file =new File("Imagenes/icon-back.png");
+            BufferedImage imagen=ImageIO.read(file);
+            FondoImagen fondo= new FondoImagen(imagen);
+            btn_atras.setBorder(fondo);
+        }catch(IOException e){
+            e.printStackTrace();
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_atras;
+    private javax.swing.JButton btn_login;
+    private javax.swing.JLabel cuadro_central;
+    private javax.swing.JLabel fondo;
+    private javax.swing.JLabel lbl_contra;
+    private javax.swing.JLabel lbl_icono;
+    private javax.swing.JLabel lbl_imagen;
+    private javax.swing.JLabel lbl_user;
+    private javax.swing.JTextField txt_contra;
+    private javax.swing.JTextField txt_user;
     // End of variables declaration//GEN-END:variables
 }

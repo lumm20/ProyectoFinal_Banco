@@ -4,6 +4,12 @@
  */
 package banco.bancopresentacion;
 
+import banco.bancopresentacion.utilities.FondoImagen;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author luiis
@@ -15,6 +21,8 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        setLogo();
+        this.setVisible(true);
     }
 
     /**
@@ -26,57 +34,102 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        lbl_historial = new javax.swing.JLabel();
+        btn_atras = new javax.swing.JButton();
+        lbl_miPerfil = new javax.swing.JLabel();
+        lbl_numCuenta = new javax.swing.JLabel();
+        lbl_dinero = new javax.swing.JLabel();
+        lbl_saldo = new javax.swing.JLabel();
+        lbl_icono_miPerfil = new javax.swing.JLabel();
+        lbl_transferir = new javax.swing.JLabel();
+        lbl_infoCuenta = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(360, 630));
+        setMinimumSize(new java.awt.Dimension(360, 630));
+        setPreferredSize(new java.awt.Dimension(354, 630));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lbl_historial.setFont(new java.awt.Font("Nirmala UI", 1, 12)); // NOI18N
+        lbl_historial.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_historial.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\txt-historial.png")); // NOI18N
+        lbl_historial.setToolTipText("");
+        lbl_historial.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lbl_historial, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 110, 30));
+
+        btn_atras.setBackground(new java.awt.Color(204, 204, 255));
+        getContentPane().add(btn_atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+
+        lbl_miPerfil.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\txt_miPerfil.png")); // NOI18N
+        lbl_miPerfil.setPreferredSize(new java.awt.Dimension(60, 20));
+        getContentPane().add(lbl_miPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 70, -1));
+
+        lbl_numCuenta.setPreferredSize(new java.awt.Dimension(100, 20));
+        getContentPane().add(lbl_numCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 120, -1));
+
+        lbl_dinero.setPreferredSize(new java.awt.Dimension(90, 20));
+        getContentPane().add(lbl_dinero, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 80, -1));
+
+        lbl_saldo.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\txt-saldo.png")); // NOI18N
+        getContentPane().add(lbl_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 70, 20));
+
+        lbl_icono_miPerfil.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\icono-miPerfil.png")); // NOI18N
+        getContentPane().add(lbl_icono_miPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 50, 60));
+
+        lbl_transferir.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
+        lbl_transferir.setForeground(new java.awt.Color(0, 0, 51));
+        lbl_transferir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_transferir.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\txt-transferencia.png")); // NOI18N
+        lbl_transferir.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        lbl_transferir.setPreferredSize(new java.awt.Dimension(110, 35));
+        lbl_transferir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_transferirMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lbl_transferir, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 110, 30));
+
+        lbl_infoCuenta.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\txt-cuenta.png")); // NOI18N
+        lbl_infoCuenta.setText("jLabel1");
+        getContentPane().add(lbl_infoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 100, 20));
+
+        fondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo-Main.png")); // NOI18N
+        fondo.setMaximumSize(new java.awt.Dimension(360, 630));
+        fondo.setMinimumSize(new java.awt.Dimension(360, 630));
+        fondo.setPreferredSize(new java.awt.Dimension(360, 630));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void lbl_transferirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_transferirMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_lbl_transferirMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Principal().setVisible(true);
-            }
-        });
+    private void setLogo(){
+        try{
+            File file =new File("Imagenes/icon-back.png");
+            BufferedImage imagen=ImageIO.read(file);
+            FondoImagen fondo= new FondoImagen(imagen);
+            btn_atras.setBorder(fondo);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_atras;
+    private javax.swing.JLabel fondo;
+    private javax.swing.JLabel lbl_dinero;
+    private javax.swing.JLabel lbl_historial;
+    private javax.swing.JLabel lbl_icono_miPerfil;
+    private javax.swing.JLabel lbl_infoCuenta;
+    private javax.swing.JLabel lbl_miPerfil;
+    private javax.swing.JLabel lbl_numCuenta;
+    private javax.swing.JLabel lbl_saldo;
+    private javax.swing.JLabel lbl_transferir;
     // End of variables declaration//GEN-END:variables
 }

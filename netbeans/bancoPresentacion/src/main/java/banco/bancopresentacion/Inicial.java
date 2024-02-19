@@ -1,17 +1,20 @@
 
 package banco.bancopresentacion;
 
+import banco.bancopresentacion.control.ControlPresentacion;
+
 /**
  *
  * @author molin
  */
 public class Inicial extends javax.swing.JFrame {
-
+    private ControlPresentacion control=new ControlPresentacion();;
     /**
      * Creates new form Principal
      */
     public Inicial() {
         initComponents();
+        this.setVisible(true);
     }
 
     /**
@@ -42,6 +45,8 @@ public class Inicial extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(360, 630));
+        setMinimumSize(new java.awt.Dimension(360, 630));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -78,6 +83,7 @@ public class Inicial extends javax.swing.JFrame {
         });
         jPanel2.add(ButtonRegistrarse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 130, 40));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo2.png")); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(360, 460));
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 400, 630));
 
@@ -97,26 +103,23 @@ public class Inicial extends javax.swing.JFrame {
 
     private void ButtonRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRetiroActionPerformed
         // TODO add your handling code here:
-        Retiro_Sin_Cuenta retiro = new Retiro_Sin_Cuenta();
-        retiro.setVisible(true);
+        control.despliegaRetiroSinCuenta();
         this.dispose();
     }//GEN-LAST:event_ButtonRetiroActionPerformed
 
     private void ButtonIniciarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIniciarSesion1ActionPerformed
         // TODO add your handling code here:
-        Login login = new Login();
-        login.setVisible(true);
+        control.despliegaLogin();
         this.dispose();
     }//GEN-LAST:event_ButtonIniciarSesion1ActionPerformed
 
     private void ButtonRegistrarse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegistrarse1ActionPerformed
         // TODO add your handling code here:
-        Registro registro = new Registro();
-        registro.setVisible(true);
+        control.despliegaRegistro();
         this.dispose();
     }//GEN-LAST:event_ButtonRegistrarse1ActionPerformed
 
-    /**
+   /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
