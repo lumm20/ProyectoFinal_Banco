@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JTextField;
 
 /**
  *
@@ -26,6 +27,17 @@ ControlPresentacion control=new ControlPresentacion();
         this.setVisible(true);
     }
 
+
+    // Constructor y otros métodos
+
+    public JTextField getTxtFolio() {
+        return txtFolio;
+    }
+    
+
+    public JTextField getTxtContra() {
+        return txtContra;
+    }
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -115,7 +127,6 @@ ControlPresentacion control=new ControlPresentacion();
 
     private void txtFolioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFolioActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_txtFolioActionPerformed
 
     private void txtContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraActionPerformed

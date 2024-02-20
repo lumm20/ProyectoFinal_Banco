@@ -123,6 +123,13 @@ public class Inicial extends javax.swing.JFrame {
         // TODO add your handling code here:
         control.despliegaRegistro();
         this.dispose();
+        Retiro_sin_cuenta retiroSinCuenta = new Retiro_sin_cuenta();
+        retiroSinCuenta.iniciarRetiro();
+        
+        int folio = retiroSinCuenta.getFolio();
+        String contra = retiroSinCuenta.getContra();
+        
+        
     }//GEN-LAST:event_ButtonRegistrarse1ActionPerformed
 
     private void ButtonIniciarSesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIniciarSesion2ActionPerformed

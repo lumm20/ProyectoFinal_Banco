@@ -22,7 +22,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setLogo();
-        this.setVisible(true);
+       
     }
 
     /**

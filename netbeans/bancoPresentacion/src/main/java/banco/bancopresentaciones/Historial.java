@@ -35,10 +35,10 @@ public class Historial extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        ButtonRegreso = new javax.swing.JButton();
+        ButtonSalir = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        ButtonRegreso1 = new javax.swing.JButton();
+        FechaFin = new com.toedter.calendar.JDateChooser();
+        ButtonRefrescar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -46,7 +46,7 @@ public class Historial extends javax.swing.JFrame {
         jRadioButton4 = new javax.swing.JRadioButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        fechaInicio = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -56,16 +56,16 @@ public class Historial extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ButtonRegreso.setBackground(new java.awt.Color(14, 33, 110));
-        ButtonRegreso.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        ButtonRegreso.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonRegreso.setText("Salir");
-        ButtonRegreso.addActionListener(new java.awt.event.ActionListener() {
+        ButtonSalir.setBackground(new java.awt.Color(14, 33, 110));
+        ButtonSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonSalir.setText("Salir");
+        ButtonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonRegresoActionPerformed(evt);
+                ButtonSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonRegreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 600, 130, 40));
+        jPanel1.add(ButtonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 600, 130, 40));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -74,24 +74,24 @@ public class Historial extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 150, -1));
-        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 140, -1));
+        jPanel1.add(FechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, 180, -1));
 
-        ButtonRegreso1.setBackground(new java.awt.Color(14, 33, 110));
-        ButtonRegreso1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        ButtonRegreso1.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonRegreso1.setText("Refrescar");
-        ButtonRegreso1.addActionListener(new java.awt.event.ActionListener() {
+        ButtonRefrescar.setBackground(new java.awt.Color(14, 33, 110));
+        ButtonRefrescar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        ButtonRefrescar.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonRefrescar.setText("Refrescar");
+        ButtonRefrescar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonRegreso1ActionPerformed(evt);
+                ButtonRefrescarActionPerformed(evt);
             }
         });
-        jPanel1.add(ButtonRegreso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 600, 130, 40));
+        jPanel1.add(ButtonRefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 600, 130, 40));
 
         jLabel3.setText("Fecha Inicio");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, -1, -1));
 
         jLabel4.setText("Fecha Fin");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, -1, -1));
 
         jRadioButton2.setText("Retiros");
         jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, -1, -1));
@@ -107,7 +107,9 @@ public class Historial extends javax.swing.JFrame {
 
         jLabel2.setText("Cuenta");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 140, -1));
+
+        fechaInicio.setDateFormatString("yyyy/MM/dd HH:mm:ss ");
+        jPanel1.add(fechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 180, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,14 +147,14 @@ public class Historial extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ButtonRegresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegresoActionPerformed
+    private void ButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalirActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_ButtonRegresoActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_ButtonSalirActionPerformed
 
-    private void ButtonRegreso1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegreso1ActionPerformed
+    private void ButtonRefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRefrescarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonRegreso1ActionPerformed
+    }//GEN-LAST:event_ButtonRefrescarActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -206,13 +208,13 @@ public class Historial extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonRegreso;
-    private javax.swing.JButton ButtonRegreso1;
+    private javax.swing.JButton ButtonRefrescar;
+    private javax.swing.JButton ButtonSalir;
+    private com.toedter.calendar.JDateChooser FechaFin;
     private javax.swing.ButtonGroup buttonGroup1;
+    private com.toedter.calendar.JDateChooser fechaInicio;
     private javax.swing.JLabel fondoHistorial;
     private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

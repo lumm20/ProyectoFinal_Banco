@@ -5,6 +5,7 @@
 package banco.bancopresentacion.control;
 
 
+import banco.bancodominio.Retiro_sin_cuenta;
 import banco.bancopresentaciones.*;
 
 /**
@@ -12,6 +13,8 @@ import banco.bancopresentaciones.*;
  * @author luiis
  */
 public class ControlPresentacion {
+    private Retiro_Sin_Cuenta retiroSinCuenta; 
+    
     public ControlPresentacion(){
     }
     
@@ -30,7 +33,29 @@ public class ControlPresentacion {
         Principal principal=new Principal();
     }
     
-    public void despliegaRetiroSinCuenta(){
-        Retiro_Sin_Cuenta retiro=new Retiro_Sin_Cuenta();
+    
+    public void despliegaRetiroSinCuenta() {
+        retiroSinCuenta = new Retiro_Sin_Cuenta();
+        retiroSinCuenta.setVisible(true);
+        Retiro_sin_cuenta retiro = new Retiro_sin_cuenta();
+
+        // Generar el folio y la contraseña aleatoria
+        retiro.iniciarRetiro();
+
+        // Obtener el folio y la contraseña generados
+        int folio = retiro.getFolio();
+        String contra = retiro.getContra();
+
+        // Llamar al método mostrarFolioYContra() para mostrar el folio y la contraseña en el frame Retiro_Sin_Cuenta
+        mostrarFolioYContra(folio, contra);
+    }
+
+    public void mostrarFolioYContra(int folio, String contra) {
+        // Verificar si el frame Retiro_Sin_Cuenta está inicializado y visible
+        if (retiroSinCuenta != null && retiroSinCuenta.isVisible()) {
+            // Actualizar los labels txtFolio y txtContra con los valores proporcionados
+            retiroSinCuenta.getTxtFolio().setText(String.valueOf(folio));
+            retiroSinCuenta.getTxtContra().setText(contra);
+        }
     }
 }

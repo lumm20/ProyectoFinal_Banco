@@ -28,7 +28,7 @@ public class ControlPersistencia implements IControlPersistencia{
     String url="jdbc:mysql://127.0.0.1:3306";
     String nombreBD="banco";
     String usuario = "root";
-    String contra = "moeLISa:22_03";
+    String contra = "esme2304";
     IConexion conexionBD = new Conexion(url+"/"+nombreBD, usuario, contra);
     IClienteDAO clienteDAO=new ClienteDAO(conexionBD);
     ICuentaDAO cuentaDAO= new CuentaDAO(conexionBD);
