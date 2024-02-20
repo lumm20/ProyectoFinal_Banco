@@ -234,19 +234,39 @@ begin
 end $$
 delimiter ;
 #---------------------------------------------------
-#agrega un usuario a la tabla de usuarios
+#agrega un cliente y su respectivo usuario
 delimiter $$
-create procedure sp_agregar_usuario(
-	in idCliente int,
+create procedure sp_agregar_cliente(
+	in nombreN varchar(50),
+    in apellidoPN varchar(50),
+    in apellidoMN varchar(50),
+    in fechaNac date,
+    in edadN int,
     in usuarioN varchar(20),
-    in contraN varchar(10))
+    in contraN varchar(10),
+    out mensaje varchar(100),
+    out idClienteN int)
 begin
-	if usuarioN in (select usuario from usuarios_clientes) then
-		signal sqlstate '45000'
-			set message_text='Ese nombre de usuario ya esta registrado';
-	end if;
+	declare mensajeError varchar(100);
+	declare exit handler for sqlexception
+    begin
+		rollback;
+        set mensajeError='hubo un error al agregar el cliente';
+        set mensaje= mensajeError;
+	end;
     
-    insert into usuarios_clientes values (idCliente, usuarioN, contraN);
+    start transaction;
+    set autocommit=0;
+    
+    insert into clientes (nombre,apellidoP,apellidoM,fecha_Nacimiento,edad)
+    values (nombreN,apellidoPN, apellidoMN, fechaNac,edadN);
+    
+    set @idCliente=last_insert_id();
+    insert into usuarios_clientes values (@idCliente, usuarioN, contraN);
+    
+    set mensaje=null;
+    set idClienteN=@idCliente;
+    commit;
 end $$
 delimiter ;
 #---------------------------------------------------
@@ -311,5 +331,28 @@ create procedure sp_procesar_deposito(
 begin
 	call sp_calcularSaldo(numCuenta, monto, "sumar",@saldoNuevo);
 	update cuentas set saldo=@saldoNuevo where numero_de_cuenta=numCuenta;
+end $$
+delimiter ;
+#---------------------------------------------------
+#generar una cuenta
+delimiter $$
+create procedure sp_crear_num_cuenta(out numCuenta varchar(100))
+begin
+	declare it int;
+    declare numero varchar(100);
+    declare rndm int;
+    set it=1;
+    set numero='';
+    
+    loop_generar_num:loop
+		if it>10 then
+			leave loop_generar_num;
+		end if;
+        select floor(1+rand()*9) into rndm;
+        set numero=concat(numero,rndm);
+        set it=it+1;
+        iterate loop_generar_num;
+	end loop;
+    set numCuenta=numero;
 end $$
 delimiter ;

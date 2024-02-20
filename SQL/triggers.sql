@@ -85,7 +85,21 @@ begin
 	end if;
 end $$
 delimiter ;
-	
+
+#---------------------------------------------------
+#validaciones despues de agregar una direccion
+delimiter $$
+create trigger tr_despues_agregar_direccion
+after insert on direccion_cliente
+for each row 
+begin
+	declare idCliente int;
+    #selecciona el id con el numero mas grande, lo que signifca que es el ultimo id que se genero
+    select max(id_cliente) into idCliente from clientes;
+	update clientes set codigo_Direccion=new.id_direccion where id_cliente=idCliente;
+end $$
+delimiter ;
+
 #---------------------------------------------------
 #validaciones antes de agregar una direccion
 delimiter $$
@@ -119,6 +133,8 @@ begin
 end $$
 delimiter ;
 #---------------------------------------------------
+
+#---------------------------------------------------
 #validaciones antes de agregar un cliente
 delimiter $$
 create trigger tr_antes_agregar_cliente
@@ -145,7 +161,7 @@ begin
 end $$
 delimiter ;
 #---------------------------------------------------
-#validaciones antes de agregar un cliente
+#validaciones antes de agregar un usuario
 delimiter $$
 create trigger tr_antes_agregar_usuario
 before insert on usuarios_clientes
@@ -156,3 +172,16 @@ begin
 	end if;
 end $$
 delimiter ;    
+#---------------------------------------------------
+#crear cuenta despues de agregar un usuario
+delimiter $$
+create trigger tr_despues_agregar_usuario
+after insert on usuarios_clientes
+for each row 
+begin
+	declare numCuenta varchar(10);
+    call sp_crear_num_cuenta(@numero);
+    set numCuenta=@numero;
+	insert into cuentas values(numCuenta, now(),0.00,new.id_cliente,'activa');
+end $$
+delimiter ;
