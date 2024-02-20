@@ -36,7 +36,7 @@ public class Registro extends javax.swing.JFrame {
      */
     public Registro() {
         initComponents();
-        setCalendario();
+        //setCalendario();
         this.setVisible(true);
     }
 
