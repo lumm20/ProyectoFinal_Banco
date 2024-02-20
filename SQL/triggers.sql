@@ -1,5 +1,72 @@
 #triggers
 #---------------------------------------------------
+#validaciones antes de procesar una transaccion
+delimiter //
+create trigger tr_antes_procesar_transaccion
+before insert on transacciones
+for each row
+begin
+	declare saldoDisponible decimal(18,2);
+    declare numCuenta varchar(10);
+    declare msjError varchar(255);
+    
+    select numero_de_cuenta into numCuenta from cuentas where numero_de_cuenta= NEW.num_cuenta;
+    
+    if numCuenta is null then
+		signal sqlstate '45000' 
+		set message_text='La cuenta que ingreso no esta registrada';
+	else
+		select saldo into saldoDisponible from cuentas where numero_de_cuenta=NEW.num_cuenta;
+		if saldoDisponible < NEW.monto then
+			signal sqlstate '45000' 
+            set message_text='No cuenta con el saldo suficiente para procesar la transaccion';
+		end if;
+	end if;
+end //
+delimiter ;
+drop trigger tr_antes_procesar_transaccion;
+#---------------------------------------------------
+#validaciones antes de procesar una transferencia
+delimiter $$
+create trigger tr_antes_procesar_transferencia
+before insert on transaccion_transferencia
+for each row
+begin
+	declare idTran int;
+    declare numCuentaDestino varchar(10);
+    declare msjError varchar(255);
+    
+    select id_transaccion into idTran from transacciones where id_transaccion=new.id_transaccion;
+    select numero_de_cuenta into numCuentaDestino from cuentas where numero_de_cuenta=new.num_cuenta_destino;
+    
+	if idTran is null then
+		signal sqlstate '45000'
+		set message_text='La transaccion no esta registrada';
+	end if;
+	if numCuentaDestino is null then
+		signal sqlstate '45000'
+		set message_text='La cuenta destino de la transferencia no esta registrada';
+	end if;
+end $$
+delimiter ;
+#---------------------------------------------------
+#validaciones antes de procesar un retiro
+delimiter $$
+create trigger tr_antes_procesar_retiro
+before insert on transaccion_sin_cuenta
+for each row
+begin
+	declare idTran int;
+    
+    select id_transaccion into idTran from transacciones where id_transaccion=new.id_transaccion;
+    
+	if idTran is null then
+		signal sqlstate '45000'
+		set message_text='La transaccion no esta registrada';
+	end if;
+end $$
+delimiter ;
+#---------------------------------------------------
 #validaciones antes de actualizar una cuenta
 delimiter $$
 create trigger tr_antes_actualizar_cuenta
@@ -18,7 +85,7 @@ begin
 	end if;
 end $$
 delimiter ;
-
+	
 #---------------------------------------------------
 #validaciones antes de agregar una direccion
 delimiter $$
@@ -55,7 +122,7 @@ delimiter ;
 #validaciones antes de agregar un cliente
 delimiter $$
 create trigger tr_antes_agregar_cliente
-before update on clientes
+before insert on clientes
 for each row 
 begin
 	declare cliente varchar(255);
@@ -77,3 +144,15 @@ begin
 	end if;
 end $$
 delimiter ;
+#---------------------------------------------------
+#validaciones antes de agregar un cliente
+delimiter $$
+create trigger tr_antes_agregar_usuario
+before insert on usuarios_clientes
+for each row 
+begin
+	if new.usuario in (select usuario from usuarios_clientes) then
+		signal sqlstate '45000' set message_text='Ese nombre de usuario ya esta registrado';
+	end if;
+end $$
+delimiter ;    
