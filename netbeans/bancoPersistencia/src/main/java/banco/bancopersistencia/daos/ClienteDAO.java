@@ -12,6 +12,7 @@ import banco.bancopersistencia.dtos.ClienteDTO;
 import banco.bancopersistencia.excepciones.PersistenciaException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,11 +30,14 @@ public class ClienteDAO implements IClienteDAO{
 
     final IConexion conexion;
     private final static Logger LOG= Logger.getLogger(ClienteDAO.class.getName());
+
+    
+    
     
     public ClienteDAO(IConexion conexion){
         this.conexion=conexion;
     }
-
+    
     @Override
     public Cliente buscarClientePorId(int id) throws PersistenciaException {
         String sentencia = "SELECT * FROM Clientes WHERE id_cliente= ? ";
@@ -217,6 +221,8 @@ public class ClienteDAO implements IClienteDAO{
             LOG.log(Level.SEVERE, "algo salio mal", e.getMessage());
             throw new PersistenciaException("Hubo un error al agregar el usuario", e.getCause());
         }
+    
     }
+    
 
 }
