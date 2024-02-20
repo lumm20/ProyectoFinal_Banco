@@ -45,14 +45,13 @@ public class CuentaDAO implements ICuentaDAO{
             ResultSet rs = comando.executeQuery();
             if (rs.next()) {
                 cuentaBuscada = new Cuenta(rs.getString("numero_de_cuenta"), rs.getString("estado"), rs.getBigDecimal("saldo"),
-                        rs.getDate("fecha_Nacimiento"));
+                        rs.getDate("fecha_inicio"));
                 return cuentaBuscada;
             } else {
                 throw new PersistenciaException("no se encontro la cuenta con el numero especificado");
             }
         } catch (SQLException e) {
-            LOG.log(Level.SEVERE, "algo salio mal: " + e.getMessage(), e.getCause());
-            throw new PersistenciaException("hubo un error al consultar la cuenta");
+            throw new PersistenciaException("hubo un error al consultar la cuenta",e.getCause());
         }
     }
 
@@ -77,52 +76,59 @@ public class CuentaDAO implements ICuentaDAO{
             }
 
         } catch (SQLException e) {
-            LOG.log(Level.SEVERE, "algo salio mal: " + e.getMessage(), e.getCause());
-            throw new PersistenciaException("hubo un error al obtener la lista de cuentas");
+            throw new PersistenciaException("hubo un error al obtener la lista de cuentas",e.getCause());
         }
     }
 
     @Override
     public void insertarCuenta(CuentaDTO cuenta) throws PersistenciaException {
-        String sentencia = "INSERT INTO Cuentas(estado, saldo, fecha_creacion) VALUES (?,?,?)";
+        String sentencia = "INSERT INTO Cuentas(numero_de_cuenta,estado, saldo, fecha_creacion) VALUES (?,?,?,?)";
 
         try (//todos los recursos que se van a utilizar y se deben cerrar
                 Connection conexion = this.conexion.crearConexion(); PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
-            comando.setString(1, cuenta.getEstado());
-            comando.setBigDecimal(2, cuenta.getSaldo());
-            comando.setDate(3, cuenta.getFecha_creacion());
+            
+            comando.setString(1, cuenta.getNum_cuenta());
+            comando.setString(2, cuenta.getEstado());
+            comando.setBigDecimal(3, cuenta.getSaldo());
+            comando.setDate(4, cuenta.getFecha_creacion());
 
             ResultSet rs = comando.getGeneratedKeys();
-            Cuenta cuentaAgregada;
             if (rs.next()) {
-                cuentaAgregada = new Cuenta(rs.getString("numero_de_cuenta"), rs.getString("estado"), rs.getBigDecimal("saldo"),
-                        rs.getDate("fecha_Nacimiento"));
-                LOG.log(Level.INFO, "se agrego una cuenta correctamente.\n Cuenta agregada: ", cuentaAgregada.toString());
+                LOG.log(Level.INFO, "se agrego una cuenta correctamente");
             }
         } catch (SQLException e) {
-            LOG.log(Level.SEVERE, "algo salio mal: " + e.getMessage(), e.getCause());
-            throw new PersistenciaException("hubo un error al agregar la cuenta");
+            throw new PersistenciaException("hubo un error al agregar la cuenta",e.getCause());
         }
     }
 
     @Override
-    public void actualizarSaldoCuenta(String num_cuenta, BigDecimal saldo) throws PersistenciaException {
-        String sentencia = "UPDATE Cuentas SET saldo = ?"
-                + "WHERE numero_de_cuenta=?";
-
+    public void cancelarCuenta(String numCuenta) throws PersistenciaException {
+        String sentencia="UPDATE cuentas SET estado= 'cancelada' WHERE numero_de_cuenta= ?";
+        
         try (//todos los recursos que se van a utilizar y se deben cerrar
-                Connection conexion = this.conexion.crearConexion(); PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
-            comando.setBigDecimal(1, saldo);
-            comando.setString(2, num_cuenta);
-
-            int res = comando.executeUpdate();
-            if (res > 0) {
-                LOG.log(Level.INFO, "se actualizo el saldo de la cuenta " + num_cuenta +" correctamente.\n Saldo actual: ", saldo);
-            }
-        } catch (SQLException e) {
-            LOG.log(Level.SEVERE, "algo salio mal: " + e.getMessage(), e.getCause());
-            throw new PersistenciaException("hubo un error al actualizar la cuenta");
+                Connection conexion = this.conexion.crearConexion();
+                PreparedStatement comando = conexion.prepareStatement(sentencia);) {
+            comando.setString(1, numCuenta);
+            
+            comando.executeUpdate();
+        }catch(SQLException e){
+            throw new PersistenciaException("hubo un error al cancelar la cuenta",e.getCause());
         }
     }
 
+    @Override
+    public String getNumCuenta(int idCliente) throws PersistenciaException {
+        String sentencia="SELECT numero_de_cuenta FROM Cuentas WHERE id_cliente = ? limit 1";
+        try (//todos los recursos que se van a utilizar y se deben cerrar
+                Connection conexion = this.conexion.crearConexion(); 
+                PreparedStatement comando = conexion.prepareCall(sentencia);) {
+            comando.setInt(1, idCliente);
+            ResultSet rs=comando.executeQuery();
+            if(rs.next())
+                return rs.getString(1);
+            return null;
+        }catch(SQLException e){
+            throw new PersistenciaException("hubo un error al obtener el numero de cuenta",e.getCause());
+        }
+    }
 }

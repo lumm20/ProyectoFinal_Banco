@@ -9,6 +9,7 @@ import banco.bancodominio.Transaccion;
 import banco.bancodominio.Transferencia;
 import banco.bancopersistencia.conexion.IConexion;
 import banco.bancopersistencia.excepciones.PersistenciaException;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -39,18 +40,18 @@ public class TransaccionDAO implements ITransaccionDAO{
         
         try (//todos los recursos que se van a utilizar y se deben cerrar
                 Connection conexion = this.conexion.crearConexion(); 
-                PreparedStatement comando = conexion.prepareStatement(sentencia)) {
+                CallableStatement comando = conexion.prepareCall(sentencia)) {
             int idTransaccion=0;
             
             comando.setBigDecimal(1, transaccion.getMonto());
             comando.setDate(2, transaccion.getFechaHoraCreacion());
             comando.setString(3, transaccion.getNumCuentaOrigen());
-            comando.setInt(4, idTransaccion);
+            comando.registerOutParameter(4, java.sql.Types.INTEGER);
             
             int res=comando.executeUpdate();
             if(res>0)
-                return idTransaccion;
-            return 0;
+                idTransaccion=comando.getInt(4);
+            return idTransaccion;
         }catch(SQLException e){
             LOG.log(Level.SEVERE,"algo salio mal",e.getMessage());
             throw new PersistenciaException("hubo un error al procesar la transaccion",e.getCause());
@@ -63,7 +64,7 @@ public class TransaccionDAO implements ITransaccionDAO{
         
         try (//todos los recursos que se van a utilizar y se deben cerrar
                 Connection conexion = this.conexion.crearConexion(); 
-                PreparedStatement comando = conexion.prepareStatement(sentencia)) {
+                CallableStatement comando = conexion.prepareCall(sentencia)) {
             
             comando.setInt(1, idTransaccion);
             comando.setString(2, numCuentaDestino);
@@ -82,7 +83,7 @@ public class TransaccionDAO implements ITransaccionDAO{
         
         try (//todos los recursos que se van a utilizar y se deben cerrar
                 Connection conexion = this.conexion.crearConexion(); 
-                PreparedStatement comando = conexion.prepareStatement(sentencia)) {
+                CallableStatement comando = conexion.prepareCall(sentencia)) {
             
             comando.setInt(1, idTransaccion);
             comando.setString(2, folio);

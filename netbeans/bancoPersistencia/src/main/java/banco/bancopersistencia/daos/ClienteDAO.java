@@ -45,14 +45,13 @@ public class ClienteDAO implements IClienteDAO{
             ResultSet rs = comando.executeQuery();
             if (rs.next()) {
                 clienteBuscado = new Cliente(rs.getInt("id_cliente"), rs.getString("nombre"), rs.getString("apellidoP"),
-                        rs.getString("apellidM"), rs.getDate("fecha_Nacimiento"), rs.getInt("edad"), rs.getInt("codigo_direccion"));
+                        rs.getString("apellidoM"), rs.getDate("fecha_Nacimiento"), rs.getInt("edad"), rs.getInt("codigo_Direccion"));
                 return clienteBuscado;
             } else {
                 throw new PersistenciaException("no se encontro el cliente con el id especificado");
             }
         } catch (SQLException e) {
-            LOG.log(Level.SEVERE, "algo salio mal", e.getMessage());
-            throw new PersistenciaException("hubo un error al consultar el cliente",e.getCause());
+            throw new PersistenciaException("hubo un error al consultar el cliente: "+e.getMessage(),e.getCause());
         }
     }
 
@@ -79,38 +78,38 @@ public class ClienteDAO implements IClienteDAO{
             }
 
         } catch (SQLException e) {
-            LOG.log(Level.SEVERE, "algo salio mal",e.getMessage());
-            throw new PersistenciaException("hubo un error al obtener la lista de clientes",e.getCause());
+            throw new PersistenciaException("hubo un error al obtener la lista de clientes: "+e.getMessage(),e.getCause());
         }
     }
 
     @Override
-    public int insertarCliente(ClienteDTO cliente) throws PersistenciaException {
-        String sentencia = "INSERT INTO Clientes(nombre, apellidoP,apellidoM,fecha_nacimiento,"
-                + "edad,codigo_direccion) VALUES (?,?,?,?,?,?)";
+    public int insertarCliente(ClienteDTO cliente, String usuario, String contra) throws PersistenciaException {
+        String sentencia = "call sp_agregar_cliente(?,?,?,?,?,?,?,?,?)";
 
         try (//todos los recursos que se van a utilizar y se deben cerrar
                 Connection conexion = this.conexion.crearConexion(); 
-                PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
+                CallableStatement comando = conexion.prepareCall(sentencia);) {
             comando.setString(1, cliente.getNombre());
             comando.setString(2, cliente.getApellidoP());
             comando.setString(3, cliente.getApellidoM());
             comando.setDate(4, cliente.getFecha_nacimiento());
             comando.setInt(5, cliente.getEdad());
-            comando.setInt(6, cliente.getId_direccion());
+            comando.setString(6, usuario);
+            comando.setString(7, contra);
+            comando.registerOutParameter(8, java.sql.Types.VARCHAR);
+            comando.registerOutParameter(9, java.sql.Types.INTEGER);
             
             comando.executeUpdate();
-            ResultSet rs=comando.getGeneratedKeys();
-            int id;
-            if (rs.next()) {
-                id=rs.getInt(1);
+            String mensaje=comando.getString(8);
+            if (mensaje==null) {
+                int idCliente=comando.getInt(9);
                 LOG.log(Level.INFO, "se agrego un cliente correctamente");
-                return id;
-            }
+                return idCliente;
+            }else
+                LOG.log(Level.INFO, mensaje);
             return 0;
         } catch (SQLException e) {
-            LOG.log(Level.SEVERE, "algo salio mal", e.getMessage());
-            throw new PersistenciaException("hubo un error al agregar el cliente", e.getCause());
+            throw new PersistenciaException("hubo un error al agregar el cliente: "+e.getMessage(),e.getCause());
         }
     }
 
@@ -134,8 +133,7 @@ public class ClienteDAO implements IClienteDAO{
                 LOG.log(Level.INFO, "se actualizo un cliente correctamente.\n Cliente actualizado: ", cliente.toString());
             }
         } catch (SQLException e) {
-            LOG.log(Level.SEVERE, "algo salio mal", e.getMessage());
-            throw new PersistenciaException("hubo un error al actualizar el cliente",e.getCause());
+            throw new PersistenciaException("hubo un error al actualizar el cliente: "+e.getMessage(),e.getCause());
         }
     }
 
@@ -158,8 +156,7 @@ public class ClienteDAO implements IClienteDAO{
             int idDireccion=comando.getInt(5);
             return idDireccion;
         }catch(SQLException e){
-            LOG.log(Level.SEVERE, "algo salio mal", e);
-            throw new PersistenciaException("hubo un error al guardar la direccion del cliente", e.getCause());
+            throw new PersistenciaException("hubo un error al guardar la direccion del cliente: "+e.getMessage(),e.getCause());
         }
     }
 
@@ -170,19 +167,19 @@ public class ClienteDAO implements IClienteDAO{
                 Connection conexion = this.conexion.crearConexion(); 
                 CallableStatement comando = conexion.prepareCall(sentencia);) {
             
-            if(calle.isBlank())
+            if(calle==null)
                 comando.setNull(1, java.sql.Types.NULL);
             else
                 comando.setString(1, calle);
-            if(codigo_postal.isBlank())
+            if(codigo_postal==null)
                 comando.setNull(2, java.sql.Types.NULL);
             else
                 comando.setString(2, codigo_postal);
-            if(colonia.isBlank())
+            if(colonia==null)
                 comando.setNull(3, java.sql.Types.NULL);
             else 
                 comando.setString(3, colonia);
-            if(numero.isBlank())
+            if(numero==null)
                 comando.setNull(4, java.sql.Types.NULL);
             else
                 comando.setString(4, numero);
@@ -193,30 +190,55 @@ public class ClienteDAO implements IClienteDAO{
             
             comando.executeUpdate();
         }catch(SQLException e){
-            LOG.log(Level.SEVERE, "algo salio mal", e.getMessage());
-            throw new PersistenciaException("hubo un error al actualizar la direccion del cliente", e.getCause());
+            throw new PersistenciaException("hubo un error al actualizar la direccion del cliente: "+e.getMessage(),e.getCause());
         }
     }
 
   
+//    @Override
+//    public String guardarUsuario(int idCliente, String usuario, String contra) throws PersistenciaException {
+//        String sentencia="call sp_agregar_usuario(?,?,?)";
+//        try (//todos los recursos que se van a utilizar y se deben cerrar
+//                Connection conexion = this.conexion.crearConexion(); 
+//                CallableStatement comando = conexion.prepareCall(sentencia);) {
+//            comando.setInt(1, idCliente);
+//            comando.setString(2, usuario);
+//            comando.setString(3, contra);
+//            
+//            comando.executeUpdate();
+//            
+//            return this.getNumCuenta(idCliente);
+//        }catch(SQLException e){
+//            LOG.log(Level.SEVERE, "algo salio mal", e.getMessage());
+//            throw new PersistenciaException("Hubo un error al agregar el usuario", e.getCause());
+//        }
+//    }
+    
+    
     @Override
-    public int guardarUsuario(int idCliente, String usuario, String contra) throws PersistenciaException {
-        String sentencia="call sp_agregar_usuario(?,?,?)";
+    public int autenticar(String usuario, String contra)throws PersistenciaException{
+        String sentencia="call sp_autenticar_usuario(?,?,?)";
         try (//todos los recursos que se van a utilizar y se deben cerrar
                 Connection conexion = this.conexion.crearConexion(); 
                 CallableStatement comando = conexion.prepareCall(sentencia);) {
-            comando.setInt(1, idCliente);
-            comando.setString(2, usuario);
-            comando.setString(3, contra);
+            comando.setString(1, usuario);
+            comando.setString(2, contra);
+            comando.registerOutParameter(3, java.sql.Types.INTEGER);
             
-            int res=comando.executeUpdate();
-            if(res>0)
-                return res;
-            return 0;
+            comando.executeUpdate();
+            int idCliente=comando.getInt(3);
+            return idCliente;
         }catch(SQLException e){
-            LOG.log(Level.SEVERE, "algo salio mal", e.getMessage());
-            throw new PersistenciaException("Hubo un error al agregar el usuario", e.getCause());
+            throw new PersistenciaException("hubo un error al iniciar sesion: "+e.getMessage(),e.getCause());
         }
     }
 
+    @Override
+    public int obtenerIdDireccion(int idCliente) throws PersistenciaException {
+        Cliente cliente;
+        int idDireccion;
+        cliente = this.buscarClientePorId(idCliente);
+        idDireccion = cliente.getId_domicilio();
+        return idDireccion;
+    }
 }
