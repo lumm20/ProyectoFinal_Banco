@@ -85,10 +85,13 @@ create procedure sp_procesarTransaccion(
     in numCuentaOrigen varchar(10),
     out idTransaccion int)
 begin 
-#declarando manejador de excepciones
+	declare mensajeError varchar(255);
+	#declarando manejador de excepciones	
 	declare exit handler for sqlexception
     begin
 		rollback;
+        set mensajeError='hubo un error al procesar la transferencia';
+        select mensajeError;
 	end;
     
     start transaction;
@@ -109,10 +112,13 @@ create procedure sp_procesarTransferencia(
 	in idTransaccion int,
     in numCuentaDestino varchar(10))
 begin
-#declarando manejador de excepciones
+	declare mensajeError varchar(255);
+	#declarando manejador de excepciones
 	declare exit handler for sqlexception
     begin
 		rollback;
+        set mensajeError='hubo un error al procesar la transferencia';
+        select mensajeError;
 	end;
     
     start transaction;
@@ -149,10 +155,13 @@ create procedure sp_procesarRetiro(
     in estado varchar(10),
     in contra varchar(8))
 begin
-#declarando manejador de excepciones
+	declare mensajeError varchar(255);
+	#declarando manejador de excepciones
 	declare exit handler for sqlexception
     begin
 		rollback;
+        set mensajeError='hubo un error al procesar el retiro';
+        select mensajeError;
 	end;
     
     start transaction;
@@ -222,5 +231,85 @@ begin
 			update direccion_cliente set numero=num where id_direccion=idDireccion;
 		end if;
     end if;
+end $$
+delimiter ;
+#---------------------------------------------------
+#agrega un usuario a la tabla de usuarios
+delimiter $$
+create procedure sp_agregar_usuario(
+	in idCliente int,
+    in usuarioN varchar(20),
+    in contraN varchar(10))
+begin
+	if usuarioN in (select usuario from usuarios_clientes) then
+		signal sqlstate '45000'
+			set message_text='Ese nombre de usuario ya esta registrado';
+	end if;
+    
+    insert into usuarios_clientes values (idCliente, usuarioN, contraN);
+end $$
+delimiter ;
+#---------------------------------------------------
+#actualiza un usuario
+delimiter $$
+create procedure sp_actualizar_cliente(
+	in idCliente int,
+    in nombreN varchar(50),
+    in apellidoPN varchar(50),
+    in apellidoMN varchar(50),
+    in fechaNac date,
+    in codigoDir int)
+begin
+	if idCliente=0 then
+		signal sqlstate '45000' set message_text='Debe especificar un id';
+    elseif idCliente not in (select id_cliente from clientes) then
+		signal sqlstate '45000' set message_text='No hay un cliente registrado con ese id';
+	else
+		if nombreN is not null then
+			update clientes set nombre=nombreN where id_cliente=idCliente;
+		end if;
+		if apellidoPN is not null then
+			update clientes set apellidoP=apellidoPN where id_cliente=idCliente;
+		end if;
+		if apellidoMN is not null then
+			update clientes set apellidoM=apellidoMN where id_cliente=idCliente;
+		end if;
+		if fechaNac is not null then
+			update clientes set fecha_Nacimiento=fechaNac where id_cliente=idCliente;
+		end if;
+    end if;
+end $$
+delimiter ;
+
+#---------------------------------------------------
+#autenticacion de un usuario
+delimiter $$
+create procedure sp_autenticar_usuario(
+	in usuarioB varchar(20),
+    in contraB varchar(10),
+    out idCliente int)
+begin
+	declare contraCorrecta varchar(10);
+	if usuarioB in (select usuario from usuarios_clientes) then
+		select contra into contraCorrecta from usuarios_clientes where usuario=usuarioB;
+        if contraB=contraCorrecta then
+			select id_cliente into idCliente from usuarios_clientes where usuario=usuarioB;
+		else 
+			signal sqlstate '45000' set message_text ='Ingreso una contraseña incorrecta';
+		end if;
+	else
+		signal sqlstate '45000' set message_text ='Ingreso un usuario que no existe';
+	end if;
+end $$
+delimiter ;
+#---------------------------------------------------
+#generar un deposito
+delimiter $$
+create procedure sp_procesar_deposito(
+	in monto decimal(18,2),
+    in numCuenta varchar(10))
+begin
+	call sp_calcularSaldo(numCuenta, monto, "sumar",@saldoNuevo);
+	update cuentas set saldo=@saldoNuevo where numero_de_cuenta=numCuenta;
 end $$
 delimiter ;
