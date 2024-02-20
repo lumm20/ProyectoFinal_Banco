@@ -89,7 +89,7 @@ public class CuentaDAO implements ICuentaDAO{
         try (//todos los recursos que se van a utilizar y se deben cerrar
                 Connection conexion = this.conexion.crearConexion(); PreparedStatement comando = conexion.prepareStatement(sentencia, Statement.RETURN_GENERATED_KEYS);) {
             comando.setString(1, cuenta.getEstado());
-            comando.setFloat(2, cuenta.getSaldo());
+            comando.setBigDecimal(2, cuenta.getSaldo());
             comando.setDate(3, cuenta.getFecha_creacion());
 
             ResultSet rs = comando.getGeneratedKeys();

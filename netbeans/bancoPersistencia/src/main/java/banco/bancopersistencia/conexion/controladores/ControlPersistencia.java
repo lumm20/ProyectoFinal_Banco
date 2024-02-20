@@ -28,7 +28,7 @@ public class ControlPersistencia implements IControlPersistencia{
     String url="jdbc:mysql://127.0.0.1:3306";
     String nombreBD="banco";
     String usuario = "root";
-    String contra = "esme2304";
+    String contra = "moeLISa:22_03";
     IConexion conexionBD = new Conexion(url+"/"+nombreBD, usuario, contra);
     IClienteDAO clienteDAO=new ClienteDAO(conexionBD);
     ICuentaDAO cuentaDAO= new CuentaDAO(conexionBD);
@@ -46,8 +46,9 @@ public class ControlPersistencia implements IControlPersistencia{
     }
 
     @Override
-    public void insertarCliente(ClienteDTO cliente) throws PersistenciaException {
-        this.clienteDAO.insertarCliente(cliente);
+    public int insertarCliente(ClienteDTO cliente) throws PersistenciaException {
+        int id=this.clienteDAO.insertarCliente(cliente);
+        return id;
     }
     
     @Override
@@ -82,6 +83,12 @@ public class ControlPersistencia implements IControlPersistencia{
     @Override
     public void actualizarSaldoCuenta(String num_cuenta, BigDecimal saldo) throws PersistenciaException {
         this.cuentaDAO.actualizarSaldoCuenta(num_cuenta, saldo);
+    }
+
+    @Override
+    public int guardarUsuario(int idCliente, String usuario, String contra) throws PersistenciaException {
+        int res=this.clienteDAO.guardarUsuario(idCliente, usuario, contra);
+        return res;
     }
 
 }

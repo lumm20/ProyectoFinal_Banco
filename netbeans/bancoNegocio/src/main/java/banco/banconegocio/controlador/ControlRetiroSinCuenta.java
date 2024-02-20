@@ -13,14 +13,12 @@ import banco.bancodominio.Retiro_sin_cuenta;
 public class ControlRetiroSinCuenta implements IControlRetiroSinCuenta{
 
     @Override
-    public Retiro_sin_cuenta iniciarRetiroSinCuenta() {
+    public void iniciarRetiroSinCuenta() {
         //Inicia un retiro sin cuenta
            Retiro_sin_cuenta retiro = new Retiro_sin_cuenta();
            retiro.iniciarRetiro();
-           return retiro;
-           
+           System.out.println("Retiro Sin cuenta iniciado: Folio " + retiro.getFolio());
     }
-    
 
     @Override
     public void verificarEstadoRetiro() {

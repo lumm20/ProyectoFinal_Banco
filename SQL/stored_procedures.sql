@@ -178,7 +178,7 @@ delimiter ;
 #---------------------------------------------------
 #agregar una direccion de un cliente nuevo
 delimiter $$
-create procedure sp_agregarDireccion(
+create procedure sp_agregar_direccion(
 	in calleD varchar(100),
     in codigoPostal varchar(5),
     in col varchar(100),
@@ -189,4 +189,38 @@ begin
     values (calleD, codigoPostal, col, num);
     
     set idDireccion=last_insert_id();
-    
+end $$
+delimiter ;
+#---------------------------------------------------
+#actualiza una direccion
+delimiter $$
+create procedure sp_actualizar_direccion(
+	in calleD varchar(100),
+    in codigoPostal varchar(5),
+    in col varchar(100),
+    in num varchar(5),
+    in idDireccion int)
+begin
+	#valida que los valores ingresados no sean null
+    if idDireccion is null then
+		signal sqlstate '45000'
+			set message_text='Debe especificar el id de la direccion a actualizar';
+	elseif idDireccion not in (select id_direccion from direccion_cliente) then
+		signal sqlstate '45000'
+			set message_text='No existe una direccion con el id especificado';
+	else
+		if calleD is not null then
+			update direccion_cliente set calle=calleD where id_direccion=idDireccion;
+		end if;
+		if codigoPostal is not null then
+			update direccion_cliente set codigo_Postal=codigoPostal where id_direccion=idDireccion;
+		end if;
+		if col is not null then
+			update direccion_cliente set colonia=col where id_direccion=idDireccion;
+		end if;
+		if num is not null then
+			update direccion_cliente set numero=num where id_direccion=idDireccion;
+		end if;
+    end if;
+end $$
+delimiter ;

@@ -7,10 +7,7 @@ package banco.banconegocio.controlador;
 import banco.bancodominio.Cliente;
 import banco.bancodominio.Cuenta;
 import banco.banconegocio.excepciones.NegocioException;
-import banco.bancopersistencia.dtos.ClienteDTO;
-import banco.bancopersistencia.dtos.CuentaDTO;
-import banco.bancopersistencia.excepciones.PersistenciaException;
-import java.sql.Date;
+
 import java.util.List;
 
 /**
@@ -45,9 +42,10 @@ public interface IControlNegocio {
      * @param apellidoM del cliente
      * @param fecha_nacimiento del cliente
      * @param id_direccion del registro de la direccion en la base de datos
+     * @return el id del cliente agregado, 0 si no se agrego
      * @throws NegocioException en caso de que ocurra un error de base de datos al agregar al cliente
      */
-    public void insertarCliente(String nombre, String apellidoPaterno, String apellidoM,
+    public int insertarCliente(String nombre, String apellidoPaterno, String apellidoM,
             String fecha_nacimiento, int id_direccion) throws NegocioException;
 
     /**
@@ -107,4 +105,14 @@ public interface IControlNegocio {
 //     * @throws NegocioException en caso de que ocurra un error de base de datos al actualizar el saldo
 //     */
 //    public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws NegocioException;
+
+    /**
+     * guarda un usuario en la base de datos
+     * @param idCliente al que le pertenece el usuario
+     * @param usuario a guardar
+     * @param contra a guardar
+     * @return el id del registro del usuario, 0 si no se guardo
+     * @throws NegocioException en caso de que ocurra un error de base de datos al agregar el usuario
+     */
+    public int guardarUsuario(int idCliente, String usuario, String contra)throws NegocioException;
 }

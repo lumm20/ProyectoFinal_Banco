@@ -5,7 +5,6 @@
 package banco.bancodominio;
 
 import java.math.BigDecimal;
-
 import java.sql.Date;
 
 /**

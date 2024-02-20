@@ -3,18 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package banco.bancodominio;
+
 import java.util.Random;
 
 /**
  *
  * @author luiis
  */
-public class Retiro_sin_cuenta extends Transaccion {
-
+public class Retiro_sin_cuenta extends Transaccion{
     private int folio;
     private String estado;
     private String contra;
-    private int folioUnico = 1000;
+    private int folioUnico = 1000; 
 
     public Retiro_sin_cuenta() {
     }
@@ -65,13 +65,13 @@ public class Retiro_sin_cuenta extends Transaccion {
         System.out.println("Estado del retiro: " + estado);
     }
 
-    public int generarFolioUnico() {
+    private int generarFolioUnico() {
         //Le suma 1 al folio anterior generado comenzando en 1000
         folioUnico++;
         return folioUnico;
     }
 
-    public String generarContrasenaAleatoria() {
+    private String generarContrasenaAleatoria() {
         // Generar una contraseña aleatoria de 8 dígitos
         Random random = new Random();
         StringBuilder sb = new StringBuilder();
@@ -80,7 +80,6 @@ public class Retiro_sin_cuenta extends Transaccion {
         }
         return sb.toString();
     }
-
     @Override
     public String toString() {
         return "Retiro_Sin_cuenta{" + "folio=" + folio + ", estado=" + estado + ", contra=" + contra + '}';

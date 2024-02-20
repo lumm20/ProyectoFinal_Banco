@@ -1,19 +1,30 @@
 
-package banco.bancopresentacion;
+package banco.bancopresentaciones;
 
 import banco.bancodominio.Retiro_sin_cuenta;
+import banco.bancopresentacion.control.ControlPresentacion;
+import banco.bancopresentacion.utilities.FondoImagen;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author molin
  */
-public class Principal extends javax.swing.JFrame {
-
+public class Inicial extends javax.swing.JFrame {
+    
+    private ControlPresentacion control=new ControlPresentacion();;
     /**
      * Creates new form Principal
      */
-    public Principal() {
+    public Inicial() {
         initComponents();
+        setFondo();
+        this.setVisible(true);
     }
 
     /**
@@ -28,9 +39,9 @@ public class Principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         ButtonRetiro = new javax.swing.JButton();
-        ButtonIniciarSesion1 = new javax.swing.JButton();
+        ButtonIniciarSesion2 = new javax.swing.JButton();
         ButtonRegistrarse1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        fondoInicio = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -44,6 +55,8 @@ public class Principal extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(360, 630));
+        setMinimumSize(new java.awt.Dimension(360, 630));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -56,18 +69,18 @@ public class Principal extends javax.swing.JFrame {
                 ButtonRetiroActionPerformed(evt);
             }
         });
-        jPanel2.add(ButtonRetiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 160, 40));
+        jPanel2.add(ButtonRetiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 510, 160, 40));
 
-        ButtonIniciarSesion1.setBackground(new java.awt.Color(14, 33, 110));
-        ButtonIniciarSesion1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        ButtonIniciarSesion1.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonIniciarSesion1.setText("Iniciar Sesión");
-        ButtonIniciarSesion1.addActionListener(new java.awt.event.ActionListener() {
+        ButtonIniciarSesion2.setBackground(new java.awt.Color(14, 33, 110));
+        ButtonIniciarSesion2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        ButtonIniciarSesion2.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonIniciarSesion2.setText("Iniciar Sesión");
+        ButtonIniciarSesion2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonIniciarSesion1ActionPerformed(evt);
+                ButtonIniciarSesion2ActionPerformed(evt);
             }
         });
-        jPanel2.add(ButtonIniciarSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 160, 40));
+        jPanel2.add(ButtonIniciarSesion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 160, 40));
 
         ButtonRegistrarse1.setBackground(new java.awt.Color(14, 33, 110));
         ButtonRegistrarse1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -78,11 +91,10 @@ public class Principal extends javax.swing.JFrame {
                 ButtonRegistrarse1ActionPerformed(evt);
             }
         });
-        jPanel2.add(ButtonRegistrarse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 480, 130, 40));
+        jPanel2.add(ButtonRegistrarse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, 130, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\molin\\Downloads\\ProyectoFinal_Banco\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo2.png")); // NOI18N
-        jLabel1.setPreferredSize(new java.awt.Dimension(360, 460));
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 400, 630));
+        fondoInicio.setPreferredSize(new java.awt.Dimension(360, 460));
+        jPanel2.add(fondoInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 400, 630));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,36 +112,38 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRetiroActionPerformed
-   Retiro_sin_cuenta retiro = new Retiro_sin_cuenta();
-    
-    // Generar el folio y la contraseña
-    retiro.iniciarRetiro();
-    int folio = retiro.getFolio();
-    String contrasena = retiro.getContra();
-    
-    // Abrir el siguiente JFrame y pasar los valores
-    Retiro_Sin_Cuenta siguienteFrame = new Retiro_Sin_Cuenta(folio, contrasena);
-    siguienteFrame.setVisible(true);
-    this.dispose();
-
-    }//GEN-LAST:event_ButtonRetiroActionPerformed
-
-    private void ButtonIniciarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIniciarSesion1ActionPerformed
         // TODO add your handling code here:
-        Login login = new Login();
-        login.setVisible(true);
+        control.despliegaRetiroSinCuenta();
         this.dispose();
-    }//GEN-LAST:event_ButtonIniciarSesion1ActionPerformed
+        
+        
+    }//GEN-LAST:event_ButtonRetiroActionPerformed
 
     private void ButtonRegistrarse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonRegistrarse1ActionPerformed
         // TODO add your handling code here:
-        Registro registro = new Registro();
-        registro.setVisible(true);
+        control.despliegaRegistro();
         this.dispose();
-        
     }//GEN-LAST:event_ButtonRegistrarse1ActionPerformed
 
-    /**
+    private void ButtonIniciarSesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonIniciarSesion2ActionPerformed
+        // TODO add your handling code here:
+        control.despliegaLogin();
+        this.dispose();
+    }//GEN-LAST:event_ButtonIniciarSesion2ActionPerformed
+
+    
+    private void setFondo(){
+        try{
+            File file = new File("Imagenes/fondo2.png");
+            BufferedImage imagen=ImageIO.read(file);
+            FondoImagen fondo= new FondoImagen(imagen);
+            fondoInicio.setBorder(fondo);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+   /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -146,29 +160,32 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                new Inicial().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonIniciarSesion1;
+    private javax.swing.JButton ButtonIniciarSesion2;
     private javax.swing.JButton ButtonRegistrarse1;
     private javax.swing.JButton ButtonRetiro;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel fondoInicio;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

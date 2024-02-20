@@ -9,13 +9,14 @@ import banco.bancodominio.Cliente;
 import banco.bancodominio.Cuenta;
 import banco.banconegocio.excepciones.NegocioException;
 import banco.bancopersistencia.conexion.controladores.ControlPersistencia;
-import banco.bancopersistencia.dtos.ClienteDTO;
-import banco.bancopersistencia.dtos.CuentaDTO;
+import banco.bancopersistencia.dtos.*;
 import banco.bancopersistencia.excepciones.PersistenciaException;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,13 +50,14 @@ public class ControlNegocio implements IControlNegocio{
     }
 
     @Override
-    public void insertarCliente(String nombre, String apellidoP, String apellidoM,
+    public int insertarCliente(String nombre, String apellidoP, String apellidoM,
             String fecha_nacimiento, int id_direccion) throws NegocioException {
         Date fechaNac=Date.valueOf(fecha_nacimiento);
         int edad=this.calcularEdad(fechaNac);
         ClienteDTO cliente=new ClienteDTO(nombre,apellidoP,apellidoM,fechaNac,edad, id_direccion);
         try {
-            this.controlPers.insertarCliente(cliente);
+            int id=this.controlPers.insertarCliente(cliente);
+            return id;
         } catch (PersistenciaException e) {
             throw new NegocioException(e.getMessage(),e.getCause());
         }
@@ -114,7 +116,7 @@ public class ControlNegocio implements IControlNegocio{
     @Override
     public void insertarCuenta(String numCuenta,String fecha_creacion) throws NegocioException {
         Date fechaCreacion=Date.valueOf(fecha_creacion);
-        CuentaDTO cuenta =new CuentaDTO(numCuenta, "activa", 0, fechaCreacion);
+        CuentaDTO cuenta =new CuentaDTO(numCuenta, "activa", new BigDecimal(0), fechaCreacion);
         try {
             this.controlPers.insertarCuenta(cuenta);
         } catch (PersistenciaException e) {
@@ -126,5 +128,18 @@ public class ControlNegocio implements IControlNegocio{
 //    public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws NegocioException {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 //    }
+
+    @Override
+    public int guardarUsuario(int idCliente, String usuario, String contra) throws NegocioException {
+        int res;
+        try {
+            res=this.controlPers.guardarUsuario(idCliente, usuario, contra);
+            return res;
+        } catch (PersistenciaException e) {
+            throw new NegocioException(e.getMessage(),e.getCause());
+        }
+    }
+
+  
     
 }
