@@ -7,6 +7,7 @@ package banco.bancopresentacion;
 import banco.banconegocio.controlador.ControlNegocio;
 import banco.banconegocio.controlador.IControlNegocio;
 import banco.banconegocio.excepciones.NegocioException;
+import banco.bancopresentacion.control.ControlPresentacion;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,15 +15,24 @@ import javax.swing.JOptionPane;
  * @author luiis
  */
 public class DlgUsuario extends javax.swing.JDialog {
-    private int idCliente;
+    private String nombreC,apellidoPC,apellidoMC,fechaNacC;
+    private String calle,colonia,cp,num;
     IControlNegocio control=new ControlNegocio();
+    ControlPresentacion controlP=new ControlPresentacion();
     /**
      * Creates new form DlgUsuario
      */
-    public DlgUsuario(java.awt.Frame parent, boolean modal, int idCliente) {
+    public DlgUsuario(java.awt.Frame parent, boolean modal, String[] datosCliente,String[] datosDireccion) {
         super(parent, modal);
         initComponents();
-        this.idCliente=idCliente;
+        this.nombreC=datosCliente[0];
+        this.apellidoPC=datosCliente[1];
+        this.apellidoMC=datosCliente[2];
+        this.fechaNacC=datosCliente[3];
+        this.calle=datosDireccion[0];
+        this.colonia=datosDireccion[1];
+        this.cp=datosDireccion[2];
+        this.num=datosDireccion[3];
         this.setVisible(true);
     }
 
@@ -41,28 +51,48 @@ public class DlgUsuario extends javax.swing.JDialog {
         txt_usuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        btn_cancelar = new javax.swing.JButton();
         btn_aceptar = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        psw_1.setBackground(new java.awt.Color(204, 204, 204));
         getContentPane().add(psw_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 180, 30));
-        getContentPane().add(psw_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 180, 30));
+
+        psw_2.setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(psw_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 180, 30));
 
         jLabel1.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombre de usuario:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 180, 35));
 
+        txt_usuario.setBackground(new java.awt.Color(204, 204, 204));
         txt_usuario.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
         getContentPane().add(txt_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 180, 30));
 
         jLabel2.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Contraseña:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Repite la contraseña:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
+
+        btn_cancelar.setBackground(new java.awt.Color(0, 0, 102));
+        btn_cancelar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        btn_cancelar.setForeground(new java.awt.Color(204, 204, 204));
+        btn_cancelar.setText("cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 100, 30));
 
         btn_aceptar.setBackground(new java.awt.Color(204, 204, 255));
         btn_aceptar.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
@@ -73,7 +103,7 @@ public class DlgUsuario extends javax.swing.JDialog {
                 btn_aceptarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, -1));
+        getContentPane().add(btn_aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo4.png")); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 350));
@@ -87,7 +117,10 @@ public class DlgUsuario extends javax.swing.JDialog {
         String contra1=String.copyValueOf(psw_1.getPassword());
         String contra2=String.copyValueOf(psw_1.getPassword());
         try{
-            this.guardarUsuario(usuario, contra1, contra2);
+            int[] ids=this.guardarCliente(usuario, contra1, contra2);
+            controlP.setNumCuenta(control.obtenerNumCuenta(ids[0]));
+            controlP.setIds(ids);
+            controlP.despliegaPrincipal();
             this.dispose();
         }catch(NegocioException e){
             System.out.println(e.getCause());
@@ -95,23 +128,35 @@ public class DlgUsuario extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btn_aceptarActionPerformed
 
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        // TODO add your handling code here:
+        controlP.despliegaRegistro();
+        this.dispose();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
     /**
      * guarda el usuario en la base de datos
      * @param user a guardar, si no existe
      * @param contra1 a guardar
      * @param contra2 confirmacion de la contrasena a establecer
+     * @return arr con (1) el id del cliente y (2) el id de la direccion del cliente
      * @throws NegocioException en caso de que ocurra un erro al guardar el usuario
      */
-    private void guardarUsuario(String user, String contra1, String contra2)throws NegocioException{
+    private int[] guardarCliente(String user, String contra1, String contra2)throws NegocioException{
+        int arr[]=new int[2];
         if(!user.isBlank() && !contra1.isBlank() && !contra2.isBlank()){
             if(contra1.equals(contra2)){
-                control.guardarUsuario(idCliente, user, contra1);
+                arr[0]= control.insertarCliente(nombreC, apellidoPC, apellidoMC, fechaNacC, user, contra2);
+                arr[1]=control.agregarDireccionCliente(calle, colonia, cp, num);
             }
         }
+        return arr;
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_aceptar;
+    private javax.swing.JButton btn_cancelar;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

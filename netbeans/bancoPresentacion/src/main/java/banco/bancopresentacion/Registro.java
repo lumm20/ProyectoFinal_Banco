@@ -7,17 +7,19 @@ package banco.bancopresentacion;
 
 import banco.banconegocio.controlador.ControlNegocio;
 import banco.banconegocio.controlador.IControlNegocio;
-import banco.banconegocio.excepciones.NegocioException;
+import com.github.lgooddatepicker.components.DatePicker;
+import com.github.lgooddatepicker.components.DatePickerSettings;
 import banco.bancopresentacion.control.ControlPresentacion;
-import banco.bancopresentacion.utilities.FondoImagen;
+import com.github.lgooddatepicker.components.DateTimePicker;
+import com.github.lgooddatepicker.components.TimePickerSettings;
 import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -34,6 +36,7 @@ public class Registro extends javax.swing.JFrame {
      */
     public Registro() {
         initComponents();
+        setCalendario();
         this.setVisible(true);
     }
 
@@ -58,6 +61,7 @@ public class Registro extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         lbl_cp = new javax.swing.JLabel();
         txt_cp = new javax.swing.JTextField();
+        panel = new javax.swing.JPanel();
         lbl_calle = new javax.swing.JLabel();
         txt_calle = new javax.swing.JTextField();
         lbl_colonia = new javax.swing.JLabel();
@@ -77,26 +81,26 @@ public class Registro extends javax.swing.JFrame {
         lbl_nombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_nombre.setForeground(new java.awt.Color(255, 255, 255));
         lbl_nombre.setText("Nombre:");
-        jPanel1.add(lbl_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 250, -1));
+        jPanel1.add(lbl_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 250, -1));
 
         lbl_apP.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_apP.setForeground(new java.awt.Color(255, 255, 255));
         lbl_apP.setText("Apellido Paterno:");
-        jPanel1.add(lbl_apP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
-        jPanel1.add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 250, -1));
+        jPanel1.add(lbl_apP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
+        jPanel1.add(txtApellidoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 250, -1));
 
         lbl_apM.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_apM.setForeground(new java.awt.Color(255, 255, 255));
         lbl_apM.setText("Apellido Materno:");
-        jPanel1.add(lbl_apM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
-        jPanel1.add(txtApellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 250, -1));
+        jPanel1.add(lbl_apM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+        jPanel1.add(txtApellidoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 250, -1));
 
         lbl_fecha.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_fecha.setForeground(new java.awt.Color(255, 255, 255));
         lbl_fecha.setText("Fecha de nacimiento:");
-        jPanel1.add(lbl_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
-        jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 250, -1));
+        jPanel1.add(lbl_fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
+        jPanel1.add(txtFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 250, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,6 +124,19 @@ public class Registro extends javax.swing.JFrame {
         });
         jPanel1.add(txt_cp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 250, 20));
 
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 150, -1));
+
         lbl_calle.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_calle.setForeground(new java.awt.Color(255, 255, 255));
         lbl_calle.setText("Calle:");
@@ -140,7 +157,7 @@ public class Registro extends javax.swing.JFrame {
                 btn_atrasActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 50));
+        jPanel1.add(btn_atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 30));
 
         lbl_num.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lbl_num.setForeground(new java.awt.Color(255, 255, 255));
@@ -198,15 +215,9 @@ public class Registro extends javax.swing.JFrame {
                 txt_cp.getText(),
                 txt_numeroDireccion.getText()
             };
-            try {
-                int id=this.agregarCliente(datosCliente, datosDireccion);
-                DlgUsuario dlg=new DlgUsuario(this, true,id);
-                this.dispose();
-                controlP.despliegaPrincipal();
-            } catch (NegocioException e) {
-                System.out.println(e.getCause());
-                JOptionPane.showMessageDialog(this, e.getMessage());
-            }
+            DlgUsuario dlg = new DlgUsuario(this, true, datosCliente,datosDireccion);
+            this.dispose();
+            controlP.despliegaPrincipal();
         }
     }//GEN-LAST:event_ButtonAceptarActionPerformed
 
@@ -226,12 +237,6 @@ public class Registro extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_atrasActionPerformed
 
-    private int agregarCliente(String[] datos_cliente, String[] datos_direccion)
-            throws NegocioException {
-        int codigo_direccion = this.control.agregarDireccionCliente(datos_direccion[0], datos_direccion[1], datos_direccion[2], datos_direccion[3]);
-        int idCliente=this.control.insertarCliente(datos_cliente[0], datos_cliente[1], datos_cliente[2], datos_cliente[3], codigo_direccion);
-        return idCliente;
-    }
 
     private int validarCamposVacios(){
         JTextField[] componentes = {txtNombre, txtApellidoP, txtFechaNacimiento,txt_calle, txt_cp};
@@ -248,7 +253,7 @@ public class Registro extends javax.swing.JFrame {
     }
 
     private int validarInformacion(){
-        int contador=validarFecha();
+        int contador=0;
         String[] campos = {txtNombre.getText(), txtApellidoP.getText(), txtApellidoM.getText(), 
             txt_calle.getText(), txt_colonia.getText()};
         JLabel[] labels={lbl_nombre,lbl_apP,lbl_apM,lbl_calle,lbl_colonia};
@@ -265,27 +270,32 @@ public class Registro extends javax.swing.JFrame {
         }
         return contador;
     }
+//    
+//    private int validarFecha(){
+//        if(!Pattern.matches("^(?!2024)(?:19|20)\\d{2}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$", txtFechaNacimiento.getText())){
+//            lbl_fecha.setForeground(Color.red);
+//            return 1;
+//        }else
+//            lbl_fecha.setForeground(Color.white);
+//        return 0;
+//    }
     
-    private int validarFecha(){
-        if(!Pattern.matches("^(?!2024)(?:19|20)\\d{2}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])$", txtFechaNacimiento.getText())){
-            lbl_fecha.setForeground(Color.red);
-            return 1;
-        }else
-            lbl_fecha.setForeground(Color.white);
-        return 0;
+    private void setCalendario(){
+        DatePickerSettings settings = new DatePickerSettings(Locale.ENGLISH);
+        TimePickerSettings timeSettings=new TimePickerSettings(Locale.ENGLISH);
+        
+        settings.setFormatForDatesCommonEra("yyyy-mm-dd"); // Formato de fecha
+        timeSettings.setFormatForDisplayTime("HH:mm:ss");
+        timeSettings.initialTime = LocalTime.of(12, 0);
+        LocalDateTime date=LocalDateTime.now();
+        int mes=date.getMonthValue();
+        int dia=date.getDayOfMonth();
+        DateTimePicker datePicker = new DateTimePicker(settings,timeSettings);
+        settings.setDateRangeLimits(LocalDate.of(1930,1,1), LocalDate.of(2006,mes,dia));
+        
+        //datePicker.setSettings(settings);
+        panel.add(datePicker); 
     }
-    
-    private void setLogo(){
-        try{
-            File file =new File("Imagenes/icon-back.png");
-            BufferedImage imagen=ImageIO.read(file);
-            FondoImagen fondo= new FondoImagen(imagen);
-            btn_atras.setBorder(fondo);
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAceptar;
@@ -303,6 +313,7 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_fecha;
     private javax.swing.JLabel lbl_nombre;
     private javax.swing.JLabel lbl_num;
+    private javax.swing.JPanel panel;
     private javax.swing.JTextField txtApellidoM;
     private javax.swing.JTextField txtApellidoP;
     private javax.swing.JTextField txtFechaNacimiento;

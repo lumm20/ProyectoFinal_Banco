@@ -4,10 +4,14 @@
  */
 package banco.bancopresentacion;
 
-import banco.bancopresentacion.utilities.FondoImagen;
+import banco.banconegocio.controlador.ControlNegocio;
+import banco.banconegocio.controlador.IControlNegocio;
+import banco.banconegocio.excepciones.NegocioException;
+import banco.bancopresentacion.control.ControlPresentacion;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import javax.imageio.ImageIO;
 
 /**
@@ -15,13 +19,14 @@ import javax.imageio.ImageIO;
  * @author luiis
  */
 public class Principal extends javax.swing.JFrame {
-
+    ControlPresentacion controlP=new ControlPresentacion();
+    IControlNegocio controlN=new ControlNegocio();
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
-        setLogo();
+        this.setInfoCuenta(controlP.obtenNumCuentaActual());
         this.setVisible(true);
     }
 
@@ -35,10 +40,9 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         lbl_historial = new javax.swing.JLabel();
-        btn_atras = new javax.swing.JButton();
+        lbl_dinero = new javax.swing.JLabel();
         lbl_miPerfil = new javax.swing.JLabel();
         lbl_numCuenta = new javax.swing.JLabel();
-        lbl_dinero = new javax.swing.JLabel();
         lbl_saldo = new javax.swing.JLabel();
         lbl_icono_miPerfil = new javax.swing.JLabel();
         lbl_transferir = new javax.swing.JLabel();
@@ -58,23 +62,31 @@ public class Principal extends javax.swing.JFrame {
         lbl_historial.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(lbl_historial, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 110, 30));
 
-        btn_atras.setBackground(new java.awt.Color(204, 204, 255));
-        getContentPane().add(btn_atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+        lbl_dinero.setPreferredSize(new java.awt.Dimension(90, 20));
+        getContentPane().add(lbl_dinero, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 80, -1));
 
         lbl_miPerfil.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\txt_miPerfil.png")); // NOI18N
         lbl_miPerfil.setPreferredSize(new java.awt.Dimension(60, 20));
+        lbl_miPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_miPerfilMouseClicked(evt);
+            }
+        });
         getContentPane().add(lbl_miPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 70, -1));
 
+        lbl_numCuenta.setFont(new java.awt.Font("Noto Sans", 0, 12)); // NOI18N
         lbl_numCuenta.setPreferredSize(new java.awt.Dimension(100, 20));
-        getContentPane().add(lbl_numCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 120, -1));
-
-        lbl_dinero.setPreferredSize(new java.awt.Dimension(90, 20));
-        getContentPane().add(lbl_dinero, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 80, -1));
+        getContentPane().add(lbl_numCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 140, -1));
 
         lbl_saldo.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\txt-saldo.png")); // NOI18N
         getContentPane().add(lbl_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 70, 20));
 
         lbl_icono_miPerfil.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\icono-miPerfil.png")); // NOI18N
+        lbl_icono_miPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_icono_miPerfilMouseClicked(evt);
+            }
+        });
         getContentPane().add(lbl_icono_miPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 50, 60));
 
         lbl_transferir.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
@@ -91,8 +103,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(lbl_transferir, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 110, 30));
 
         lbl_infoCuenta.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\txt-cuenta.png")); // NOI18N
-        lbl_infoCuenta.setText("jLabel1");
-        getContentPane().add(lbl_infoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 100, 20));
+        getContentPane().add(lbl_infoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 70, 20));
 
         fondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo-Main.png")); // NOI18N
         fondo.setMaximumSize(new java.awt.Dimension(360, 630));
@@ -101,27 +112,42 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbl_transferirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_transferirMouseClicked
         // TODO add your handling code here:
+        controlP.desplegarTransferencia();
+        this.dispose();
         
     }//GEN-LAST:event_lbl_transferirMouseClicked
 
-    private void setLogo(){
+    private void lbl_icono_miPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_icono_miPerfilMouseClicked
+        // TODO add your handling code here:
+        controlP.desplegarPerfilUsuario();
+        this.dispose();
+    }//GEN-LAST:event_lbl_icono_miPerfilMouseClicked
+
+    private void lbl_miPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_miPerfilMouseClicked
+        // TODO add your handling code here:
+        controlP.desplegarPerfilUsuario();
+        this.dispose();
+    }//GEN-LAST:event_lbl_miPerfilMouseClicked
+
+  
+    
+    private void setInfoCuenta(String numCuenta){
         try{
-            File file =new File("Imagenes/icon-back.png");
-            BufferedImage imagen=ImageIO.read(file);
-            FondoImagen fondo= new FondoImagen(imagen);
-            btn_atras.setBorder(fondo);
-        }catch(IOException e){
-            e.printStackTrace();
+            BigDecimal saldo=controlN.consultarCuentaEspecifica(numCuenta).getSaldo();
+            String saldoStr=saldo+"";
+            lbl_dinero.setText(saldoStr);
+            lbl_numCuenta.setText(numCuenta);
+        }catch(NegocioException e){
+            System.out.println(e.getMessage());
         }
     }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_atras;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel lbl_dinero;
     private javax.swing.JLabel lbl_historial;

@@ -6,12 +6,13 @@ package banco.bancopresentacion;
 
 import banco.banconegocio.controlador.ControlNegocio;
 import banco.banconegocio.controlador.IControlNegocio;
+import banco.banconegocio.excepciones.NegocioException;
 import banco.bancopresentacion.control.ControlPresentacion;
-import banco.bancopresentacion.utilities.FondoImagen;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -27,7 +28,6 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        setLogo();
         this.setVisible(true);
     }
 
@@ -42,11 +42,11 @@ public class Login extends javax.swing.JFrame {
 
         btn_atras = new javax.swing.JButton();
         btn_login = new javax.swing.JButton();
+        psw_1 = new javax.swing.JPasswordField();
         lbl_user = new javax.swing.JLabel();
         lbl_contra = new javax.swing.JLabel();
         lbl_icono = new javax.swing.JLabel();
         txt_user = new javax.swing.JTextField();
-        txt_contra = new javax.swing.JTextField();
         lbl_imagen = new javax.swing.JLabel();
         cuadro_central = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
@@ -76,6 +76,9 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(btn_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, -1, -1));
 
+        psw_1.setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(psw_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 282, 210, 30));
+
         lbl_user.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
         lbl_user.setForeground(new java.awt.Color(0, 0, 51));
         lbl_user.setText("Usuario");
@@ -98,15 +101,6 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(txt_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 210, 30));
 
-        txt_contra.setBackground(new java.awt.Color(204, 204, 255));
-        txt_contra.setBorder(null);
-        txt_contra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_contraActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txt_contra, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 210, 30));
-
         lbl_imagen.setBackground(new java.awt.Color(255, 255, 255));
         lbl_imagen.setIcon(new javax.swing.ImageIcon("C:\\Users\\luiis\\Dropbox\\PC\\Documents\\proyectoFinal-Banco-BDA\\netbeans\\bancoPresentacion\\src\\main\\java\\banco\\bancopresentacion\\Imagenes\\fondo5.png")); // NOI18N
         getContentPane().add(lbl_imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 250, 220));
@@ -122,15 +116,24 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txt_contraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_contraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_contraActionPerformed
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         // TODO add your handling code here:
-        
+        String user=txt_user.getText();
+        String pass=String.copyValueOf(psw_1.getPassword());
+        int[] ids;
+        try {
+            ids=this.iniciarSesion(user, pass);
+            control.setIds(ids);
+            control.setNumCuenta(controlN.obtenerNumCuenta(ids[0]));
+            control.despliegaPrincipal();
+            this.dispose();
+        } catch (NegocioException e) {
+            System.out.println(e.getCause());
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }//GEN-LAST:event_btn_loginActionPerformed
 
     private void btn_atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_atrasActionPerformed
@@ -143,16 +146,14 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_userActionPerformed
 
-   private void setLogo(){
-        try{
-            File file =new File("Imagenes/icon-back.png");
-            BufferedImage imagen=ImageIO.read(file);
-            FondoImagen fondo= new FondoImagen(imagen);
-            btn_atras.setBorder(fondo);
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
+   
+   
+   private int[] iniciarSesion(String usuario, String contra)throws NegocioException{
+       int idCliente=this.controlN.autenticarUsuario(usuario, contra);
+       int idDireccion=this.controlN.obtenerIdDireccionCliente(idCliente);
+       int[] arr={idCliente,idDireccion};
+       return arr;
+   }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_atras;
@@ -163,7 +164,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_icono;
     private javax.swing.JLabel lbl_imagen;
     private javax.swing.JLabel lbl_user;
-    private javax.swing.JTextField txt_contra;
+    private javax.swing.JPasswordField psw_1;
     private javax.swing.JTextField txt_user;
     // End of variables declaration//GEN-END:variables
 }
