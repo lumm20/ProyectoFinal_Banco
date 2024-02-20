@@ -6,6 +6,7 @@ package banco.banconegocio.controlador;
 
 import banco.bancodominio.Cliente;
 import banco.bancodominio.Cuenta;
+import banco.bancodominio.Transaccion;
 import banco.banconegocio.excepciones.NegocioException;
 
 import java.util.List;
@@ -41,12 +42,13 @@ public interface IControlNegocio {
      * @param apellidoPaterno del cliente
      * @param apellidoM del cliente
      * @param fecha_nacimiento del cliente
-     * @param id_direccion del registro de la direccion en la base de datos
+     * @param usuario con el que se identificara el cliente
+     * @param contra respectiva a su usuario
      * @return el id del cliente agregado, 0 si no se agrego
      * @throws NegocioException en caso de que ocurra un error de base de datos al agregar al cliente
      */
     public int insertarCliente(String nombre, String apellidoPaterno, String apellidoM,
-            String fecha_nacimiento, int id_direccion) throws NegocioException;
+            String fecha_nacimiento,  String usuario, String contra) throws NegocioException;
 
     /**
      * Agrega la direccion de un cliente en la base de datos
@@ -60,17 +62,31 @@ public interface IControlNegocio {
     public int agregarDireccionCliente(String calle, String colonia, String codigo_postal, String numero)
             throws NegocioException;
     
-//    /**
-//     * Actualiza la informacion personal de un cliente, a excepcion de su id de cliente
-//     * @param nombre del cliente
-//     * @param apellidoPaterno del cliente
-//     * @param apellidoM del cliente
-//     * @param fecha_nacimiento del cliente
-//     * @throws NegocioException en caso de que ocurra un error de base de datos al actualizar al cliente
-//     */
-//    public void actualizarCliente(String nombre, String apellidoPaterno, String apellidoM,
-//            String fecha_nacimiento) throws NegocioException;
-//    
+    /**
+     * Actualiza la informacion personal de un cliente, a excepcion de su id de cliente
+     * @param idCliente del cliente
+     * @param nombre del cliente
+     * @param apellidoPaterno del cliente
+     * @param apellidoM del cliente
+     * @param fecha_nacimiento del cliente
+     * @param idDireccion de la direccion del cliente
+     * @throws NegocioException en caso de que ocurra un error de base de datos al actualizar al cliente
+     */
+    public void actualizarCliente(int idCliente, String nombre, String apellidoPaterno, String apellidoM,
+            String fecha_nacimiento, int idDireccion) throws NegocioException;
+    
+    /**
+     * Actualiza la direccion de un cliente en la base de datos, a excepcion del id de direccion
+     * @param idDireccion del registro en la base de datos
+     * @param calle a actualizar
+     * @param colonia a actualizar
+     * @param codigo_postal a actualizar
+     * @param numero a actualizar
+     * @throws NegocioException en caso de que ocurra un error de base de datos al actualizar la direccion
+     */
+    public void actualizarDireccionCliente(int idDireccion, String calle, String colonia, String codigo_postal, String numero)
+            throws NegocioException;
+    
     /**
      * Realiza una consulta de una cuenta con el num_cuenta especificado en el parametro
      *
@@ -80,6 +96,15 @@ public interface IControlNegocio {
      * cuenta o si ocurre un error de base de datos al realizar la consulta
      */
     public Cuenta consultarCuentaEspecifica(String numCuenta) throws NegocioException;
+    
+    /**
+     * Obtiene el ultimo numero de cuenta registrado en la tabla de cuentas cuyo id de cliente asociado
+     * coincida con el id del parametro
+     * @param idCliente del cual se quiere obtener su mas reciente numero de cuenta registrado 
+     * @return el numero de cuenta obtenido
+     * @throws NegocioException en caso de que ocurra un error de base de datos al obtener el numero de cuenta
+     */
+    public String obtenerNumCuenta(int idCliente)throws NegocioException;
     
     /**
      * Realiza una consulta de todas las cuentas registradas
@@ -93,26 +118,54 @@ public interface IControlNegocio {
     /**
      * Agrega un registro de una cuenta a la base de datos con saldo inicial 0.0 y estado activo
      * @param numCuenta de la cuenta a registrar
-     * @param fecha_creacion de la cuenta
      * @throws NegocioException en caso de que ocurra un error de base de datos al agregar la cuenta
      */
-    public void insertarCuenta(String numCuenta, String fecha_creacion) throws NegocioException;
-    
-//    /**
-//     * Actualiza el saldo de una cuenta
-//     * @param num_cuenta a actualizar
-//     * @param saldo a establecer en el registro de la cuenta
-//     * @throws NegocioException en caso de que ocurra un error de base de datos al actualizar el saldo
-//     */
-//    public void actualizarSaldoCuenta(String num_cuenta, float saldo) throws NegocioException;
+    public void insertarCuenta(String numCuenta) throws NegocioException;
 
-    /**
-     * guarda un usuario en la base de datos
-     * @param idCliente al que le pertenece el usuario
-     * @param usuario a guardar
-     * @param contra a guardar
-     * @return el id del registro del usuario, 0 si no se guardo
-     * @throws NegocioException en caso de que ocurra un error de base de datos al agregar el usuario
+     /**
+     * Cancela una cuenta de un cliente, actualizando su estado de 'activa' a 'cancelada' en la base de datos
+     * @param numCuenta a cancelar
+     * @throws NegocioException en caso de que ocurra un error de base de datos al cancelar la cuenta
      */
-    public int guardarUsuario(int idCliente, String usuario, String contra)throws NegocioException;
+    public void cancelarCuenta(String numCuenta) throws NegocioException;
+    
+    /**
+     * guarda un registro de una transaccion en la base de datos
+     * @param transaccion a guardar en la tabla de la base de datos
+     * @return el id de la transaccion
+     * @throws NegocioException en caso de que ocurra un error de base de datos al procesar la transaccion
+     */
+    public int procesarTransaccion(Transaccion transaccion)throws NegocioException;
+    /**
+     * guarda un registro de una transferencia a partir de un registro de una transaccion en la base de datos
+     * @param idTransaccion de la transaccion
+     * @param numCuentaDestino de la transferencia
+     * @throws NegocioException en caso de que ocurra un error de base de datos al procesar la transferencia
+     */
+    public void procesarTransferencia(int idTransaccion, String numCuentaDestino)throws NegocioException;
+    /**
+     * guarda un registro de un retiro sin cuenta a partir de un registro de una transaccion en la base de datos
+     * @param idTransaccion de la transaccion
+     * @param folio del retiro sin cuenta
+     * @param contra a utilizar para el retiro
+     * @throws NegocioException en caso de que ocurra un error de base de datos al procesar el retiro
+     */
+    public void procesarRetiroSinCuenta(int idTransaccion, String folio, String contra )throws NegocioException;
+    
+    /**
+     * inicia sesion con el usuario y clave del cliente
+     * @param usuario con el que se registro el cliente
+     * @param contra que establecio al momento del registro
+     * @return el id del cliente si se inicio correctamente
+     * @throws NegocioException en caso de que ocurra el usuario-contrasena 
+     * que se ingresaron fueron incorrectas, o si ocurre un error de base de datos al iniciar sesion 
+     */
+    public int autenticarUsuario(String usuario, String contra)throws NegocioException;
+    /**
+     * obtiene el id de la direccion del cliente especificado en el parametro
+     * @param idCliente del cual se quiere recuperar el id de direccion
+     * @return el id de la direccion obtenida
+     * @throws NegocioException en caso de que ocurra un error de base de datos al obtener el id de la direccion
+     */
+    public int obtenerIdDireccionCliente(int idCliente)throws NegocioException;
 }
