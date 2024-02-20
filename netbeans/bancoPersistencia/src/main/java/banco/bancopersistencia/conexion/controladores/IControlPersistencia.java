@@ -6,6 +6,7 @@ package banco.bancopersistencia.conexion.controladores;
 
 import banco.bancodominio.Cliente;
 import banco.bancodominio.Cuenta;
+import banco.bancodominio.Transaccion;
 import banco.bancopersistencia.dtos.ClienteDTO;
 import banco.bancopersistencia.dtos.CuentaDTO;
 import banco.bancopersistencia.excepciones.PersistenciaException;
@@ -39,11 +40,22 @@ public interface IControlPersistencia {
     /**
      * Agrega un registro de un cliente a la base de datos
      * @param cliente a registrar
+     * @param usuario con el que se identificara el cliente
+     * @param contra respectiva a su usuario
      * @return el id del cliente agregado, 0 si no se pudo agregar
      * @throws PersistenciaException en caso de que ocurra un error de base de datos al agregar al cliente
      */
-    public int insertarCliente(ClienteDTO cliente) throws PersistenciaException;
+    public int insertarCliente(ClienteDTO cliente, String usuario, String contra) throws PersistenciaException;
 
+    /**
+     * Obtiene el ultimo numero de cuenta registrado en la tabla de cuentas cuyo id de cliente asociado
+     * coincida con el id del parametro
+     * @param idCliente del cual se quiere obtener su mas reciente numero de cuenta registrado 
+     * @return el numero de cuenta obtenido
+     * @throws PersistenciaException en caso de que ocurra un error de base de datos al obtener el numero de cuenta
+     */
+    public String obtenerNumCuenta(int idCliente)throws PersistenciaException;
+    
     /**
      * Agrega la direccion de un cliente a la base de datos
      * @param calle de la direccion
@@ -56,11 +68,22 @@ public interface IControlPersistencia {
     public int agregarDireccionCliente(String calle, String colonia, String codigo_postal, String numero)
             throws PersistenciaException;
     /**
-     * Actualiza la informacion personal de un cliente, a excepcion de su id de cliente
+     * Actualiza la informacion personal de un cliente, a excepcion del id de cliente
      * @param cliente con la informacion a actualizar
      * @throws PersistenciaException en caso de que ocurra un error de base de datos al actualizar al cliente
      */
     public void actualizarCliente(Cliente cliente) throws PersistenciaException;
+    /**
+     * Actualiza la direccion de un cliente en la base de datos, a excepcion del id de direccion
+     * @param idDireccion del registro en la base de datos
+     * @param calle a actualizar
+     * @param colonia a actualizar
+     * @param codigo_postal a actualizar
+     * @param numero a actualizar
+     * @throws PersistenciaException en caso de que ocurra un error de base de datos al actualizar la direccion
+     */
+    public void actualizarDireccion(int idDireccion, String calle, String colonia, String codigo_postal, String numero)
+            throws PersistenciaException;
     
     /**
      * Realiza una consulta de una cuenta con el num_cuenta especificado en el parametro
@@ -89,19 +112,48 @@ public interface IControlPersistencia {
     public void insertarCuenta(CuentaDTO cuenta) throws PersistenciaException;
     
     /**
-     * Actualiza el saldo de una cuenta
-     * @param num_cuenta a actualizar
-     * @param saldo a establecer en el registro de la cuenta
-     * @throws PersistenciaException en caso de que ocurra un error de base de datos al actualizar el saldo
+     * Cancela una cuenta de un cliente, actualizando su estado de 'activa' a 'cancelada' en la base de datos
+     * @param numCuenta a cancelar
+     * @throws PersistenciaException en caso de que ocurra un error de base de datos al cancelar la cuenta
      */
-    public void actualizarSaldoCuenta(String num_cuenta, BigDecimal saldo) throws PersistenciaException;
-  /**
-   * agrega un usuario a la tabla de usuarios
-   * @param idCliente al que le pertenece el usuario
-   * @param usuario a guardar
-   * @param contra a guardar
-   * @return el id del registro del usuario, 0 si no se registro
-   * @throws PersistenciaException en caso de que ocurra un error de base de datos al agregar el usuario
-   */
-    public int guardarUsuario(int idCliente, String usuario, String contra)throws PersistenciaException;
+    public void cancelarCuenta(String numCuenta) throws PersistenciaException;
+    
+    /**
+     * guarda un registro de una transaccion en la base de datos
+     * @param transaccion a guardar en la tabla de la base de datos
+     * @return el id de la transaccion
+     * @throws PersistenciaException en caso de que ocurra un error de base de datos al procesar la transaccion
+     */
+    public int procesarTransaccion(Transaccion transaccion)throws PersistenciaException;
+    /**
+     * guarda un registro de una transferencia a partir de un registro de una transaccion en la base de datos
+     * @param idTransaccion de la transaccion
+     * @param numCuentaDestino de la transferencia
+     * @throws PersistenciaException en caso de que ocurra un error de base de datos al procesar la transferencia
+     */
+    public void procesarTransferencia(int idTransaccion, String numCuentaDestino)throws PersistenciaException;
+    /**
+     * guarda un registro de un retiro sin cuenta a partir de un registro de una transaccion en la base de datos
+     * @param idTransaccion de la transaccion
+     * @param folio del retiro sin cuenta
+     * @param contra a utilizar para el retiro
+     * @throws PersistenciaException en caso de que ocurra un error de base de datos al procesar el retiro
+     */
+    public void procesarRetiroSinCuenta(int idTransaccion, String folio, String contra )throws PersistenciaException;
+    /**
+     * inicia sesion con el usuario y clave del cliente
+     * @param usuario con el que se registro el cliente
+     * @param contra que establecio al momento del registro
+     * @return el id del cliente si se inicio correctamente
+     * @throws PersistenciaException  que ocurra un error de base de datos al iniciar sesion
+     */
+    public int autenticarUsuario(String usuario, String contra)throws PersistenciaException;
+    /**
+     * obtiene el id de la direccion del cliente especificado en el parametro
+     * @param idCliente del cual se quiere recuperar el id de direccion
+     * @return el id de la direccion obtenida
+     * @throws PersistenciaException en caso de que ocurra un error de base de datos al obtener el id de la direccion
+     */
+    public int obtenerIdDireccion(int idCliente)throws PersistenciaException;
+            
 }
